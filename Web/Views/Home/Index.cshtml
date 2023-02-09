@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<div class="row">
+
+    @* <div class="card">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        @Html.Label("Usuario")
+                        @Html.TextBox("Usuario")
+                    </div>
+                    <div class="col-md-6">
+                        @Html.Label("Contraseña")
+                        @Html.TextBox("Contraseña")
+                    </div>
+                    <div class="col-md-12">
+                        <input class="btn btn-default btn-sm" type="submit" value="Iniciar sesión" />
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>*@
+
+
+
+    <div id="contenedor">
+        <div id="central">
+            <div id="login">
+                <div class="titulo">
+                    Welcome
+                </div>
+                <form id="loginform">
+                    @Html.Label("Email")
+                    @Html.TextBox("Email")
+
+                    @Html.Label("Password")
+                    @Html.TextBox("Password")
+
+                    <button class="btn btn-default" type="submit" title="Ingresar" name="Ingresar">Login</button>
+                </form>
+                
+            </div>
+
+        </div>
+    </div>
+</div>

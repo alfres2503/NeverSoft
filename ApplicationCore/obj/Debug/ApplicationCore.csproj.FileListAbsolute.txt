@@ -1,0 +1,9 @@
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\bin\Debug\ApplicationCore.dll
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\bin\Debug\ApplicationCore.pdb
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\bin\Debug\Infraestructure.dll
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\bin\Debug\Infraestructure.pdb
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.AssemblyReference.cache
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CoreCompileInputs.cache
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.dll
+C:\Users\Yoryina\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.pdb
