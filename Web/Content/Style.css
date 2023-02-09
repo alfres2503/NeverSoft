@@ -3,6 +3,12 @@
     color: #000000;
    
 }
+
+.logo{
+    width:125px;
+    height:130px;
+    padding-bottom:5px;
+}
 body {
     background-color: #EDE7E3;
     color: #000000;
