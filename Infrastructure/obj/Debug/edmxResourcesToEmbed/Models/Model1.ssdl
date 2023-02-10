@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NeverlandDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="IDArea" />
+    </Key>
+    <Property Name="IDArea" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StartSchedule" Type="int" Nullable="false" />
+    <Property Name="FinishSchedule" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Incidence">
+    <Key>
+      <PropertyRef Name="IDIncidence" />
+    </Key>
+    <Property Name="IDIncidence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDUser" Type="bigint" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="280" Nullable="false" />
+    <Property Name="Finished" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="IDNews" />
+    </Key>
+    <Property Name="IDNews" Type="int" Nullable="false" />
+    <Property Name="IDCategory" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Archive" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="NewsCategory">
+    <Key>
+      <PropertyRef Name="IDCategory" />
+    </Key>
+    <Property Name="IDCategory" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentItem">
+    <Key>
+      <PropertyRef Name="IDItem" />
+    </Key>
+    <Property Name="IDItem" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentPlan">
+    <Key>
+      <PropertyRef Name="IDPlan" />
+    </Key>
+    <Property Name="IDPlan" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="280" Nullable="false" />
+    <Property Name="Total" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlanAssignment">
+    <Key>
+      <PropertyRef Name="IDAssignment" />
+    </Key>
+    <Property Name="IDAssignment" Type="int" Nullable="false" />
+    <Property Name="IDPlan" Type="int" Nullable="false" />
+    <Property Name="IDResidence" Type="int" Nullable="false" />
+    <Property Name="AssignmentDate" Type="date" Nullable="false" />
+    <Property Name="PayedStatus" Type="bit" Nullable="false" />
+    <Property Name="Total" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlanItem">
+    <Key>
+      <PropertyRef Name="IDPlan" />
+      <PropertyRef Name="IDItem" />
+    </Key>
+    <Property Name="IDPlan" Type="int" Nullable="false" />
+    <Property Name="IDItem" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="IDReservation" />
+    </Key>
+    <Property Name="IDReservation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDUser" Type="bigint" Nullable="false" />
+    <Property Name="IDArea" Type="int" Nullable="false" />
+    <Property Name="Start" Type="datetime" Nullable="false" />
+    <Property Name="Finish" Type="datetime" Nullable="false" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Residence">
+    <Key>
+      <PropertyRef Name="IDResidence" />
+    </Key>
+    <Property Name="IDResidence" Type="int" Nullable="false" />
+    <Property Name="IDUser" Type="bigint" Nullable="false" />
+    <Property Name="Habitants" Type="int" Nullable="false" />
+    <Property Name="StartYear" Type="int" Nullable="false" />
+    <Property Name="InConstruction" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="IDUser" />
+    </Key>
+    <Property Name="IDUser" Type="bigint" Nullable="false" />
+    <Property Name="IDRole" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="IDRole" />
+    </Key>
+    <Property Name="IDRole" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Incidence_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Incidence" Type="Self.Incidence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="Incidence">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_NewsCategory">
+    <End Role="NewsCategory" Type="Self.NewsCategory" Multiplicity="1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsCategory">
+        <PropertyRef Name="IDCategory" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="IDCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanAssignment_PaymentPlan">
+    <End Role="PaymentPlan" Type="Self.PaymentPlan" Multiplicity="1" />
+    <End Role="PlanAssignment" Type="Self.PlanAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentPlan">
+        <PropertyRef Name="IDPlan" />
+      </Principal>
+      <Dependent Role="PlanAssignment">
+        <PropertyRef Name="IDPlan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanAssignment_Residence">
+    <End Role="Residence" Type="Self.Residence" Multiplicity="1" />
+    <End Role="PlanAssignment" Type="Self.PlanAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Residence">
+        <PropertyRef Name="IDResidence" />
+      </Principal>
+      <Dependent Role="PlanAssignment">
+        <PropertyRef Name="IDResidence" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanItem_PaymentItem">
+    <End Role="PaymentItem" Type="Self.PaymentItem" Multiplicity="1" />
+    <End Role="PlanItem" Type="Self.PlanItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentItem">
+        <PropertyRef Name="IDItem" />
+      </Principal>
+      <Dependent Role="PlanItem">
+        <PropertyRef Name="IDItem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanItem_PaymentPlan">
+    <End Role="PaymentPlan" Type="Self.PaymentPlan" Multiplicity="1" />
+    <End Role="PlanItem" Type="Self.PlanItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentPlan">
+        <PropertyRef Name="IDPlan" />
+      </Principal>
+      <Dependent Role="PlanItem">
+        <PropertyRef Name="IDPlan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="IDArea" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IDArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Residence_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Residence" Type="Self.Residence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="Residence">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserRole">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="IDRole" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IDRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NeverlandDBModelStoreContainer">
+    <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Incidence" EntityType="Self.Incidence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewsCategory" EntityType="Self.NewsCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentItem" EntityType="Self.PaymentItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentPlan" EntityType="Self.PaymentPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlanAssignment" EntityType="Self.PlanAssignment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlanItem" EntityType="Self.PlanItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Residence" EntityType="Self.Residence" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Incidence_User" Association="Self.FK_Incidence_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Incidence" EntitySet="Incidence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_NewsCategory" Association="Self.FK_News_NewsCategory">
+      <End Role="NewsCategory" EntitySet="NewsCategory" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanAssignment_PaymentPlan" Association="Self.FK_PlanAssignment_PaymentPlan">
+      <End Role="PaymentPlan" EntitySet="PaymentPlan" />
+      <End Role="PlanAssignment" EntitySet="PlanAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanAssignment_Residence" Association="Self.FK_PlanAssignment_Residence">
+      <End Role="Residence" EntitySet="Residence" />
+      <End Role="PlanAssignment" EntitySet="PlanAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanItem_PaymentItem" Association="Self.FK_PlanItem_PaymentItem">
+      <End Role="PaymentItem" EntitySet="PaymentItem" />
+      <End Role="PlanItem" EntitySet="PlanItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanItem_PaymentPlan" Association="Self.FK_PlanItem_PaymentPlan">
+      <End Role="PaymentPlan" EntitySet="PaymentPlan" />
+      <End Role="PlanItem" EntitySet="PlanItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_Area" Association="Self.FK_Reservation_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_User" Association="Self.FK_Reservation_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Residence_User" Association="Self.FK_Residence_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Residence" EntitySet="Residence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

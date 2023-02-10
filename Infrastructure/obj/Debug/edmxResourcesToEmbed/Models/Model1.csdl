@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NeverlandDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="IDArea" />
+    </Key>
+    <Property Name="IDArea" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartSchedule" Type="Int32" Nullable="false" />
+    <Property Name="FinishSchedule" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Area" FromRole="Area" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Incidence">
+    <Key>
+      <PropertyRef Name="IDIncidence" />
+    </Key>
+    <Property Name="IDIncidence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDUser" Type="Int64" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Finished" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Incidence_User" FromRole="Incidence" ToRole="User" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="IDNews" />
+    </Key>
+    <Property Name="IDNews" Type="Int32" Nullable="false" />
+    <Property Name="IDCategory" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Archive" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="NewsCategory" Relationship="Self.FK_News_NewsCategory" FromRole="News" ToRole="NewsCategory" />
+  </EntityType>
+  <EntityType Name="NewsCategory">
+    <Key>
+      <PropertyRef Name="IDCategory" />
+    </Key>
+    <Property Name="IDCategory" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="News" Relationship="Self.FK_News_NewsCategory" FromRole="NewsCategory" ToRole="News" />
+  </EntityType>
+  <EntityType Name="PaymentItem">
+    <Key>
+      <PropertyRef Name="IDItem" />
+    </Key>
+    <Property Name="IDItem" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="PaymentPlan" Relationship="Self.PlanItem" FromRole="PaymentItem" ToRole="PaymentPlan" />
+  </EntityType>
+  <EntityType Name="PaymentPlan">
+    <Key>
+      <PropertyRef Name="IDPlan" />
+    </Key>
+    <Property Name="IDPlan" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="PlanAssignment" Relationship="Self.FK_PlanAssignment_PaymentPlan" FromRole="PaymentPlan" ToRole="PlanAssignment" />
+    <NavigationProperty Name="PaymentItem" Relationship="Self.PlanItem" FromRole="PaymentPlan" ToRole="PaymentItem" />
+  </EntityType>
+  <EntityType Name="PlanAssignment">
+    <Key>
+      <PropertyRef Name="IDAssignment" />
+    </Key>
+    <Property Name="IDAssignment" Type="Int32" Nullable="false" />
+    <Property Name="IDPlan" Type="Int32" Nullable="false" />
+    <Property Name="IDResidence" Type="Int32" Nullable="false" />
+    <Property Name="AssignmentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PayedStatus" Type="Boolean" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <NavigationProperty Name="PaymentPlan" Relationship="Self.FK_PlanAssignment_PaymentPlan" FromRole="PlanAssignment" ToRole="PaymentPlan" />
+    <NavigationProperty Name="Residence" Relationship="Self.FK_PlanAssignment_Residence" FromRole="PlanAssignment" ToRole="Residence" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="IDReservation" />
+    </Key>
+    <Property Name="IDReservation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDUser" Type="Int64" Nullable="false" />
+    <Property Name="IDArea" Type="Int32" Nullable="false" />
+    <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Finish" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Approved" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Area" Relationship="Self.FK_Reservation_Area" FromRole="Reservation" ToRole="Area" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Reservation_User" FromRole="Reservation" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Residence">
+    <Key>
+      <PropertyRef Name="IDResidence" />
+    </Key>
+    <Property Name="IDResidence" Type="Int32" Nullable="false" />
+    <Property Name="IDUser" Type="Int64" Nullable="false" />
+    <Property Name="Habitants" Type="Int32" Nullable="false" />
+    <Property Name="StartYear" Type="Int32" Nullable="false" />
+    <Property Name="InConstruction" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PlanAssignment" Relationship="Self.FK_PlanAssignment_Residence" FromRole="Residence" ToRole="PlanAssignment" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Residence_User" FromRole="Residence" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="IDUser" />
+    </Key>
+    <Property Name="IDUser" Type="Int64" Nullable="false" />
+    <Property Name="IDRole" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Incidence" Relationship="Self.FK_Incidence_User" FromRole="User" ToRole="Incidence" />
+    <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_User" FromRole="User" ToRole="Reservation" />
+    <NavigationProperty Name="Residence" Relationship="Self.FK_Residence_User" FromRole="User" ToRole="Residence" />
+    <NavigationProperty Name="UserRole" Relationship="Self.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="IDRole" />
+    </Key>
+    <Property Name="IDRole" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_UserRole" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Reservation_Area">
+    <End Role="Area" Type="Self.Area" Multiplicity="1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="IDArea" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IDArea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Incidence_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Incidence" Type="Self.Incidence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="Incidence">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_NewsCategory">
+    <End Role="NewsCategory" Type="Self.NewsCategory" Multiplicity="1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsCategory">
+        <PropertyRef Name="IDCategory" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="IDCategory" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanAssignment_PaymentPlan">
+    <End Role="PaymentPlan" Type="Self.PaymentPlan" Multiplicity="1" />
+    <End Role="PlanAssignment" Type="Self.PlanAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentPlan">
+        <PropertyRef Name="IDPlan" />
+      </Principal>
+      <Dependent Role="PlanAssignment">
+        <PropertyRef Name="IDPlan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlanAssignment_Residence">
+    <End Role="Residence" Type="Self.Residence" Multiplicity="1" />
+    <End Role="PlanAssignment" Type="Self.PlanAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Residence">
+        <PropertyRef Name="IDResidence" />
+      </Principal>
+      <Dependent Role="PlanAssignment">
+        <PropertyRef Name="IDResidence" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reservation_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Residence_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Residence" Type="Self.Residence" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="IDUser" />
+      </Principal>
+      <Dependent Role="Residence">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserRole">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="IDRole" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="IDRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlanItem">
+    <End Role="PaymentItem" Type="Self.PaymentItem" Multiplicity="*" />
+    <End Role="PaymentPlan" Type="Self.PaymentPlan" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="NeverlandDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Area" EntityType="Self.Area" />
+    <EntitySet Name="Incidence" EntityType="Self.Incidence" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <EntitySet Name="NewsCategory" EntityType="Self.NewsCategory" />
+    <EntitySet Name="PaymentItem" EntityType="Self.PaymentItem" />
+    <EntitySet Name="PaymentPlan" EntityType="Self.PaymentPlan" />
+    <EntitySet Name="PlanAssignment" EntityType="Self.PlanAssignment" />
+    <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+    <EntitySet Name="Residence" EntityType="Self.Residence" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" />
+    <AssociationSet Name="FK_Reservation_Area" Association="Self.FK_Reservation_Area">
+      <End Role="Area" EntitySet="Area" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Incidence_User" Association="Self.FK_Incidence_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Incidence" EntitySet="Incidence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_NewsCategory" Association="Self.FK_News_NewsCategory">
+      <End Role="NewsCategory" EntitySet="NewsCategory" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanAssignment_PaymentPlan" Association="Self.FK_PlanAssignment_PaymentPlan">
+      <End Role="PaymentPlan" EntitySet="PaymentPlan" />
+      <End Role="PlanAssignment" EntitySet="PlanAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlanAssignment_Residence" Association="Self.FK_PlanAssignment_Residence">
+      <End Role="Residence" EntitySet="Residence" />
+      <End Role="PlanAssignment" EntitySet="PlanAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reservation_User" Association="Self.FK_Reservation_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Reservation" EntitySet="Reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Residence_User" Association="Self.FK_Residence_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Residence" EntitySet="Residence" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="PlanItem" Association="Self.PlanItem">
+      <End Role="PaymentItem" EntitySet="PaymentItem" />
+      <End Role="PaymentPlan" EntitySet="PaymentPlan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

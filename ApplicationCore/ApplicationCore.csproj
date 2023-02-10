@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8B697F54-82D0-4C40-A23F-2068E176DFA9}</ProjectGuid>
+    <ProjectGuid>{97CB3098-3301-4E94-962D-389E0D7FD1DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ApplicationCore</RootNamespace>
@@ -41,18 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Infraestructure\Infraestructure.csproj">
-      <Project>{3f70ff3a-d14b-440a-b4c6-b20b209ade89}</Project>
-      <Name>Infraestructure</Name>
-    </ProjectReference>
+    <Folder Include="DTOs\" />
+    <Folder Include="Services\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DTOS\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{98395b0d-42a7-43f7-901d-ee71c8f475a1}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

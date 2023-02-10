@@ -1,0 +1,12 @@
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\bin\Debug\Infrastructure.dll.config
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\bin\Debug\Infrastructure.dll
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\bin\Debug\Infrastructure.pdb
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\bin\Debug\EntityFramework.dll
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\bin\Debug\EntityFramework.xml
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.dll
+C:\Users\Alfredo\source\repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.pdb

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NeverlandDBModelStoreContainer" CdmEntityContainer="NeverlandDBEntities">
+    <EntitySetMapping Name="Area">
+      <EntityTypeMapping TypeName="NeverlandDBModel.Area">
+        <MappingFragment StoreEntitySet="Area">
+          <ScalarProperty Name="IDArea" ColumnName="IDArea" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StartSchedule" ColumnName="StartSchedule" />
+          <ScalarProperty Name="FinishSchedule" ColumnName="FinishSchedule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Incidence">
+      <EntityTypeMapping TypeName="NeverlandDBModel.Incidence">
+        <MappingFragment StoreEntitySet="Incidence">
+          <ScalarProperty Name="IDIncidence" ColumnName="IDIncidence" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Finished" ColumnName="Finished" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="NeverlandDBModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="IDNews" ColumnName="IDNews" />
+          <ScalarProperty Name="IDCategory" ColumnName="IDCategory" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Archive" ColumnName="Archive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsCategory">
+      <EntityTypeMapping TypeName="NeverlandDBModel.NewsCategory">
+        <MappingFragment StoreEntitySet="NewsCategory">
+          <ScalarProperty Name="IDCategory" ColumnName="IDCategory" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentItem">
+      <EntityTypeMapping TypeName="NeverlandDBModel.PaymentItem">
+        <MappingFragment StoreEntitySet="PaymentItem">
+          <ScalarProperty Name="IDItem" ColumnName="IDItem" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentPlan">
+      <EntityTypeMapping TypeName="NeverlandDBModel.PaymentPlan">
+        <MappingFragment StoreEntitySet="PaymentPlan">
+          <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlanAssignment">
+      <EntityTypeMapping TypeName="NeverlandDBModel.PlanAssignment">
+        <MappingFragment StoreEntitySet="PlanAssignment">
+          <ScalarProperty Name="IDAssignment" ColumnName="IDAssignment" />
+          <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
+          <ScalarProperty Name="IDResidence" ColumnName="IDResidence" />
+          <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+          <ScalarProperty Name="PayedStatus" ColumnName="PayedStatus" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservation">
+      <EntityTypeMapping TypeName="NeverlandDBModel.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="IDReservation" ColumnName="IDReservation" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="IDArea" ColumnName="IDArea" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="Finish" ColumnName="Finish" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Residence">
+      <EntityTypeMapping TypeName="NeverlandDBModel.Residence">
+        <MappingFragment StoreEntitySet="Residence">
+          <ScalarProperty Name="IDResidence" ColumnName="IDResidence" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Habitants" ColumnName="Habitants" />
+          <ScalarProperty Name="StartYear" ColumnName="StartYear" />
+          <ScalarProperty Name="InConstruction" ColumnName="InConstruction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="NeverlandDBModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRole">
+      <EntityTypeMapping TypeName="NeverlandDBModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="IDRole" ColumnName="IDRole" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PlanItem" TypeName="NeverlandDBModel.PlanItem" StoreEntitySet="PlanItem">
+      <EndProperty Name="PaymentItem">
+        <ScalarProperty Name="IDItem" ColumnName="IDItem" />
+      </EndProperty>
+      <EndProperty Name="PaymentPlan">
+        <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
