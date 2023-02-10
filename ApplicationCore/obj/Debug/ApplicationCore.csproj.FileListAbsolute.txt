@@ -10,3 +10,15 @@ C:\Users\Alfredo\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCor
 C:\Users\Alfredo\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
 C:\Users\Alfredo\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.dll
 C:\Users\Alfredo\source\repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.pdb
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\ApplicationCore.dll
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\ApplicationCore.pdb
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\Infrastructure.dll
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\EntityFramework.dll
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\Infrastructure.pdb
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\Infrastructure.dll.config
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\EntityFramework.xml
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.AssemblyReference.cache
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CoreCompileInputs.cache
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.dll
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.pdb
