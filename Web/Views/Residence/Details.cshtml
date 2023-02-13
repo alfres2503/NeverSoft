@@ -1,0 +1,67 @@
+﻿@model Infrastructure.Models.Residence
+
+@{
+    ViewBag.Title = "Residence Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Residence</h4>
+    <hr />
+    <img src="~/images/ResidenceDetail.jpg" class="img-fluid rounded mx-auto d-block ResidenceDetailImg" />
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Habitants)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Habitants)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.StartYear)*@
+            Start Year
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartYear)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.InConstruction)*@
+            Status
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.InConstruction)*@
+            @if (Model.InConstruction)
+            {
+                <p style="color: red">In Construction</p>
+            }
+            else
+            {
+                <p style="color: green">Inhabitated</p>
+            }
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.User.FirstName)*@
+            Owner Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.FirstName)
+            @Html.DisplayFor(model => model.User.LastName) 
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.IDResidence }) |*@
+    <button class="btn btn-primary">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+    
+</p>

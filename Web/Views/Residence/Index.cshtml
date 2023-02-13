@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Infrastructure.Models.Residence>
+
+@{
+    ViewBag.Title = "Residences";
+}
+
+<h2>Residences List</h2>
+
+@*<button class="btn btn-default">
+    @Html.ActionLink("Create New", "Create")
+</button>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDResidence)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.User.IDUser)*@
+            Owner ID
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Habitants)
+        </th>*@
+        <th>
+            @*@Html.DisplayNameFor(model => model.StartYear)*@
+            Start Year
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.InConstruction)
+        </th>*@
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDResidence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.IDUser)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Habitants)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.StartYear)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.InConstruction)
+        </td>*@
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.IDResidence }) |*@
+            <button class="btn btn-default">
+                @Html.ActionLink("Details", "Details", new { id = item.IDResidence })
+            </button>
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.IDResidence })*@
+        </td>
+    </tr>
+}
+
+</table>

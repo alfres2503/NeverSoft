@@ -1,4 +1,5 @@
-﻿.navbar-custom {
+﻿
+.navbar-custom {
     background-color: #16697A;
     color: #000000;
 }
@@ -17,7 +18,7 @@ body {
 
 .btn-default, .btn-primary {
     background-color: #FFA62B;
-    color: #000000;
+    color: #000000
 }
 
 .card {
@@ -26,13 +27,18 @@ body {
     margin-top: 20px;
 }
 
+.ResidenceDetailImg{
+    width: auto;
+    height: 300px;
+}
+
 
 
 #contenedor {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    margin: 130px 0;
     padding-top: 20px;
     width: 100%;
     height: 100%;
