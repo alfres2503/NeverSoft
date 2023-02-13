@@ -1,0 +1,46 @@
+﻿@model Infrastructure.Models.PaymentPlan
+
+@{
+    ViewBag.Title = "Details Payment Plan";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Payment Plan Items</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            This plan includes:
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (var c in Model.PaymentItem)
+                {
+                    <li>@c.IDItem</li>
+                    <li>@c.Description</li>
+                    <li>@c.Price</li>
+                }
+            </ul>
+
+        </dd>
+
+    </dl>
+</div>
+<p>
+    
+    <button class="btn btn-primary">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+</p>
