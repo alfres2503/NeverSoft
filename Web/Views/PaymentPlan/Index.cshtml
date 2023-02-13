@@ -6,36 +6,18 @@
 
 <h2>Payment Plans</h2>
 
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-       
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-       
-        <td>
-
-            <button class="btn btn-default">
-                @Html.ActionLink("Details", "Details", new { id = item.IDPlan })
-            </button>
-
-        </td>
-    </tr>
-}
-
-</table>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <button class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.IDPlan })</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
