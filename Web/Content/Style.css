@@ -100,7 +100,7 @@ body {
         margin-top: 10px;
     }
 
-        #login button:hover {
-            background-color: #82C0CC;
+        button:hover {
+            background-color: white !important;
             color: slategrey;
         }

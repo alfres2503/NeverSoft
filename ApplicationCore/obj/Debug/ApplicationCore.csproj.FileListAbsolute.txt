@@ -34,3 +34,15 @@ C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csp
 C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
 C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.dll
 C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.pdb
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\bin\Debug\ApplicationCore.dll
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\bin\Debug\ApplicationCore.pdb
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\bin\Debug\Infrastructure.dll
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\bin\Debug\EntityFramework.dll
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\bin\Debug\Infrastructure.pdb
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\bin\Debug\Infrastructure.dll.config
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\bin\Debug\EntityFramework.xml
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.AssemblyReference.cache
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CoreCompileInputs.cache
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.dll
+C:\Users\Estudiante\Source\Repos\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.pdb

@@ -34,3 +34,15 @@ C:\Users\Alfredo\Desktop\NeverSoft\Infrastructure\obj\Debug\Infrastructure.cspro
 C:\Users\Alfredo\Desktop\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
 C:\Users\Alfredo\Desktop\NeverSoft\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\Alfredo\Desktop\NeverSoft\Infrastructure\obj\Debug\Infrastructure.pdb
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\bin\Debug\Infrastructure.dll.config
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\bin\Debug\Infrastructure.dll
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\bin\Debug\Infrastructure.pdb
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\bin\Debug\EntityFramework.dll
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\bin\Debug\EntityFramework.xml
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.dll
+C:\Users\Estudiante\Source\Repos\NeverSoft\Infrastructure\obj\Debug\Infrastructure.pdb

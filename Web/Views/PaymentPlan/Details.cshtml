@@ -4,7 +4,7 @@
     ViewBag.Title = "Details Payment Plan";
 }
 
-<h2>Details</h2>
+<h2 class="my-5">Details</h2>
 
 <div>
     <h4>Payment Plan Items</h4>
@@ -12,13 +12,7 @@
     <dl class="dl-horizontal">
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Total)
-        </dd>
 
         <dt>
             This plan includes:
@@ -28,13 +22,15 @@
             <ul>
                 @foreach (var c in Model.PaymentItem)
                 {
-                    <li>@c.IDItem</li>
-                    <li>@c.Description</li>
-                    <li>@c.Price</li>
+                    <li class="my-2">ID - @c.IDItem | @c.Description : $@c.Price</li>
                 }
             </ul>
 
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total) : $@Html.DisplayFor(model => model.Total)
+        </dt>
 
     </dl>
 </div>
