@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
                     <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    <button class="btn btn-primary">@Html.ActionLink("Details", "Details", new { id = item.IDPlan }, new { @class = "customActionLink" })</button>
+                    @Html.ActionLink("Details", "Details", new { id = item.IDPlan }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>

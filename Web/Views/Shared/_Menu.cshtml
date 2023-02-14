@@ -1,16 +1,16 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">NeverSoft<img class="logo" src="images/logo.png" alt="app logo" /></a>
+        <a class="navbar-brand" href="#">NeverSoft<img class="logo" src="~/Images/logo.png" alt="app logo" /></a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
-                
+
 
                 <li class="nav-item">
-                    @Html.ActionLink("Residences","Index", "Residence",
+                    @Html.ActionLink("Residences", "Index", "Residence",
                null, new { @class = "nav-link active" })
                 </li>
                 <li class="nav-item">
@@ -18,11 +18,19 @@
               null, new { @class = "nav-link active" })
                 </li>
 
-                <li class="nav-item dropdown">
+                @*<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Drop</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="@Url.Action("Index","Login")">Login</a>
                         <a class="dropdown-item" href="@Url.Action("Logout","Login")"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                    </div>
+                </li>*@
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Lists and details</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="@Url.Action("Index","Residence")"><i class="fa-solid fa-house"></i> Residences</a>
+                        <a class="dropdown-item" href="@Url.Action("Index","PaymentPlan")"><i class="fa-sharp fa-solid fa-file-invoice-dollar"></i> Payment Plans</a>
                     </div>
                 </li>
             </ul>

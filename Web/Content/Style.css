@@ -6,6 +6,10 @@
     margin-bottom:30px;
 }
 
+.dropdown-item:hover {
+    background-color: #489FB5 !important;
+}
+
 .logo {
     width: 125px;
     height: 130px;
@@ -34,9 +38,6 @@ body {
     height: 300px;
 }
 
-.customActionLink{
-    text-decoration:none;
-}
 
 #contenedor {
     display: flex;

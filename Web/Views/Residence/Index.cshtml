@@ -51,9 +51,9 @@
                 </td>*@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.IDResidence }) |*@
-                <button class="btn btn-default">
-                    @Html.ActionLink("Details", "Details", new { id = item.IDResidence }, new { @class = "customActionLink" })
-                </button>
+                
+                    @Html.ActionLink("Details", "Details", new { id = item.IDResidence }, new { @class = "btn btn-primary" })
+                
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.IDResidence })*@
             </td>
         </tr>
