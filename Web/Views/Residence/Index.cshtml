@@ -11,6 +11,7 @@
     </button>*@
 <table class="table">
     <tr>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.IDResidence)
         </th>
@@ -34,6 +35,7 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td><i class="fa-solid fa-house"></i></td>
             <td>
                 @Html.DisplayFor(modelItem => item.IDResidence)
             </td>

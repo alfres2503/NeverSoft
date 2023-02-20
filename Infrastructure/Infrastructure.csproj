@@ -105,8 +105,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepositoryPaymentPlan.cs" />
+    <Compile Include="Repository\IRepositoryPlanAssignment.cs" />
     <Compile Include="Repository\IRepositoryResidence.cs" />
     <Compile Include="Repository\RepositoryPaymentPlan.cs" />
+    <Compile Include="Repository\RepositoryPlanAssignment.cs" />
     <Compile Include="Repository\RepositoryResidence.cs" />
   </ItemGroup>
   <ItemGroup>

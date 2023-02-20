@@ -1,0 +1,55 @@
+﻿@model Infrastructure.Models.PlanAssignment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Plan Assignment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <div class="d-flex bd-highlight">
+            <div class="p-2 flex-fill bd-highlight">
+                <dt>User Info</dt>
+
+                <dd>
+                    ID: @Html.DisplayFor(model => model.Residence.User.IDUser)
+                </dd>
+
+                <dd>
+                    Name: @Html.DisplayFor(model => model.Residence.User.FirstName) @Html.DisplayFor(model => model.Residence.User.LastName)
+                </dd>
+
+                <dd>
+                    Email: @Html.DisplayFor(model => model.Residence.User.Email)
+                </dd>
+            </div>
+
+            <div class="p-2 flex-fill bd-highlight">
+                <dt>Residence Info</dt>
+
+                <dd>
+                    Number: @Html.DisplayFor(model => model.Residence.IDResidence)
+                </dd>
+
+                <dd>
+                    Start Year: @Html.DisplayFor(model => model.Residence.StartYear)
+                </dd>
+
+                <dd>
+                    Plan: @Html.DisplayFor(model => model.PaymentPlan.Name)
+                </dd>
+            </div>
+        </div>
+
+        <h5>Historial de pagos:</h5>
+
+       
+
+    </dl>
+</div>
+
+@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+
