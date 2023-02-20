@@ -20,6 +20,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     list = ctx.PlanAssignment
+                       .Include("AssignmentDetail")
                        .Include("PaymentPlan")
                        .Include("Residence")
                        .Include("Residence.User")
@@ -47,6 +48,7 @@ namespace Infrastructure.Repository
                     ctx.Configuration.LazyLoadingEnabled = false;
                     oPlanAssignment = ctx.PlanAssignment
                        .Where(r => r.IDAssignment == id)
+                       .Include("AssignmentDetail")
                        .Include("PaymentPlan")
                        .Include("Residence")
                        .Include("Residence.User")
@@ -64,53 +66,32 @@ namespace Infrastructure.Repository
             }
         }
 
-        //public PlanAssignment GetPlanAssignmentByPlanID(int id)
-        //{
-        //    PlanAssignment oPlanAssignment = null;
-        //    try
-        //    {
-        //        using (MyContext ctx = new MyContext())
-        //        {
-        //            ctx.Configuration.LazyLoadingEnabled = false;
-        //            oPlanAssignment = ctx.PlanAssignment
-        //                .Where(r => r.IDPlan == id)
-        //                .Include("Plan")
-        //                .Include("User")
-        //                .FirstOrDefault();
-        //        }
-        //        return oPlanAssignment;
-        //    }
-        //    catch (DbUpdateException dbEx)
-        //    {
-        //        throw dbEx;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-        //public PlanAssignment GetPlanAssignmentByUserID(int id)
-        //{
-        //    PlanAssignment oPlanAssignment = null;
-        //    try
-        //    {
-        //        using (MyContext ctx = new MyContext())
-        //        {
-        //            ctx.Configuration.LazyLoadingEnabled = false;
-        //            oPlanAssignment = ctx.PlanAssignment
-        //                .Where(r => r.IDUser == id)
-        //                .Include("Plan")
-        //                .Include("User")
-        //                .FirstOrDefault();
-        //        }
-        //        return oPlanAssignment;
-        //    }
-        //    catch (DbUpdateException dbEx)
-        //    {
-        //        throw dbEx;
-        //    }
-        //    catch (Exception)
-        //}
+        public IEnumerable<AssignmentDetail> GetDetailsByAssignmentID(int id)
+        {
+            IEnumerable<AssignmentDetail> list = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    list = ctx.AssignmentDetail
+                       .Where(r => r.IDAssignment == id)
+                       .Include("PlanAssignment")
+                       .Include("PlanAssignment.PaymentPlan")
+                       .Include("PlanAssignment.Residence")
+                       .Include("PlanAssignment.Residence.User")
+                       .ToList<AssignmentDetail>();
+                }
+                return list;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                throw dbEx;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

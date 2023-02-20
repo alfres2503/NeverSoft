@@ -43,12 +43,69 @@
                 </dd>
             </div>
         </div>
-
-        <h5>Historial de pagos:</h5>
-
-       
-
     </dl>
+
+    <h4>Payment History</h4>
+
+    <table class="table">
+        <tr>
+            <th>Payment Date</th>
+            <th>Payed Status</th>
+            <th>Amount</th>
+        </tr>
+
+        @foreach (var item in Model.AssignmentDetail)
+        {
+            if (item.PayedStatus == true)
+            {
+                <tr>
+
+                    <td>
+                        @item.PaymentDate.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        <p style="color:green;">Payed</p>
+                    </td>
+                    <td>
+                        $ @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+    <h4>Debts</h4>
+
+    <table class="table">
+        <tr>
+            <th>Payment Date</th>
+            <th>Payed Status</th>
+            <th>Amount</th>
+        </tr>
+
+        @foreach (var item in Model.AssignmentDetail)
+        {
+            if (item.PayedStatus == false)
+            {
+                <tr>
+
+                    <td>
+                        @item.PaymentDate.ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        <p style="color:red;">Not Payed</p>
+                    </td>
+                    <td>
+                        $ @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+
+
 </div>
 
 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })

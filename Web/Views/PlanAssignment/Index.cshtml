@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Infrastructure.Models.PlanAssignment>
 
+
 @{
     ViewBag.Title = "State Account";
 }
@@ -11,47 +12,29 @@
 </p>*@
 <table class="table">
     <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.AssignmentDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PayedStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PaymentPlan.Name)
-        </th>*@
         <th>
             Residence Number
         </th>
         <th>
             User
         </th>
+        @*<th>
+            Quantity of details
+        </th>*@
         <th>Actions</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.AssignmentDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PayedStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaymentPlan.Name)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Residence.IDResidence)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Residence.User.FirstName) @Html.DisplayFor(modelItem => item.Residence.User.LastName)
         </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.AssignmentDetail.Count)
+        </td>*@
         <td>
             @*@Html.ActionLink("Edit", "Edit", new { id = item.IDAssignment }) |*@
             @Html.ActionLink("Details", "Details", new { id = item.IDAssignment }, new { @class = "btn btn-primary" })
