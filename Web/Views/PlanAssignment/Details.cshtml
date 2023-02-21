@@ -54,39 +54,42 @@
     <hr />
 
     <div class="collapse" id="collapseExample">
-        <table class="table">
-            <tr>
-                <th>Payment Date</th>
-                <th>Payed Status</th>
-                <th>Amount</th>
-                <th>Items</th>
-            </tr>
+        <table id="myTable" class="table">
+            <thead>
+                <tr>
+                    <th>Payment Date</th>
+                    <th>Payed Status</th>
+                    <th>Amount</th>
+                    <th>Items</th>
+                </tr>
+            </thead>
 
-            @foreach (var item in Model.AssignmentDetail)
-            {
-                if (item.PayedStatus == true)
+            <tbody>
+                @foreach (var item in Model.AssignmentDetail)
                 {
-                    <tr>
+                    if (item.PayedStatus == true)
+                    {
+                        <tr>
 
-                        <td>
-                            @item.PaymentDate.ToString("dd/MM/yyyy")
-                        </td>
-                        <td>
-                            <p style="color:green;">Payed</p>
-                        </td>
-                        <td>
-                            $ @Html.DisplayFor(modelItem => item.Amount)
-                        </td>
-                        <td>
-                            @foreach (var pItem in Model.PaymentPlan.PaymentItem)
-                            {
-                                <span>@Html.DisplayFor(model => pItem.Description) |</span>
-                            }
-                        </td>
-                    </tr>
+                            <td>
+                                @item.PaymentDate.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                <p style="color:green;">Payed</p>
+                            </td>
+                            <td>
+                                $ @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td>
+                                @foreach (var pItem in Model.PaymentPlan.PaymentItem)
+                                {
+                                    <span>@Html.DisplayFor(model => pItem.Description) |</span>
+                                }
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-
+            </tbody>
         </table>
     </div>
 
@@ -95,39 +98,43 @@
     <hr />
 
     <div class="collapse" id="collapseDebts">
-        <table class="table">
-            <tr>
-                <th>Payment Date</th>
-                <th>Payed Status</th>
-                <th>Amount</th>
-                <th>Items</th>
-            </tr>
+        <table id="DebtsTable" class="table">
+            <thead>
+                <tr>
+                    <th>Payment Date</th>
+                    <th>Payed Status</th>
+                    <th>Amount</th>
+                    <th>Items</th>
+                </tr>
+            </thead>
 
-            @foreach (var item in Model.AssignmentDetail)
-            {
-                if (item.PayedStatus == false)
+            <tbody>
+                @foreach (var item in Model.AssignmentDetail)
                 {
-                    <tr>
+                    if (item.PayedStatus == false)
+                    {
+                        <tr>
 
-                        <td>
-                            @item.PaymentDate.ToString("dd/MM/yyyy")
-                        </td>
-                        <td>
-                            <p style="color:red;">Not Payed</p>
-                        </td>
-                        <td>
-                            $ @Html.DisplayFor(modelItem => item.Amount)
-                        </td>
-                        <td>
-                            @foreach (var pItem in Model.PaymentPlan.PaymentItem)
-                            {
-                                <span>@Html.DisplayFor(model => pItem.Description) |</span>
-                            }
-                        </td>
+                            <td>
+                                @item.PaymentDate.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                <p style="color:red;">Not Payed</p>
+                            </td>
+                            <td>
+                                $ @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+                            <td>
+                                @foreach (var pItem in Model.PaymentPlan.PaymentItem)
+                                {
+                                    <span>@Html.DisplayFor(model => pItem.Description) |</span>
+                                }
+                            </td>
 
-                    </tr>
+                        </tr>
+                    }
                 }
-            }
+            </tbody>
 
         </table>
     </div>

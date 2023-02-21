@@ -8,6 +8,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/b-2.3.4/fc-4.2.1/sb-1.4.0/sp-2.1.1/sl-1.6.0/datatables.min.css" />
+    
     @RenderSection("styles", required: false)
 </head>
 <body>
@@ -25,6 +27,8 @@
     <link href="~/Content/bootstrap-Lux.min.css" rel="stylesheet" />
     <link href="~/Content/Style.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/b-2.3.4/fc-4.2.1/sb-1.4.0/sp-2.1.1/sl-1.6.0/datatables.min.js" defer></script>
+    <script src="~/Scripts/Tables.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
