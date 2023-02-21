@@ -22,6 +22,7 @@ namespace Infrastructure.Repository
                     list = ctx.PlanAssignment
                        .Include("AssignmentDetail")
                        .Include("PaymentPlan")
+                       .Include("PaymentPlan.PaymentItem")
                        .Include("Residence")
                        .Include("Residence.User")
                        .ToList<PlanAssignment>();
@@ -50,6 +51,7 @@ namespace Infrastructure.Repository
                        .Where(r => r.IDAssignment == id)
                        .Include("AssignmentDetail")
                        .Include("PaymentPlan")
+                       .Include("PaymentPlan.PaymentItem")
                        .Include("Residence")
                        .Include("Residence.User")
                        .FirstOrDefault();

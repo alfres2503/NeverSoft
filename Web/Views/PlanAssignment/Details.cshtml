@@ -9,9 +9,10 @@
 <div>
     <h4>Plan Assignment</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <div class="d-flex bd-highlight">
-            <div class="p-2 flex-fill bd-highlight">
+
+    <div class="d-flex bd-highlight">
+        <div class="p-2 flex-fill bd-highlight">
+            <dl class="dl-horizontal">
                 <dt>User Info</dt>
 
                 <dd>
@@ -25,9 +26,11 @@
                 <dd>
                     Email: @Html.DisplayFor(model => model.Residence.User.Email)
                 </dd>
-            </div>
+            </dl>
+        </div>
 
-            <div class="p-2 flex-fill bd-highlight">
+        <div class="p-2 flex-fill bd-highlight">
+            <dl class="dl-horizontal">
                 <dt>Residence Info</dt>
 
                 <dd>
@@ -39,74 +42,98 @@
                 </dd>
 
                 <dd>
-                    Plan: @Html.DisplayFor(model => model.PaymentPlan.Name)
+                    Actual Plan: @Html.DisplayFor(model => model.PaymentPlan.Name)
                 </dd>
-            </div>
+            </dl>
         </div>
-    </dl>
+    </div>
 
-    <h4>Payment History</h4>
 
-    <table class="table">
-        <tr>
-            <th>Payment Date</th>
-            <th>Payed Status</th>
-            <th>Amount</th>
-        </tr>
+    <hr />
+    <div class="d-flex justify-content-between my-4" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><h4>Payment History</h4><i class="fa-solid fa-chevron-down"></i></div>
+    <hr />
 
-        @foreach (var item in Model.AssignmentDetail)
-        {
-            if (item.PayedStatus == true)
+    <div class="collapse" id="collapseExample">
+        <table class="table">
+            <tr>
+                <th>Payment Date</th>
+                <th>Payed Status</th>
+                <th>Amount</th>
+                <th>Items</th>
+            </tr>
+
+            @foreach (var item in Model.AssignmentDetail)
             {
-                <tr>
+                if (item.PayedStatus == true)
+                {
+                    <tr>
 
-                    <td>
-                        @item.PaymentDate.ToString("dd/MM/yyyy")
-                    </td>
-                    <td>
-                        <p style="color:green;">Payed</p>
-                    </td>
-                    <td>
-                        $ @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                </tr>
+                        <td>
+                            @item.PaymentDate.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            <p style="color:green;">Payed</p>
+                        </td>
+                        <td>
+                            $ @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @foreach (var pItem in Model.PaymentPlan.PaymentItem)
+                            {
+                                <span>@Html.DisplayFor(model => pItem.Description) |</span>
+                            }
+                        </td>
+                    </tr>
+                }
             }
-        }
 
-    </table>
+        </table>
+    </div>
 
-    <h4>Debts</h4>
 
-    <table class="table">
-        <tr>
-            <th>Payment Date</th>
-            <th>Payed Status</th>
-            <th>Amount</th>
-        </tr>
+    <div class="d-flex justify-content-between my-4 collapsible1" data-bs-toggle="collapse" href="#collapseDebts" role="button" aria-expanded="false" aria-controls="collapseDebts"><h4>Debts</h4><i class="fa-solid fa-chevron-down"></i></div>
+    <hr />
 
-        @foreach (var item in Model.AssignmentDetail)
-        {
-            if (item.PayedStatus == false)
+    <div class="collapse" id="collapseDebts">
+        <table class="table">
+            <tr>
+                <th>Payment Date</th>
+                <th>Payed Status</th>
+                <th>Amount</th>
+                <th>Items</th>
+            </tr>
+
+            @foreach (var item in Model.AssignmentDetail)
             {
-                <tr>
+                if (item.PayedStatus == false)
+                {
+                    <tr>
 
-                    <td>
-                        @item.PaymentDate.ToString("dd/MM/yyyy")
-                    </td>
-                    <td>
-                        <p style="color:red;">Not Payed</p>
-                    </td>
-                    <td>
-                        $ @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                </tr>
+                        <td>
+                            @item.PaymentDate.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            <p style="color:red;">Not Payed</p>
+                        </td>
+                        <td>
+                            $ @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @foreach (var pItem in Model.PaymentPlan.PaymentItem)
+                            {
+                                <span>@Html.DisplayFor(model => pItem.Description) |</span>
+                            }
+                        </td>
+
+                    </tr>
+                }
             }
-        }
 
-    </table>
+        </table>
+    </div>
+
 
 
 </div>
 
 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
-
