@@ -4,21 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="681cd995a311416e98b1f49c466040d9" Name="Diagram1">
+      <Diagram DiagramId="892c31c5fefa4f408a3136956b38cf99" Name="Diagram1">
         <EntityTypeShape EntityType="NeverlandDBModel.Area" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NeverlandDBModel.AssignmentDetail" Width="1.5" PointX="9.75" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.Incidence" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NeverlandDBModel.News" Width="1.5" PointX="11" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NeverlandDBModel.NewsCategory" Width="1.5" PointX="8.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NeverlandDBModel.News" Width="1.5" PointX="11" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NeverlandDBModel.NewsCategory" Width="1.5" PointX="8.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.PaymentItem" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.PaymentPlan" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NeverlandDBModel.PlanAssignment" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NeverlandDBModel.PlanAssignment" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.Reservation" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.Residence" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.User" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.UserRole" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
         <AssociationConnector Association="NeverlandDBModel.FK_Reservation_Area" ManuallyRouted="false" />
-        <AssociationConnector Association="NeverlandDBModel.FK_AssignmentDetail_PlanAssignment" ManuallyRouted="false" />
         <AssociationConnector Association="NeverlandDBModel.FK_Incidence_User" ManuallyRouted="false" />
         <AssociationConnector Association="NeverlandDBModel.FK_News_NewsCategory" ManuallyRouted="false" />
         <AssociationConnector Association="NeverlandDBModel.FK_PlanAssignment_PaymentPlan" ManuallyRouted="false" />

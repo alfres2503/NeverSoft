@@ -20,10 +20,5 @@ namespace ApplicationCore.Services
         {
             return repository.GetPlanAssignments();
         }
-
-        public IEnumerable<AssignmentDetail> GetDetailsByAssignmentID(int id)
-        {
-            return repository.GetDetailsByAssignmentID(id);
-        }
     }
 }

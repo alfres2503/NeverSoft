@@ -20,7 +20,6 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     list = ctx.PlanAssignment
-                       .Include("AssignmentDetail")
                        .Include("PaymentPlan")
                        .Include("PaymentPlan.PaymentItem")
                        .Include("Residence")
@@ -49,7 +48,6 @@ namespace Infrastructure.Repository
                     ctx.Configuration.LazyLoadingEnabled = false;
                     oPlanAssignment = ctx.PlanAssignment
                        .Where(r => r.IDAssignment == id)
-                       .Include("AssignmentDetail")
                        .Include("PaymentPlan")
                        .Include("PaymentPlan.PaymentItem")
                        .Include("Residence")
@@ -68,32 +66,5 @@ namespace Infrastructure.Repository
             }
         }
 
-        public IEnumerable<AssignmentDetail> GetDetailsByAssignmentID(int id)
-        {
-            IEnumerable<AssignmentDetail> list = null;
-            try
-            {
-                using (MyContext ctx = new MyContext())
-                {
-                    ctx.Configuration.LazyLoadingEnabled = false;
-                    list = ctx.AssignmentDetail
-                       .Where(r => r.IDAssignment == id)
-                       .Include("PlanAssignment")
-                       .Include("PlanAssignment.PaymentPlan")
-                       .Include("PlanAssignment.Residence")
-                       .Include("PlanAssignment.Residence.User")
-                       .ToList<AssignmentDetail>();
-                }
-                return list;
-            }
-            catch (DbUpdateException dbEx)
-            {
-                throw dbEx;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }

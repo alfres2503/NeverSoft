@@ -14,16 +14,6 @@
           <Property Name="StartSchedule" Type="int" Nullable="false" />
           <Property Name="FinishSchedule" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="AssignmentDetail">
-          <Key>
-            <PropertyRef Name="IDDetail" />
-          </Key>
-          <Property Name="IDDetail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IDAssignment" Type="int" Nullable="false" />
-          <Property Name="PaymentDate" Type="date" Nullable="false" />
-          <Property Name="PayedStatus" Type="bit" Nullable="false" />
-          <Property Name="Amount" Type="money" Nullable="false" />
-        </EntityType>
         <EntityType Name="Incidence">
           <Key>
             <PropertyRef Name="IDIncidence" />
@@ -70,10 +60,12 @@
           <Key>
             <PropertyRef Name="IDAssignment" />
           </Key>
-          <Property Name="IDAssignment" Type="int" Nullable="false" />
+          <Property Name="IDAssignment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDPlan" Type="int" Nullable="false" />
           <Property Name="IDResidence" Type="int" Nullable="false" />
           <Property Name="AssignmentDate" Type="date" Nullable="false" />
+          <Property Name="PayedStatus" Type="bit" Nullable="false" />
+          <Property Name="Amount" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="PlanItem">
           <Key>
@@ -123,18 +115,6 @@
           <Property Name="IDRole" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK_AssignmentDetail_PlanAssignment">
-          <End Role="PlanAssignment" Type="Self.PlanAssignment" Multiplicity="1" />
-          <End Role="AssignmentDetail" Type="Self.AssignmentDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlanAssignment">
-              <PropertyRef Name="IDAssignment" />
-            </Principal>
-            <Dependent Role="AssignmentDetail">
-              <PropertyRef Name="IDAssignment" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Incidence_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Incidence" Type="Self.Incidence" Multiplicity="*" />
@@ -257,7 +237,6 @@
         </Association>
         <EntityContainer Name="NeverlandDBModelStoreContainer">
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AssignmentDetail" EntityType="Self.AssignmentDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Incidence" EntityType="Self.Incidence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NewsCategory" EntityType="Self.NewsCategory" Schema="dbo" store:Type="Tables" />
@@ -269,10 +248,6 @@
           <EntitySet Name="Residence" EntityType="Self.Residence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AssignmentDetail_PlanAssignment" Association="Self.FK_AssignmentDetail_PlanAssignment">
-            <End Role="PlanAssignment" EntitySet="PlanAssignment" />
-            <End Role="AssignmentDetail" EntitySet="AssignmentDetail" />
-          </AssociationSet>
           <AssociationSet Name="FK_Incidence_User" Association="Self.FK_Incidence_User">
             <End Role="User" EntitySet="User" />
             <End Role="Incidence" EntitySet="Incidence" />
@@ -329,17 +304,6 @@
           <Property Name="FinishSchedule" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Area" FromRole="Area" ToRole="Reservation" />
         </EntityType>
-        <EntityType Name="AssignmentDetail">
-          <Key>
-            <PropertyRef Name="IDDetail" />
-          </Key>
-          <Property Name="IDDetail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDAssignment" Type="Int32" Nullable="false" />
-          <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PayedStatus" Type="Boolean" Nullable="false" />
-          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="PlanAssignment" Relationship="Self.FK_AssignmentDetail_PlanAssignment" FromRole="AssignmentDetail" ToRole="PlanAssignment" />
-        </EntityType>
         <EntityType Name="Incidence">
           <Key>
             <PropertyRef Name="IDIncidence" />
@@ -392,11 +356,12 @@
           <Key>
             <PropertyRef Name="IDAssignment" />
           </Key>
-          <Property Name="IDAssignment" Type="Int32" Nullable="false" />
+          <Property Name="IDAssignment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDPlan" Type="Int32" Nullable="false" />
           <Property Name="IDResidence" Type="Int32" Nullable="false" />
           <Property Name="AssignmentDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="AssignmentDetail" Relationship="Self.FK_AssignmentDetail_PlanAssignment" FromRole="PlanAssignment" ToRole="AssignmentDetail" />
+          <Property Name="PayedStatus" Type="Boolean" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="PaymentPlan" Relationship="Self.FK_PlanAssignment_PaymentPlan" FromRole="PlanAssignment" ToRole="PaymentPlan" />
           <NavigationProperty Name="Residence" Relationship="Self.FK_PlanAssignment_Residence" FromRole="PlanAssignment" ToRole="Residence" />
         </EntityType>
@@ -458,18 +423,6 @@
             </Principal>
             <Dependent Role="Reservation">
               <PropertyRef Name="IDArea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AssignmentDetail_PlanAssignment">
-          <End Role="PlanAssignment" Type="Self.PlanAssignment" Multiplicity="1" />
-          <End Role="AssignmentDetail" Type="Self.AssignmentDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PlanAssignment">
-              <PropertyRef Name="IDAssignment" />
-            </Principal>
-            <Dependent Role="AssignmentDetail">
-              <PropertyRef Name="IDAssignment" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -563,7 +516,6 @@
         </Association>
         <EntityContainer Name="NeverlandDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Area" EntityType="Self.Area" />
-          <EntitySet Name="AssignmentDetail" EntityType="Self.AssignmentDetail" />
           <EntitySet Name="Incidence" EntityType="Self.Incidence" />
           <EntitySet Name="News" EntityType="Self.News" />
           <EntitySet Name="NewsCategory" EntityType="Self.NewsCategory" />
@@ -577,10 +529,6 @@
           <AssociationSet Name="FK_Reservation_Area" Association="Self.FK_Reservation_Area">
             <End Role="Area" EntitySet="Area" />
             <End Role="Reservation" EntitySet="Reservation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AssignmentDetail_PlanAssignment" Association="Self.FK_AssignmentDetail_PlanAssignment">
-            <End Role="PlanAssignment" EntitySet="PlanAssignment" />
-            <End Role="AssignmentDetail" EntitySet="AssignmentDetail" />
           </AssociationSet>
           <AssociationSet Name="FK_Incidence_User" Association="Self.FK_Incidence_User">
             <End Role="User" EntitySet="User" />
@@ -628,17 +576,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="StartSchedule" ColumnName="StartSchedule" />
                 <ScalarProperty Name="FinishSchedule" ColumnName="FinishSchedule" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AssignmentDetail">
-            <EntityTypeMapping TypeName="NeverlandDBModel.AssignmentDetail">
-              <MappingFragment StoreEntitySet="AssignmentDetail">
-                <ScalarProperty Name="IDDetail" ColumnName="IDDetail" />
-                <ScalarProperty Name="IDAssignment" ColumnName="IDAssignment" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-                <ScalarProperty Name="PayedStatus" ColumnName="PayedStatus" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -696,6 +633,8 @@
                 <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
                 <ScalarProperty Name="IDResidence" ColumnName="IDResidence" />
                 <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+                <ScalarProperty Name="PayedStatus" ColumnName="PayedStatus" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

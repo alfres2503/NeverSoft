@@ -26,7 +26,6 @@ namespace Infrastructure.Models
         }
     
         public virtual DbSet<Area> Area { get; set; }
-        public virtual DbSet<AssignmentDetail> AssignmentDetail { get; set; }
         public virtual DbSet<Incidence> Incidence { get; set; }
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<NewsCategory> NewsCategory { get; set; }

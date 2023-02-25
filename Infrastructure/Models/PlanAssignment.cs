@@ -14,19 +14,13 @@ namespace Infrastructure.Models
     
     public partial class PlanAssignment
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PlanAssignment()
-        {
-            this.AssignmentDetail = new HashSet<AssignmentDetail>();
-        }
-    
         public int IDAssignment { get; set; }
         public int IDPlan { get; set; }
         public int IDResidence { get; set; }
         public System.DateTime AssignmentDate { get; set; }
+        public bool PayedStatus { get; set; }
+        public decimal Amount { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AssignmentDetail> AssignmentDetail { get; set; }
         public virtual PaymentPlan PaymentPlan { get; set; }
         public virtual Residence Residence { get; set; }
     }

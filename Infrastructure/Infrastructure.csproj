@@ -56,9 +56,6 @@
     <Compile Include="Models\Area.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AssignmentDetail.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Incidence.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

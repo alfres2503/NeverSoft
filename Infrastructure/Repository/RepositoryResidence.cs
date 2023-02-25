@@ -20,7 +20,10 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     //list = ctx.Residence.Include("User").ToList<Residence>();
-                    list = ctx.Residence.Include("User").ToList<Residence>();
+                    list = ctx.Residence
+                        .Include("User")
+                        .Include("PlanAssignment.PaymentPlan.PaymentItem")
+                        .ToList<Residence>();
                 }
                 return list;
             }
@@ -46,6 +49,7 @@ namespace Infrastructure.Repository
                     oResidence = ctx.Residence
                         .Where(r => r.IDResidence == id)
                         .Include("User")
+                        .Include("PlanAssignment.PaymentPlan.PaymentItem")
                         .FirstOrDefault();
                 }
                 return oResidence;

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Infrastructure.Models.Residence>
+
+@{
+    ViewBag.Title = "Plan Assignment";
+}
+
+<h2>Plan Assignment</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDResidence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.FirstName)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDResidence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.IDResidence }, new { @class = "btn btn-primary" }) 
+        </td>
+    </tr>
+}
+
+</table>

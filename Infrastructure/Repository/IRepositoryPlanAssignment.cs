@@ -11,6 +11,5 @@ namespace Infrastructure.Repository
     {
         IEnumerable<PlanAssignment> GetPlanAssignments();
         PlanAssignment GetPlanAssignmentByID(int id);
-        IEnumerable<AssignmentDetail> GetDetailsByAssignmentID(int id);
     }
 }

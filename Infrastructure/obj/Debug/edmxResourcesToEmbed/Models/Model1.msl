@@ -11,17 +11,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AssignmentDetail">
-      <EntityTypeMapping TypeName="NeverlandDBModel.AssignmentDetail">
-        <MappingFragment StoreEntitySet="AssignmentDetail">
-          <ScalarProperty Name="IDDetail" ColumnName="IDDetail" />
-          <ScalarProperty Name="IDAssignment" ColumnName="IDAssignment" />
-          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
-          <ScalarProperty Name="PayedStatus" ColumnName="PayedStatus" />
-          <ScalarProperty Name="Amount" ColumnName="Amount" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Incidence">
       <EntityTypeMapping TypeName="NeverlandDBModel.Incidence">
         <MappingFragment StoreEntitySet="Incidence">
@@ -76,6 +65,8 @@
           <ScalarProperty Name="IDPlan" ColumnName="IDPlan" />
           <ScalarProperty Name="IDResidence" ColumnName="IDResidence" />
           <ScalarProperty Name="AssignmentDate" ColumnName="AssignmentDate" />
+          <ScalarProperty Name="PayedStatus" ColumnName="PayedStatus" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
