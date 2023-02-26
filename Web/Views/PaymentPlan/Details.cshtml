@@ -13,8 +13,9 @@
 
 
 
-
+        @Html.DisplayFor(model => model.Name) Plan
         <dt>
+
             This plan includes:
         </dt>
 
@@ -29,7 +30,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Total) : $@Html.DisplayFor(model => model.Total)
+            @Html.DisplayNameFor(model => model.Total) : @Html.DisplayFor(model => model.Total)
         </dt>
 
     </dl>

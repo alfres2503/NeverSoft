@@ -11,7 +11,9 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(PlanAssignmentMetadata))]
     public partial class PlanAssignment
     {
         public int IDAssignment { get; set; }

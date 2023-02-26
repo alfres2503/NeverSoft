@@ -14,7 +14,7 @@
                 <dt>User Info</dt>
 
                 <dd>
-                    ID: @Html.DisplayFor(model => model.User.IDUser)
+                    @Html.DisplayNameFor(model => model.User.IDUser): @Html.DisplayFor(model => model.User.IDUser)
                 </dd>
 
                 <dd>
@@ -22,7 +22,7 @@
                 </dd>
 
                 <dd>
-                    Email: @Html.DisplayFor(model => model.User.Email)
+                    @Html.DisplayNameFor(model => model.User.Email): @Html.DisplayFor(model => model.User.Email)
                 </dd>
             </dl>
         </div>
@@ -32,11 +32,11 @@
                 <dt>Residence Info</dt>
 
                 <dd>
-                    Number: @Html.DisplayFor(model => model.IDResidence)
+                    @Html.DisplayNameFor(model => model.IDResidence): @Html.DisplayFor(model => model.IDResidence)
                 </dd>
 
                 <dd>
-                    Start Year: @Html.DisplayFor(model => model.StartYear)
+                    @Html.DisplayNameFor(model => model.StartYear): @Html.DisplayFor(model => model.StartYear)
                 </dd>
 
                 <dd>
@@ -55,9 +55,18 @@
         <table id="myTable" class="table">
             <thead>
                 <tr>
-                    <th>Payment Date</th>
-                    <th>Payed Status</th>
-                    <th>Amount</th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().AssignmentDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().PayedStatus)
+                    </th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().Amount)
+
+                    </th>
                     <th>Plan</th>
                     <th>Items</th>
                 </tr>
@@ -77,7 +86,7 @@
                                 <p style="color:green;">Payed</p>
                             </td>
                             <td>
-                                $ @Html.DisplayFor(modelItem => item.Amount)
+                                 @Html.DisplayFor(modelItem => item.Amount)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.PaymentPlan.Name)
@@ -103,9 +112,18 @@
         <table id="DebtsTable" class="table">
             <thead>
                 <tr>
-                    <th>Payment Date</th>
-                    <th>Payed Status</th>
-                    <th>Amount</th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().AssignmentDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().PayedStatus)
+                    </th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().Amount)
+
+                    </th>
                     <th>Plan</th>
                     <th>Items</th>
                 </tr>
@@ -125,7 +143,7 @@
                                 <p style="color:red;">Not Payed</p>
                             </td>
                             <td>
-                                $ @Html.DisplayFor(modelItem => item.Amount)
+                                @Html.DisplayFor(modelItem => item.Amount)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.PaymentPlan.Name)
