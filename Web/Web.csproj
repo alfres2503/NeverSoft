@@ -143,6 +143,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentItemController.cs" />
     <Compile Include="Controllers\PaymentPlanController.cs" />
     <Compile Include="Controllers\ResidenceController.cs" />
     <Compile Include="Controllers\StatementAccountController.cs" />
@@ -215,6 +216,7 @@
     <Content Include="Views\PaymentPlan\Details.cshtml" />
     <Content Include="Views\StatementAccount\Index.cshtml" />
     <Content Include="Views\StatementAccount\Details.cshtml" />
+    <Content Include="Views\PaymentItem\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
