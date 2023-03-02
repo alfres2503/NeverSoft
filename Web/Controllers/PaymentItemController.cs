@@ -2,10 +2,12 @@
 using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -47,40 +49,85 @@ namespace Web.Controllers
         }
 
         // POST: PaymentItem/Create
-        [HttpPost]
+        [HttpGet]
         public ActionResult Create(FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+            
                 return View();
-            }
+            
         }
 
         // GET: PaymentItem/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            ServicePaymentItem _ServicePaymentItem = new ServicePaymentItem();
+            PaymentItem paymentItem = null;
+
+            try
+            {
+                // Si va null
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                paymentItem = _ServicePaymentItem.GetPaymentItemByID(Convert.ToInt32(id));
+                if (paymentItem == null)
+                {
+                    TempData["Message"] = "No existe el libro solicitado";
+                    TempData["Redirect"] = "Libro";
+                    TempData["Redirect-Action"] = "Index";
+                    // Redireccion a la captura del Error
+                    return RedirectToAction("Default", "Error");
+                }
+                
+                return View(paymentItem);
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
         }
 
         // POST: PaymentItem/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Save(PaymentItem paymentItem)
         {
+            
+            //Servicio Libro
+            IServicePaymentItem _ServicePaymentItem = new ServicePaymentItem();
             try
             {
-                // TODO: Add update logic here
+                
+                
+                if (ModelState.IsValid)
+                {
+                    PaymentItem oPaymentItemI = _ServicePaymentItem.Save(paymentItem);
+                }
+                else
+                {
+                
+                    //Lógica para cargar vista correspondiente
+                    return View("Create", paymentItem);
+                }
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Libro";
+                TempData["Redirect-Action"] = "IndexAdmin";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
             }
         }
 

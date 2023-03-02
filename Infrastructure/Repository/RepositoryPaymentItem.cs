@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -71,7 +72,42 @@ namespace Infrastructure.Repository
 
         public PaymentItem Save(PaymentItem paymentItem)
         {
-            throw new NotImplementedException();
+            int retorno = 0;
+            PaymentItem oPaymentLibro = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oPaymentLibro = GetPaymentItemByID((int)paymentItem.IDItem);
+               
+
+                if (oPaymentLibro == null)
+                {
+
+                   
+                    //Insertar 
+                    ctx.PaymentItem.Add(paymentItem);
+                    //SaveChanges
+                    //guarda todos los cambios realizados en el contexto de la base de datos.
+                    retorno = ctx.SaveChanges();
+                    //retorna número de filas afectadas
+                }
+                else
+                {
+                   
+                    //Actualizar Libro
+                    ctx.PaymentItem.Add(paymentItem);
+                    ctx.Entry(paymentItem).State = EntityState.Modified;
+                    retorno = ctx.SaveChanges();
+
+                    
+                }
+            }
+
+            if (retorno >= 0)
+                oPaymentLibro = GetPaymentItemByID((int)paymentItem.IDItem);
+
+            return oPaymentLibro;
         }
     }
 }

@@ -217,6 +217,8 @@
     <Content Include="Views\StatementAccount\Index.cshtml" />
     <Content Include="Views\StatementAccount\Details.cshtml" />
     <Content Include="Views\PaymentItem\Index.cshtml" />
+    <Content Include="Views\PaymentItem\Create.cshtml" />
+    <Content Include="Views\PaymentItem\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

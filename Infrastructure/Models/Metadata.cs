@@ -53,11 +53,15 @@ namespace Infrastructure.Models
     internal partial class PaymentItemMetadata
     {
         [Display(Name = "Item ID")]
+        [Required(ErrorMessage = "{0} is a required data")]
         public int IDItem { get; set; }
+
+        [Required(ErrorMessage = "{0} is a required data")]
         public string Description { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
-        [RegularExpression(@"^[0-9]+(\.,[0-9]{1,2})?$", ErrorMessage = "solo acepta números, con dos decimales")]
+        [RegularExpression(@"^[0-9]+(\.,[0-9]{1,2})?$", ErrorMessage = "Only accepts numbers, with two decimal places")]
+        [Required(ErrorMessage = "{0} is a required data")]
         public decimal Price { get; set; }
     }
 

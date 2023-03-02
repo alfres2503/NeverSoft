@@ -6,7 +6,7 @@
 
 <h2>Payment Items Maintenance</h2>
 
-<a href="@Url.Action("Create", "Create")" class="btn btn-primary">Create <i class="fa-solid fa-plus"></i></a>
+<a href="@Url.Action("Create", "PaymentItem")" class="btn btn-primary">Create <i class="fa-solid fa-plus"></i></a>
 
 <table class="table">
     <tr>
@@ -35,9 +35,8 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IDItem }, new { @class = "btn btn-primary" })
-
-
+                
+                <a href="@Url.Action("Edit", "PaymentItem", new { id = item.IDItem })" class="btn btn-primary">Edit <i class="fa-solid fa-pen"></i></a>
 
             </td>
         </tr>
