@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Infrastructure.Models.PaymentPlan>
+
+@{
+    ViewBag.Title = "Payment Plan Maintenance";
+}
+
+<h2>Payment Plan Maintenance</h2>
+
+<a href="@Url.Action("Create", "PaymentItem")" class="btn btn-primary">Create <i class="fa-solid fa-plus"></i></a>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDPlan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDPlan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "PaymentPlan", new { id = item.IDPlan })" class="btn btn-primary">Edit <i class="fa-solid fa-pen"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

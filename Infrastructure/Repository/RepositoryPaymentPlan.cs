@@ -60,6 +60,40 @@ namespace Infrastructure.Repository
             }
         }
 
-        
+        public PaymentPlan Save(PaymentPlan paymentPlan)
+        {
+            int retorno = 0;
+            PaymentPlan oPaymentP = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oPaymentP = this.GetPaymentPlanByID((int)paymentPlan.IDPlan);
+
+                if (oPaymentP == null)
+                {
+                    //Insertar 
+                    ctx.PaymentPlan.Add(paymentPlan);
+                    //SaveChanges
+                    //guarda todos los cambios realizados en el contexto de la base de datos.
+                    retorno = ctx.SaveChanges();
+                    //retorna número de filas afectadas
+                }
+                else
+                {
+                    //Actualizar 
+                    ctx.PaymentPlan.Add(paymentPlan);
+                    ctx.Entry(paymentPlan).State = EntityState.Modified;
+                    retorno = ctx.SaveChanges();
+                }
+            }
+
+            if (retorno >= 0)
+                oPaymentP = this.GetPaymentPlanByID((int)paymentPlan.IDPlan);
+
+            return oPaymentP;
+        }
+
+
     }
 }

@@ -21,5 +21,11 @@ namespace ApplicationCore.Services
             IRepositoryPaymentPlan repository = new RepositoryPaymentPlan();
             return repository.GetPaymentPlans();
         }
+
+        public PaymentPlan Save(PaymentPlan paymentPlan)
+        {
+            IRepositoryPaymentPlan repository = new RepositoryPaymentPlan();
+            return repository.Save(paymentPlan);
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace Infrastructure.Repository
     {
         IEnumerable<PaymentPlan> GetPaymentPlans();
         PaymentPlan GetPaymentPlanByID(int id);
+        PaymentPlan Save(PaymentPlan paymentPlan);
     }
 }

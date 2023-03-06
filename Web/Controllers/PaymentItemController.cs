@@ -104,8 +104,7 @@ namespace Web.Controllers
             IServicePaymentItem _ServicePaymentItem = new ServicePaymentItem();
             try
             {
-                
-                
+
                 if (ModelState.IsValid)
                 {
                     PaymentItem oPaymentItemI = _ServicePaymentItem.Save(paymentItem);
