@@ -22,10 +22,10 @@ namespace ApplicationCore.Services
             return repository.GetPaymentPlans();
         }
 
-        public PaymentPlan Save(PaymentPlan paymentPlan)
+        public PaymentPlan Save(PaymentPlan paymentPlan, string[] selectedPaymentItems)
         {
             IRepositoryPaymentPlan repository = new RepositoryPaymentPlan();
-            return repository.Save(paymentPlan);
+            return repository.Save(paymentPlan, selectedPaymentItems);
         }
     }
 }

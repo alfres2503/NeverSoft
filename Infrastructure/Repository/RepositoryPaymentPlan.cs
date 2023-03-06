@@ -60,19 +60,36 @@ namespace Infrastructure.Repository
             }
         }
 
-        public PaymentPlan Save(PaymentPlan paymentPlan)
+        public PaymentPlan Save(PaymentPlan paymentPlan, string[] selectedPaymentItems)
         {
             int retorno = 0;
-            PaymentPlan oPaymentP = null;
+            PaymentPlan oPaymentPlan = null;
 
             using (MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-                oPaymentP = this.GetPaymentPlanByID((int)paymentPlan.IDPlan);
+                oPaymentPlan = GetPaymentPlanByID((int)paymentPlan.IDPlan);
+                IRepositoryPaymentItem _RepositoryPaymentItem = new RepositoryPaymentItem();
 
-                if (oPaymentP == null)
+                if (oPaymentPlan == null)
                 {
-                    //Insertar 
+
+                    //Insertar
+                    //Logica para agregar las categorias al libro
+                    if (selectedPaymentItems != null)
+                    {
+
+                        paymentPlan.PaymentItem = new List<PaymentItem>();
+                        foreach (var categoria in selectedPaymentItems)
+                        {
+                            var paymentItemToAdd = _RepositoryPaymentItem.GetPaymentItemByID(int.Parse(categoria));
+                            ctx.PaymentItem.Attach(paymentItemToAdd); //sin esto, EF intentará crear una categoría
+                            paymentPlan.PaymentItem.Add(paymentItemToAdd);// asociar a la categoría existente con el libro
+
+
+                        }
+                    }
+                    //Insertar Libro
                     ctx.PaymentPlan.Add(paymentPlan);
                     //SaveChanges
                     //guarda todos los cambios realizados en el contexto de la base de datos.
@@ -81,17 +98,33 @@ namespace Infrastructure.Repository
                 }
                 else
                 {
-                    //Actualizar 
+                    //Registradas: 1,2,3
+                    //Actualizar: 1,3,4
+
+                    //Actualizar Libro
                     ctx.PaymentPlan.Add(paymentPlan);
                     ctx.Entry(paymentPlan).State = EntityState.Modified;
                     retorno = ctx.SaveChanges();
+
+                    //Logica para actualizar Categorias
+                    var selectedPaymentItemID = new HashSet<string>(selectedPaymentItems);
+                    if (selectedPaymentItems != null)
+                    {
+                        ctx.Entry(paymentPlan).Collection(p => p.PaymentItem).Load();
+                        var newPaymenItemForPaymentPlan = ctx.PaymentItem
+                         .Where(x => selectedPaymentItemID.Contains(x.IDItem.ToString())).ToList();
+                        paymentPlan.PaymentItem = newPaymenItemForPaymentPlan;
+
+                        ctx.Entry(paymentPlan).State = EntityState.Modified;
+                        retorno = ctx.SaveChanges();
+                    }
                 }
             }
 
             if (retorno >= 0)
-                oPaymentP = this.GetPaymentPlanByID((int)paymentPlan.IDPlan);
+                oPaymentPlan = GetPaymentPlanByID((int)paymentPlan.IDPlan);
 
-            return oPaymentP;
+            return oPaymentPlan;
         }
 
 
