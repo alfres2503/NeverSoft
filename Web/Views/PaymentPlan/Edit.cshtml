@@ -7,7 +7,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Save", "PaymentPlan", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -41,6 +41,16 @@
             </div>
         </div>
 
+        <div class="form-group mb-5">
+            @Html.LabelFor(model => model.PaymentItem, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("selectedPaymentItems",
+               (MultiSelectList)ViewBag.IDItem,
+               htmlAttributes: new { @class = "form-control", multiple = "multiple" })
+
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -48,32 +58,7 @@
         </div>
     </div>
 
-    <table class="table table-bordered my-3">
-        <thead>
 
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.PaymentItem.First().IDItem)</th>
-                <th>@Html.DisplayNameFor(model => model.PaymentItem.First().Description)</th>
-                <th>@Html.DisplayNameFor(model => model.PaymentItem.First().Price)</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model.PaymentItem)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.IDItem)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                    <td>$ @Html.DisplayFor(modelItem => item.Price)</td>
-                    @* Hay que pensar como borrar y meter items en la lista *@
-                    <td>
-                        
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
 }
 
 <div>

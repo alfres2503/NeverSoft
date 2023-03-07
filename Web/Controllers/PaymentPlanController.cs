@@ -108,6 +108,7 @@ namespace Web.Controllers
                     return RedirectToAction("Default", "Error");
                 }
 
+                ViewBag.IDItem = listPaymentItems(paymentPlan.PaymentItem);
                 return View(paymentPlan);
             }
             catch (Exception ex)
