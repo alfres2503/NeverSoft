@@ -80,9 +80,9 @@ namespace Infrastructure.Repository
                     {
 
                         paymentPlan.PaymentItem = new List<PaymentItem>();
-                        foreach (var categoria in selectedPaymentItems)
+                        foreach (var paymentI in selectedPaymentItems)
                         {
-                            var paymentItemToAdd = _RepositoryPaymentItem.GetPaymentItemByID(int.Parse(categoria));
+                            var paymentItemToAdd = _RepositoryPaymentItem.GetPaymentItemByID(int.Parse(paymentI));
                             ctx.PaymentItem.Attach(paymentItemToAdd); //sin esto, EF intentará crear una categoría
                             paymentPlan.PaymentItem.Add(paymentItemToAdd);// asociar a la categoría existente con el libro
 

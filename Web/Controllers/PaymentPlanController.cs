@@ -206,7 +206,7 @@ namespace Web.Controllers
                     return View("Create", paymentPlan);
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Maintenance");
             }
             catch (Exception ex)
             {

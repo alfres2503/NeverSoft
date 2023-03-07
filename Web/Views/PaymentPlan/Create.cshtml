@@ -42,7 +42,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.PaymentItem, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("selectedPaymentItem",
+            @Html.DropDownList("selectedPaymentItems",
            (MultiSelectList)ViewBag.IDItem,
            htmlAttributes: new { @class = "form-control", multiple = "multiple" })
 
