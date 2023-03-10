@@ -9,27 +9,26 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
-    public class RepositoryPaymentItem : IRepositoryPaymentItem
+    public class RepositoryNews : IRepositoryNews
     {
-        public void DeleteLibro(int id)
+        public void DeleteNews(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<PaymentItem> GetPaymentItem()
+        public IEnumerable<News> GetNews()
         {
-            IEnumerable<PaymentItem> lista = null;
+            IEnumerable<News> lista = null;
             try
             {
-
 
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
-                    
-                    lista = ctx.PaymentItem.ToList();
 
-                   
+                    lista = ctx.News.Include("NewsCategory").ToList();
+
+
                 }
                 return lista;
             }
@@ -44,21 +43,21 @@ namespace Infrastructure.Repository
             }
         }
 
-        public PaymentItem GetPaymentItemByID(int id)
+        public News GetNewsByID(int id)
         {
-            PaymentItem oPaymentItem = null;
+            News oNews = null;
             try
             {
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
-                    
-                    oPaymentItem = ctx.PaymentItem.
-                        Where(l => l.IDItem == id).
+
+                    oNews = ctx.News.
+                        Where(l => l.IDNews == id).
                         FirstOrDefault();
 
                 }
-                return oPaymentItem;
+                return oNews;
             }
             catch (DbUpdateException dbEx)
             {
@@ -70,23 +69,23 @@ namespace Infrastructure.Repository
             }
         }
 
-        public PaymentItem Save(PaymentItem paymentItem)
+        public News Save(News news)
         {
             int retorno = 0;
-            PaymentItem oPaymentItem = null;
+            News oNews = null;
 
             using (MyContext ctx = new MyContext())
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
-                oPaymentItem = GetPaymentItemByID((int)paymentItem.IDItem);
+                oNews = GetNewsByID((int)news.IDNews);
                
 
-                if (oPaymentItem == null)
+                if (oNews == null)
                 {
 
-                   
-                    //Insertar 
-                    ctx.PaymentItem.Add(paymentItem);
+                    
+                    
+                    ctx.News.Add(news);
                     //SaveChanges
                     //guarda todos los cambios realizados en el contexto de la base de datos.
                     retorno = ctx.SaveChanges();
@@ -94,10 +93,11 @@ namespace Infrastructure.Repository
                 }
                 else
                 {
-                   
-                    //Actualizar Libro
-                    ctx.PaymentItem.Add(paymentItem);
-                    ctx.Entry(paymentItem).State = EntityState.Modified;
+                    
+
+                    //Actualizar 
+                    ctx.News.Add(news);
+                    ctx.Entry(news).State = EntityState.Modified;
                     retorno = ctx.SaveChanges();
 
                     
@@ -105,9 +105,9 @@ namespace Infrastructure.Repository
             }
 
             if (retorno >= 0)
-                oPaymentItem = GetPaymentItemByID((int)paymentItem.IDItem);
+                oNews = GetNewsByID((int)news.IDNews);
 
-            return oPaymentItem;
+            return oNews;
         }
     }
 }

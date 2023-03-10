@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Infrastructure.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDNews)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Archive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsCategory.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDNews)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Archive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewsCategory.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.IDNews }) |
+
+            @Html.ActionLink("Delete", "Delete", new { id = item.IDNews })
+        </td>
+    </tr>
+}
+
+</table>
