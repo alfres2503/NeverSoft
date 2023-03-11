@@ -79,4 +79,16 @@ namespace Infrastructure.Models
         [RegularExpression(@"^[0-9]+(\.,[0-9]{1,2})?$", ErrorMessage = "solo acepta números, con dos decimales")]
         public decimal Amount { get; set; }
     }
+
+    internal partial class IncidenceMetadata
+    {
+        [Display(Name = "Incidence ID")]
+        public int IDIncidence { get; set; }
+        public long IDUser { get; set; }
+        public string Description { get; set; }
+        [Display(Name = "Attended")]
+        public bool Finished { get; set; }
+
+        public virtual User User { get; set; }
+    }
 }

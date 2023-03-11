@@ -11,7 +11,9 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(IncidenceMetadata))]
     public partial class Incidence
     {
         public int IDIncidence { get; set; }

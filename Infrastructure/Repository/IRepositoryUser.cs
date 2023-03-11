@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
-    public interface IRepositoryPaymentItem
+    public interface IRepositoryUser
     {
-        IEnumerable<PaymentItem> GetPaymentItem();
-        PaymentItem GetPaymentItemByID(int id);
-        PaymentItem Save(PaymentItem paymentItem);
+        IEnumerable<User> GetUsers();
+        User GetUserByID(int id);
     }
 }

@@ -143,6 +143,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IncidenceController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PaymentItemController.cs" />
     <Compile Include="Controllers\PaymentPlanController.cs" />
@@ -224,6 +225,9 @@
     <Content Include="Views\PaymentPlan\Edit.cshtml" />
     <Content Include="Views\PaymentPlan\Create.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Incidence\Maintenance.cshtml" />
+    <Content Include="Views\Incidence\Create.cshtml" />
+    <Content Include="Views\Incidence\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

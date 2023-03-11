@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
-    public interface IRepositoryPaymentItem
+    public interface IRepositoryIncidence
     {
-        IEnumerable<PaymentItem> GetPaymentItem();
-        PaymentItem GetPaymentItemByID(int id);
-        PaymentItem Save(PaymentItem paymentItem);
+        IEnumerable<Incidence> GetIncidences();
+        Incidence GetIncidenceByID(int id);
+        Incidence Save(Incidence incidence);
     }
 }

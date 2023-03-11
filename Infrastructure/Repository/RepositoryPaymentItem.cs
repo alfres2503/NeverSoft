@@ -11,10 +11,6 @@ namespace Infrastructure.Repository
 {
     public class RepositoryPaymentItem : IRepositoryPaymentItem
     {
-        public void DeleteLibro(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<PaymentItem> GetPaymentItem()
         {
