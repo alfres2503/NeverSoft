@@ -75,7 +75,8 @@ namespace Web.Controllers
         private MultiSelectList listUsers(ICollection<User> users = null)
         {
             IServiceUser _ServiceUser = new ServiceUser();
-            IEnumerable<User> lista = _ServiceUser.GetUsers();
+            IEnumerable<User> lista = _ServiceUser.GetUsers()
+                .Where(u => u.Active == true && u.IDRole == 2);
             //Seleccionar categorias
             long[] listUserSelect = null;
             if (users != null)
@@ -104,7 +105,7 @@ namespace Web.Controllers
                     return View("Create", incidence);
                 }
 
-                return RedirectToAction("Maintenance");
+                return RedirectToAction("Create");
             }
             catch (Exception ex)
             {
