@@ -4,22 +4,20 @@
     ViewBag.Title = "Incidence Maintenance";
 }
 
-<h2>Incidence Maintenance</h2>
+<h2 class="my-2">Incidence Maintenance</h2>
 
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>*@
-<a href="@Url.Action("Create", "Incidence")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Create</a>
+
+<a href="@Url.Action("Create", "Incidence")" class="btn btn-primary my-2"><i class="fa-solid fa-plus"></i> Create</a>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            USER
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Finished)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
         </th>
         <th></th>
     </tr>
@@ -28,13 +26,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Finished)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.FirstName)
             </td>
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { id = item.IDIncidence })*@

@@ -16,6 +16,7 @@
         <MappingFragment StoreEntitySet="Incidence">
           <ScalarProperty Name="IDIncidence" ColumnName="IDIncidence" />
           <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Finished" ColumnName="Finished" />
         </MappingFragment>

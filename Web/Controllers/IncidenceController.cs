@@ -85,5 +85,36 @@ namespace Web.Controllers
 
             return new MultiSelectList(lista, "IDUser", "FullName", listUserSelect);
         }
+
+
+        [HttpPost]
+        public ActionResult Save(Incidence incidence)
+        {
+            IServiceIncidence _ServiceIncidence = new ServiceIncidence();
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    Incidence oIncidence = _ServiceIncidence.Save(incidence);
+                }
+                else
+                {
+                    //Lógica para cargar vista correspondiente
+                    return View("Create", incidence);
+                }
+
+                return RedirectToAction("Maintenance");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Maintenance";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
     }
 }

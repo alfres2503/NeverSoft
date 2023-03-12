@@ -85,6 +85,9 @@ namespace Infrastructure.Models
         [Display(Name = "Incidence ID")]
         public int IDIncidence { get; set; }
         public long IDUser { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
+        public string Title { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         public string Description { get; set; }
         [Display(Name = "Attended")]
         public bool Finished { get; set; }

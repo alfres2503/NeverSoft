@@ -18,6 +18,7 @@ namespace Infrastructure.Models
     {
         public int IDIncidence { get; set; }
         public long IDUser { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public bool Finished { get; set; }
     

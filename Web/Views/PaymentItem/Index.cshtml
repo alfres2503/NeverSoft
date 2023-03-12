@@ -34,10 +34,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
-            <td>
-                
-                <a href="@Url.Action("Edit", "PaymentItem", new { id = item.IDItem })" class="btn btn-primary">Edit <i class="fa-solid fa-pen"></i></a>
-
+            <td class="align-items-center text-center align-content-center justify-content-center">
+                <a href="@Url.Action("Edit", "PaymentItem", new { id = item.IDItem })" class="btn btn-primary"><i class="fa-solid fa-pen"></i> Edit</a>
             </td>
         </tr>
     }

@@ -29,7 +29,7 @@ namespace Infrastructure.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public byte[] Password { get; set; }
+        public string Password { get; set; }
         public bool Active { get; set; }
         public string FullName => $"{FirstName} {LastName}";
 

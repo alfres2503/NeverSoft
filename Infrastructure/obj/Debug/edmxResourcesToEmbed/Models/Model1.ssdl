@@ -15,6 +15,7 @@
     </Key>
     <Property Name="IDIncidence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDUser" Type="bigint" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="280" Nullable="false" />
     <Property Name="Finished" Type="bit" Nullable="false" />
   </EntityType>
@@ -100,7 +101,7 @@
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="varbinary(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="UserRole">

@@ -16,6 +16,7 @@
     </Key>
     <Property Name="IDIncidence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDUser" Type="Int64" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Finished" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="User" Relationship="Self.FK_Incidence_User" FromRole="Incidence" ToRole="User" />
@@ -105,7 +106,7 @@
     <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Incidence" Relationship="Self.FK_Incidence_User" FromRole="User" ToRole="Incidence" />
     <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_User" FromRole="User" ToRole="Reservation" />
