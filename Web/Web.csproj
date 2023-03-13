@@ -228,6 +228,8 @@
     <Content Include="Views\Incidence\Maintenance.cshtml" />
     <Content Include="Views\Incidence\Create.cshtml" />
     <Content Include="Views\Incidence\Edit.cshtml" />
+    <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\News\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

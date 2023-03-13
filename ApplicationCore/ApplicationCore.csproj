@@ -44,6 +44,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IServiceIncidence.cs" />
     <Compile Include="Services\IServiceNews.cs" />
+    <Compile Include="Services\IServiceNewsCategory.cs" />
     <Compile Include="Services\IServicePaymentItem.cs" />
     <Compile Include="Services\IServicePaymentPlan.cs" />
     <Compile Include="Services\IServicePlanAssignment.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Services\IServiceUser.cs" />
     <Compile Include="Services\ServiceIncidence.cs" />
     <Compile Include="Services\ServiceNews.cs" />
+    <Compile Include="Services\ServiceNewsCategory.cs" />
     <Compile Include="Services\ServicePaymentItem.cs" />
     <Compile Include="Services\ServicePaymentPlan.cs" />
     <Compile Include="Services\ServicePlanAssignment.cs" />

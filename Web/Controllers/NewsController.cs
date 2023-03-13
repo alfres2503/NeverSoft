@@ -43,31 +43,75 @@ namespace Web.Controllers
         }
 
         // GET: News/Create
+        [HttpGet]
         public ActionResult Create()
         {
+            ViewBag.IDCategory = listCategories();
+
             return View();
         }
 
         // POST: News/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+        //[HttpPost]
+        //public ActionResult Create(FormCollection collection)
+        //{
+        //        return View();
 
-                return RedirectToAction("Index");
-            }
-            catch
+        //}
+
+        private MultiSelectList listCategories(ICollection<NewsCategory> newsCategory = null)
+        {
+            IServiceNewsCategory _ServiceNewsCategory = new ServiceNewsCategory();
+            IEnumerable<NewsCategory> lista = _ServiceNewsCategory.GetNewsCategory();
+            //Seleccionar categorias
+            int[] listNewsCategorySelect=null;
+            if (newsCategory != null)
             {
-                return View();
+
+                listNewsCategorySelect = newsCategory.Select(c => c.IDCategory).ToArray();
             }
+
+            return new MultiSelectList(lista, "IDCategory", "Description", listNewsCategorySelect);
+
+            
         }
 
         // GET: News/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            ServiceNews _ServiceNews = new ServiceNews();
+            News news = null;
+
+            try
+            {
+                // Si va null
+                if (id == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                news = _ServiceNews.GetNewsByID(Convert.ToInt32(id));
+                if (news == null)
+                {
+                    TempData["Message"] = "No existe la informacion solicitada";
+                    TempData["Redirect"] = "News";
+                    TempData["Redirect-Action"] = "Index";
+                    // Redireccion a la captura del Error
+                    return RedirectToAction("Default", "Error");
+                }
+                ViewBag.IDCategory = listCategories();
+                return View(news);
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "News";
+                TempData["Redirect-Action"] = "Index";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
         }
 
         // POST: News/Edit/5
@@ -97,13 +141,13 @@ namespace Web.Controllers
                 else
                 {
                     //Cargar la vista crear o actualizar
+                    ViewBag.IDCategory = listCategories();
 
-                    
                     //Lógica para cargar vista correspondiente
                     return View("Create", news);
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             catch (Exception ex)
             {

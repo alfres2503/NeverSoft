@@ -94,4 +94,17 @@ namespace Infrastructure.Models
 
         public virtual User User { get; set; }
     }
+
+    internal partial class NewsMetadata
+    {
+        [Display(Name = "ID News")]
+        public int IDNews { get; set; }
+        [Display(Name = "ID Category")]
+        [Required(ErrorMessage = "{0} is a required data")]
+        public int IDCategory { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
+        public string Description { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
+        public byte[] Archive { get; set; }
+    }
 }

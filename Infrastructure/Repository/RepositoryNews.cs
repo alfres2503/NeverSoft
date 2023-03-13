@@ -78,13 +78,13 @@ namespace Infrastructure.Repository
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
                 oNews = GetNewsByID((int)news.IDNews);
-               
+                
 
                 if (oNews == null)
                 {
 
-                    
-                    
+
+
                     ctx.News.Add(news);
                     //SaveChanges
                     //guarda todos los cambios realizados en el contexto de la base de datos.
@@ -93,14 +93,14 @@ namespace Infrastructure.Repository
                 }
                 else
                 {
-                    
+
 
                     //Actualizar 
                     ctx.News.Add(news);
                     ctx.Entry(news).State = EntityState.Modified;
                     retorno = ctx.SaveChanges();
 
-                    
+
                 }
             }
 
@@ -108,6 +108,10 @@ namespace Infrastructure.Repository
                 oNews = GetNewsByID((int)news.IDNews);
 
             return oNews;
+
+
+
+
         }
     }
 }
