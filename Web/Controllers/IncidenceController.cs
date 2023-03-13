@@ -38,7 +38,7 @@ namespace Web.Controllers
         public ActionResult Create()
         {
             ViewBag.IDUser = listUsers();
-            return View();  
+            return View();
         }
 
         public ActionResult Edit(int? id)
@@ -61,7 +61,7 @@ namespace Web.Controllers
                     TempData["Redirect-Action"] = "Maintenance";
                     return RedirectToAction("Default", "Error");
                 }
-                ViewBag.IDUser = listUsers();
+                ViewBag.IDUser = listUserByID(oIncidence.IDUser);
                 return View(oIncidence);
             }
             catch (Exception ex)
@@ -77,6 +77,21 @@ namespace Web.Controllers
             IServiceUser _ServiceUser = new ServiceUser();
             IEnumerable<User> lista = _ServiceUser.GetUsers()
                 .Where(u => u.Active == true && u.IDRole == 2);
+            //Seleccionar categorias
+            long[] listUserSelect = null;
+            if (users != null)
+            {
+                listUserSelect = users.Select(c => c.IDUser).ToArray();
+            }
+
+            return new MultiSelectList(lista, "IDUser", "FullName", listUserSelect);
+        }
+
+        private MultiSelectList listUserByID(long id, ICollection<User> users = null)
+        {
+            IServiceUser _ServiceUser = new ServiceUser();
+            IEnumerable<User> lista = _ServiceUser.GetUsers()
+            .Where(u => u.IDUser == id);
             //Seleccionar categorias
             long[] listUserSelect = null;
             if (users != null)
@@ -105,7 +120,9 @@ namespace Web.Controllers
                     return View("Create", incidence);
                 }
 
-                return RedirectToAction("Create");
+                return RedirectToAction("Maintenance");
+
+                //return RedirectToAction("Maintenance");
             }
             catch (Exception ex)
             {
