@@ -9,10 +9,13 @@ namespace Infrastructure.Models
 {
     internal partial class ResidenceMetadata
     {
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         [Display(Name = "Residence ID")]
         public int IDResidence { get; set; }
         [Display(Name = "User ID")]
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         public long IDUser { get; set; }
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         public int Habitants { get; set; }
         [Display(Name = "Start Year")]
         public int StartYear { get; set; }
@@ -24,39 +27,55 @@ namespace Infrastructure.Models
 
     internal partial class UserMetadata
     {
+        [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "Owner ID")]
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         public long IDUser { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "Role ID")]
         public int IDRole { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         public byte[] Password { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         public bool Active { get; set; }
         
     }
 
     internal class PaymentPlanMetadata
     {
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         [Display(Name = "Plan ID")]
+        [Required(ErrorMessage = "{0} is a required data")]
         public int IDPlan { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(10, ErrorMessage = "Names with more than 10 letters are not accepted")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         public string Description { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
+        [Required(ErrorMessage = "{0} is a required data")]
         [RegularExpression("^[0-9]+(\\.[0-9]{1,2})?$", ErrorMessage = "Only accepts numbers, with two decimal places")]
         public decimal Total { get; set; }
     }
 
     internal partial class PaymentItemMetadata
     {
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         [Display(Name = "Item ID")]
         [Required(ErrorMessage = "{0} is a required data")]
         public int IDItem { get; set; }
 
         [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(10, ErrorMessage = "Descriptions with more than 10 letters are not accepted")]
         public string Description { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
@@ -67,6 +86,7 @@ namespace Infrastructure.Models
 
     internal partial class PlanAssignmentMetadata
     {
+
         public int IDAssignment { get; set; }
         public int IDPlan { get; set; }
         public int IDResidence { get; set; }
@@ -82,8 +102,11 @@ namespace Infrastructure.Models
 
     internal partial class IncidenceMetadata
     {
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
+        [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "Incidence ID")]
         public int IDIncidence { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         public long IDUser { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         public string Title { get; set; }
@@ -97,14 +120,18 @@ namespace Infrastructure.Models
 
     internal partial class NewsMetadata
     {
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
+        [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "ID News")]
         public int IDNews { get; set; }
-        [Display(Name = "ID Category")]
         [Required(ErrorMessage = "{0} is a required data")]
+        [Display(Name = "ID Category")]
+        
         public int IDCategory { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(80, ErrorMessage = "Descriptions with more than 80 letters are not accepted")]
         public string Description { get; set; }
-        [Required(ErrorMessage = "{0} is a required data")]
+        
         public byte[] Archive { get; set; }
     }
 }

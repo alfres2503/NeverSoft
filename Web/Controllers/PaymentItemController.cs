@@ -29,7 +29,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Message"] = "Error at procesing data:  " + ex.Message;
 
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
@@ -74,8 +74,8 @@ namespace Web.Controllers
                 paymentItem = _ServicePaymentItem.GetPaymentItemByID(Convert.ToInt32(id));
                 if (paymentItem == null)
                 {
-                    TempData["Message"] = "No existe el libro solicitado";
-                    TempData["Redirect"] = "Libro";
+                    TempData["Message"] = "The requested PaymentItem does not exist";
+                    TempData["Redirect"] = "PaymentItem";
                     TempData["Redirect-Action"] = "Index";
                     // Redireccion a la captura del Error
                     return RedirectToAction("Default", "Error");
@@ -87,9 +87,9 @@ namespace Web.Controllers
             {
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
-                TempData["Redirect"] = "Libro";
-                TempData["Redirect-Action"] = "IndexAdmin";
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
+                TempData["Redirect"] = "PaymentItem";
+                TempData["Redirect-Action"] = "Index";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }
@@ -122,9 +122,9 @@ namespace Web.Controllers
             {
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
-                TempData["Redirect"] = "Libro";
-                TempData["Redirect-Action"] = "IndexAdmin";
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
+                TempData["Redirect"] = "PaymentItem";
+                TempData["Redirect-Action"] = "Index";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }

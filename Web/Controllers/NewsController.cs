@@ -29,7 +29,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
 
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
@@ -93,7 +93,7 @@ namespace Web.Controllers
                 news = _ServiceNews.GetNewsByID(Convert.ToInt32(id));
                 if (news == null)
                 {
-                    TempData["Message"] = "No existe la informacion solicitada";
+                    TempData["Message"] = "The requested News does not exist";
                     TempData["Redirect"] = "News";
                     TempData["Redirect-Action"] = "Index";
                     // Redireccion a la captura del Error
@@ -106,7 +106,7 @@ namespace Web.Controllers
             {
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
                 TempData["Redirect"] = "News";
                 TempData["Redirect-Action"] = "Index";
                 // Redireccion a la captura del Error
@@ -153,7 +153,7 @@ namespace Web.Controllers
             {
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
                 TempData["Redirect"] = "News";
                 TempData["Redirect-Action"] = "Index";
                 // Redireccion a la captura del Error
