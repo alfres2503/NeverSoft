@@ -79,6 +79,7 @@ namespace Infrastructure.Repository
                     ctx.Configuration.LazyLoadingEnabled = false;
                     oNews = ctx.News.
                         Where(n => n.IDCategory == idCategory)
+                        .Include("NewsCategory")
                         .ToList();
 
                 }

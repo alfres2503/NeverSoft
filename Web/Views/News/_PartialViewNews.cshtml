@@ -23,7 +23,7 @@
                     <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
                     @if (item.Archive != null)
                     {
-                        <a href="@Url.Action("Download", "News", new { id = item.IDNews })" class="btn btn-primary">Download Document</a>
+                        <a href="@Url.Action("DownloadPDF", "News", new { id = item.IDNews })" class="btn btn-primary">Download Document</a>
                     }
                 </div>
             </div>
