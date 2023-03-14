@@ -33,8 +33,17 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Archive)
-        </td>
+            @* @Html.DisplayFor(modelItem => item.Archive)*@
+            @if (item.Archive != null)
+            {
+                <a href="@Url.Action("DownloadPDF", "News", new { id = item.IDNews })"><i class="fa-solid fa-file"></i> Information</a>
+            }
+            else
+            {
+                <p>Empty</p>
+            }
+
+            </td>
         <td>
             @Html.DisplayFor(modelItem => item.NewsCategory.Description)
         </td>

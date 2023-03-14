@@ -126,12 +126,21 @@ namespace Infrastructure.Models
         public int IDNews { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "ID Category")]
-        
         public int IDCategory { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         [StringLength(80, ErrorMessage = "Descriptions with more than 80 letters are not accepted")]
         public string Description { get; set; }
         
         public byte[] Archive { get; set; }
+    }
+
+    internal partial class NewsCategoryMetadata {
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
+        [Required(ErrorMessage = "{0} is a required data")]
+        [Display(Name = "ID Category")]
+        public int IDCategory { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(80, ErrorMessage = "Descriptions with more than 80 letters are not accepted")]
+        public string Description { get; set; }
     }
 }

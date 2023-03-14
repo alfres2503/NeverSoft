@@ -125,15 +125,18 @@ namespace Web.Controllers
             try
             {
                 //Insertar el archivo
-                if (news.Archive == null)
-                {
+                //if (news.Archive == null)
+                //{
                     if (File != null)
-                    {
-                        File.InputStream.CopyTo(target);
-                        news.Archive = target.ToArray();
-                        ModelState.Remove("Archive");
+                {
+                    //File.InputStream.CopyTo(target);
+                    //news.Archive = target.ToArray();
+                    //ModelState.Remove("Archive");
+                    var archivoP = new byte[File.ContentLength];
+                        File.InputStream.Read(archivoP, 0, File.ContentLength);
+                        news.Archive = archivoP;
                     }
-                }
+                //}
                 if (ModelState.IsValid)
                 {
                     News oNewsF = _ServiceNews.Save(news);
@@ -147,7 +150,7 @@ namespace Web.Controllers
                     return View("Create", news);
                 }
 
-                return RedirectToAction("Create");
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
@@ -182,5 +185,20 @@ namespace Web.Controllers
                 return View();
             }
         }
+
+        public ActionResult DownloadPDF(int? id)
+        {
+            IServiceNews _Service = new ServiceNews();
+            News oNews = _Service.GetNewsByID(Convert.ToInt32(id));
+            return File(oNews.Archive, "application/pdf", "NeverLand-Information.pdf");
+        }
+
+        //public ActionResult RemovePDF(int? id)
+        //{
+        //    IServiceNews _Service = new ServiceNews();
+        //    News oNews = _Service.GetNewsByID(Convert.ToInt32(id));
+        //    oNews.Archive = null;
+        //    return File(oNews.Archive,);
+        //}
     }
 }
