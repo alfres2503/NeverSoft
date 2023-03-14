@@ -4,40 +4,71 @@
     ViewBag.Title = "News";
 }
 
-<h2>News</h2>
+<h2 class="text-center">News</h2>
 
-<div class=" mt-1 mb-5">
-    @foreach (var item in Model)
-    {
-        <div class="col-6">
-            <div class="card custom-card my-5 p-2">
-                @if (item.IDCategory == 1)
-                {
-                    <img src="~/images/newscard.png" class="card-img-top m-auto rounded">
-                }
-                else if (item.IDCategory == 2)
-                {
-                    <img src="~/images/reminderscard.png" class="card-img-top m-auto rounded">
-                }
-                else
-                {
-                    <img src="~/images/rulescard.png" class="card-img-top m-auto rounded">
-                }
+<div class="row">
 
-                <div class="card-body">
-                    <h5 class="card-title">NeverLand - @Html.DisplayFor(modelItem => item.NewsCategory.Description)</h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    @if (item.Archive != null)
+    <h4 class="text-center">Filter by Category</h4>
+    <div class="col-lg-7 m-auto mt-3">
+        <div class="d-flex justify-content-between">
+            <button class="btn w-25 mx-1 custom-card" onclick="getNewsCategory(0)">All</button>
+            @foreach (var item in (List<Infrastructure.Models.NewsCategory>)ViewBag.listNewsCategory)
+            {
+                <button class="btn w-25 mx-1 custom-card" onclick="getNewsCategory(@item.IDCategory)">@item.Description</button>
+            }
+
+        </div>
+        <hr />
+    </div>
+
+    <div id="resultado" class="col-lg-7 m-auto">
+        @foreach (var item in Model)
+        {
+            <div class="col-12">
+                <div class="card custom-card  p-2">
+                    @if (item.IDCategory == 1)
                     {
-                        <a href="@Url.Action("Download", "News", new { id = item.IDNews })" class="btn btn-primary">Download Document</a>
+                        <img src="~/images/newscard.png" class="card-img-top m-auto rounded">
+                    }
+                    else if (item.IDCategory == 2)
+                    {
+                        <img src="~/images/reminderscard.png" class="card-img-top m-auto rounded">
                     }
                     else
                     {
-                        <a href="@Url.Action("Download", "News", new { id = item.IDNews })" class="btn btn-primary" disabled>Download Document</a>
+                        <img src="~/images/rulescard.png" class="card-img-top m-auto rounded">
                     }
 
+                    <div class="card-body">
+                        <h5 class="card-title">NeverLand - @Html.DisplayFor(modelItem => item.NewsCategory.Description)</h5>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                        @if (item.Archive != null)
+                        {
+                            <a href="@Url.Action("Download", "News", new { id = item.IDNews })" class="btn btn-primary">Download Document</a>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+
+
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function getNewsCategory(idCategory) {
+            $.ajax({
+                method: 'GET',
+                url: '/News/NewsByCategory',
+                data: { 'id': idCategory },
+                success: function (response) {
+                    $('#resultado').html('');
+                    $('#resultado').html(response);
+                }, error: function (xhr, status, error) {
+                    console.log('Error' + error + ',No Error' + xhr.status);
+                }
+            })
+        }
+    </script>
+}

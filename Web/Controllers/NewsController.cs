@@ -23,6 +23,8 @@ namespace Web.Controllers
                 IServiceNews _ServiceNews = new ServiceNews();
                 lista = _ServiceNews.GetNews();
 
+                IServiceNewsCategory _ServiceNewsCategory = new ServiceNewsCategory();
+                ViewBag.listNewsCategory = _ServiceNewsCategory.GetNewsCategory();
 
                 return View(lista);
             }
@@ -56,6 +58,24 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+        public PartialViewResult NewsByCategory(int? id)
+        {
+            IEnumerable<News> list = null;
+            IServiceNews _ServiceNews = new ServiceNews();
+            if (id != null)
+            {
+                if (id == 0)
+                {
+                    list = _ServiceNews.GetNews();
+                }
+                else
+                {
+                    list = _ServiceNews.GetNewsByCategory((int)id);
+                }
+            }
+            return PartialView("_PartialViewNews", list);
+        }
+
 
         // GET: News/Details/5
         public ActionResult Details(int id)

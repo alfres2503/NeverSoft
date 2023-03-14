@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Infrastructure.Models.News>
+
+@foreach (var item in Model)
+{
+    <div>
+        <div class="col-12">
+            <div class="card custom-card  p-2">
+                @if (item.IDCategory == 1)
+                {
+                    <img src="~/images/newscard.png" class="card-img-top m-auto rounded">
+                }
+                else if (item.IDCategory == 2)
+                {
+                    <img src="~/images/reminderscard.png" class="card-img-top m-auto rounded">
+                }
+                else
+                {
+                    <img src="~/images/rulescard.png" class="card-img-top m-auto rounded">
+                }
+
+                <div class="card-body">
+                    <h5 class="card-title">NeverLand - @Html.DisplayFor(modelItem => item.NewsCategory.Description)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    @if (item.Archive != null)
+                    {
+                        <a href="@Url.Action("Download", "News", new { id = item.IDNews })" class="btn btn-primary">Download Document</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

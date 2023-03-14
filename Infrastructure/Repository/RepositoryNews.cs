@@ -69,6 +69,32 @@ namespace Infrastructure.Repository
             }
         }
 
+        public IEnumerable<News> GetNewsByCategory(int idCategory)
+        {
+            IEnumerable<News> oNews = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oNews = ctx.News.
+                        Where(n => n.IDCategory == idCategory)
+                        .ToList();
+
+                }
+                return oNews;
+            }
+
+            catch (DbUpdateException dbEx)
+            {
+                throw dbEx;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public News Save(News news)
         {
             int retorno = 0;
@@ -78,13 +104,9 @@ namespace Infrastructure.Repository
             {
                 ctx.Configuration.LazyLoadingEnabled = false;
                 oNews = GetNewsByID((int)news.IDNews);
-                
 
                 if (oNews == null)
                 {
-
-
-
                     ctx.News.Add(news);
                     //SaveChanges
                     //guarda todos los cambios realizados en el contexto de la base de datos.
@@ -93,14 +115,10 @@ namespace Infrastructure.Repository
                 }
                 else
                 {
-
-
                     //Actualizar 
                     ctx.News.Add(news);
                     ctx.Entry(news).State = EntityState.Modified;
                     retorno = ctx.SaveChanges();
-
-
                 }
             }
 
@@ -108,10 +126,6 @@ namespace Infrastructure.Repository
                 oNews = GetNewsByID((int)news.IDNews);
 
             return oNews;
-
-
-
-
         }
     }
 }

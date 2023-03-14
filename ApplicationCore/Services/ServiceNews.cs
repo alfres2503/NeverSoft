@@ -32,5 +32,10 @@ namespace ApplicationCore.Services
             IRepositoryNews repository = new RepositoryNews();
             return repository.Save(news);
         }
+        public IEnumerable<News> GetNewsByCategory(int idCategory)
+        {
+            IRepositoryNews repository = new RepositoryNews();
+            return repository.GetNewsByCategory(idCategory);
+        }
     }
 }
