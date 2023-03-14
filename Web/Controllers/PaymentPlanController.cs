@@ -158,7 +158,7 @@ namespace Web.Controllers
                 listPaymentItemSelect = paymentItems.Select(c => c.IDItem).ToArray();
             }
 
-            return new MultiSelectList(lista, "IDItem", "Description", listPaymentItemSelect);
+            return new MultiSelectList(lista, "IDItem", "DescriptionAndPrice", listPaymentItemSelect);
         }
         // POST: PaymentPlan/Create
         //[HttpPost]

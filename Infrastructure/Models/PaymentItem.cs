@@ -25,7 +25,8 @@ namespace Infrastructure.Models
         public int IDItem { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-    
+        public string DescriptionAndPrice => $"{Description} - ${Price.ToString("0.00")}";
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentPlan> PaymentPlan { get; set; }
     }
