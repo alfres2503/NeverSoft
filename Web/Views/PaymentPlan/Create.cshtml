@@ -54,7 +54,7 @@
         <div class="col-md-10">
             <div class="input-group ">
                 <span class="input-group-text">$</span>
-                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "totalPrice" } });
+                @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "totalPrice" } })
             </div>
 
             @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
