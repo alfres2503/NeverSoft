@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Infrastructure.Models.News>
+
+@{
+    ViewBag.Title = "News Maintenance";
+}
+
+<h2>News Maintenance</h2>
+
+<a href="@Url.Action("Create", "News")" class="btn btn-primary">Create <i class="fa-solid fa-plus"></i></a>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDNews)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Archive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewsCategory.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDNews)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.Archive)*@
+                @if (item.Archive != null)
+                {
+                    <a href="@Url.Action("DownloadPDF", "News", new { id = item.IDNews })"><i class="fa-solid fa-file"></i> Information</a>
+                }
+                else
+                {
+                    <p>Empty</p>
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewsCategory.Description)
+            </td>
+            <td>
+
+                <a href="@Url.Action("Edit", "News", new { id = item.IDNews })" class="btn btn-primary"><i class="fa-solid fa-pen"></i> Edit</a>
+
+
+            </td>
+        </tr>
+    }
+
+</table>

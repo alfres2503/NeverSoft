@@ -178,6 +178,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\newscard.png" />
+    <Content Include="Images\reminderscard.png" />
     <Content Include="Images\ResidenceDetail.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -230,6 +232,7 @@
     <Content Include="Views\Incidence\Edit.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\News\Create.cshtml" />
+    <Content Include="Views\News\Maintenance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,59 +1,43 @@
 ﻿@model IEnumerable<Infrastructure.Models.News>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "News";
 }
 
 <h2>News</h2>
 
-<a href="@Url.Action("Create", "News")" class="btn btn-primary">Create <i class="fa-solid fa-plus"></i></a>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IDNews)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Archive)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NewsCategory.Description)
-        </th>
-        <th></th>
-    </tr>
+<div class=" mt-1 mb-5">
+    @foreach (var item in Model)
+    {
+        <div class="col-6">
+            <div class="card custom-card my-5 p-2">
+                @if (item.IDCategory == 1)
+                {
+                    <img src="~/images/newscard.png" class="card-img-top m-auto rounded">
+                }
+                else if (item.IDCategory == 2)
+                {
+                    <img src="~/images/reminderscard.png" class="card-img-top m-auto rounded">
+                }
+                else
+                {
+                    <img src="~/images/rulescard.png" class="card-img-top m-auto rounded">
+                }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDNews)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @* @Html.DisplayFor(modelItem => item.Archive)*@
-            @if (item.Archive != null)
-            {
-                <a href="@Url.Action("DownloadPDF", "News", new { id = item.IDNews })"><i class="fa-solid fa-file"></i> Information</a>
-            }
-            else
-            {
-                <p>Empty</p>
-            }
+                <div class="card-body">
+                    <h5 class="card-title">NeverLand - @Html.DisplayFor(modelItem => item.NewsCategory.Description)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    @if (item.Archive != null)
+                    {
+                        <a href="@Url.Action("Download", "News", new { id = item.IDNews })" class="btn btn-primary">Download Document</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Download", "News", new { id = item.IDNews })" class="btn btn-primary" disabled>Download Document</a>
+                    }
 
-            </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NewsCategory.Description)
-        </td>
-        <td>
-           
-            <a href="@Url.Action("Edit", "News", new { id = item.IDNews })" class="btn btn-primary"><i class="fa-solid fa-pen"></i> Edit</a>
-
-
-        </td>
-    </tr>
-}
-
-</table>
+                </div>
+            </div>
+        </div>
+    }
+</div>

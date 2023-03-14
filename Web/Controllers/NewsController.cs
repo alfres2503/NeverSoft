@@ -36,6 +36,27 @@ namespace Web.Controllers
             }
         }
 
+        public ActionResult Maintenance()
+        {
+            IEnumerable<News> lista = null;
+            try
+            {
+                IServiceNews _ServiceNews = new ServiceNews();
+                lista = _ServiceNews.GetNews();
+
+
+                return View(lista);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
+
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
         // GET: News/Details/5
         public ActionResult Details(int id)
         {
@@ -95,7 +116,7 @@ namespace Web.Controllers
                 {
                     TempData["Message"] = "The requested News does not exist";
                     TempData["Redirect"] = "News";
-                    TempData["Redirect-Action"] = "Index";
+                    TempData["Redirect-Action"] = "Maintenance";
                     // Redireccion a la captura del Error
                     return RedirectToAction("Default", "Error");
                 }
@@ -108,7 +129,7 @@ namespace Web.Controllers
                 Log.Error(ex, MethodBase.GetCurrentMethod());
                 TempData["Message"] = "Error at procesing data: " + ex.Message;
                 TempData["Redirect"] = "News";
-                TempData["Redirect-Action"] = "Index";
+                TempData["Redirect-Action"] = "Maintenance";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }
@@ -150,7 +171,7 @@ namespace Web.Controllers
                     return View("Create", news);
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Maintenance");
             }
             catch (Exception ex)
             {
@@ -158,7 +179,7 @@ namespace Web.Controllers
                 Log.Error(ex, MethodBase.GetCurrentMethod());
                 TempData["Message"] = "Error at procesing data: " + ex.Message;
                 TempData["Redirect"] = "News";
-                TempData["Redirect-Action"] = "Index";
+                TempData["Redirect-Action"] = "Maintenance";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }
