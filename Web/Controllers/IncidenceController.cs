@@ -34,7 +34,7 @@ namespace Web.Controllers
             }
             return View(list);
         }
-
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.IDUser = listUsers();
@@ -61,6 +61,7 @@ namespace Web.Controllers
                     TempData["Redirect-Action"] = "Maintenance";
                     return RedirectToAction("Default", "Error");
                 }
+                //ViewBag.IDUser = listUsers(oIncidence.IDUser);
                 ViewBag.IDUser = listUserByID(oIncidence.IDUser);
                 return View(oIncidence);
             }
@@ -72,20 +73,17 @@ namespace Web.Controllers
             }
         }
 
-        private MultiSelectList listUsers(ICollection<User> users = null)
+        private SelectList listUsers(long idUser = 0)
         {
             IServiceUser _ServiceUser = new ServiceUser();
             IEnumerable<User> lista = _ServiceUser.GetUsers()
                 .Where(u => u.Active == true && u.IDRole == 2);
-            //Seleccionar categorias
-            long[] listUserSelect = null;
-            if (users != null)
-            {
-                listUserSelect = users.Select(c => c.IDUser).ToArray();
-            }
+            
 
-            return new MultiSelectList(lista, "IDUser", "FullName", listUserSelect);
+            return new SelectList(lista, "IDUser", "FullName", idUser);
         }
+
+       
 
         private MultiSelectList listUserByID(long id, ICollection<User> users = null)
         {
@@ -116,6 +114,7 @@ namespace Web.Controllers
                 }
                 else
                 {
+                    ViewBag.IDUser = listUsers(incidence.IDUser);
                     //Lógica para cargar vista correspondiente
                     return View("Create", incidence);
                 }
