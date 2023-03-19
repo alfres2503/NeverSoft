@@ -18,15 +18,7 @@
     @Html.HiddenFor(model => model.IDNews)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.IDNews, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IDNews, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IDNews, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.IDCategory, "ID Category", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.IDCategory, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownList("IDCategory", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.IDCategory, "", new { @class = "text-danger" })
@@ -53,14 +45,12 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Save" class="btn btn-primary mt-3" />
+            @Html.ActionLink("Back to List", "Maintenance", null, new { @class = "btn btn-primary mt-3" })
         </div>
     </div>
 </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Maintenance", null, new { @class = "btn btn-primary mt-3" })
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

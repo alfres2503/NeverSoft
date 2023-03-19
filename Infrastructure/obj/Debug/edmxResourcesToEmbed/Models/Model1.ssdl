@@ -23,7 +23,7 @@
     <Key>
       <PropertyRef Name="IDNews" />
     </Key>
-    <Property Name="IDNews" Type="int" Nullable="false" />
+    <Property Name="IDNews" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IDCategory" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="Archive" Type="varbinary(max)" />
@@ -39,7 +39,7 @@
     <Key>
       <PropertyRef Name="IDItem" />
     </Key>
-    <Property Name="IDItem" Type="int" Nullable="false" />
+    <Property Name="IDItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Price" Type="money" Nullable="false" />
   </EntityType>
@@ -47,7 +47,7 @@
     <Key>
       <PropertyRef Name="IDPlan" />
     </Key>
-    <Property Name="IDPlan" Type="int" Nullable="false" />
+    <Property Name="IDPlan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="280" Nullable="false" />
     <Property Name="Total" Type="money" Nullable="false" />

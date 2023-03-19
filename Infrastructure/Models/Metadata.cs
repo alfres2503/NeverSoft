@@ -51,14 +51,15 @@ namespace Infrastructure.Models
 
     internal class PaymentPlanMetadata
     {
-        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
+        //[RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         [Display(Name = "Plan ID")]
-        [Required(ErrorMessage = "{0} is a required data")]
+        //[Required(ErrorMessage = "{0} is a required data")]
         public int IDPlan { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
-        [StringLength(10, ErrorMessage = "Names with more than 10 letters are not accepted")]
+        [StringLength(50, ErrorMessage = "Names with more than 50 letters are not accepted")]
         public string Name { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(280, ErrorMessage = "Names with more than 280 letters are not accepted")]
         public string Description { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
@@ -69,17 +70,17 @@ namespace Infrastructure.Models
 
     internal partial class PaymentItemMetadata
     {
-        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
+        //[RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         [Display(Name = "Item ID")]
-        [Required(ErrorMessage = "{0} is a required data")]
+        //[Required(ErrorMessage = "{0} is a required data")]
         public int IDItem { get; set; }
 
         [Required(ErrorMessage = "{0} is a required data")]
-        [StringLength(10, ErrorMessage = "Descriptions with more than 10 letters are not accepted")]
+        [StringLength(50, ErrorMessage = "Descriptions with more than 50 letters are not accepted")]
         public string Description { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
-        [RegularExpression(@"^[0-9]+(\.,[0-9]{1,2})?$", ErrorMessage = "Only accepts numbers, with two decimal places")]
+        [RegularExpression("^[0-9]+(\\.[0-9]{1,2})?$", ErrorMessage = "Only accepts numbers, with two decimal places")]
         [Required(ErrorMessage = "{0} is a required data")]
         public decimal Price { get; set; }
     }
@@ -102,8 +103,6 @@ namespace Infrastructure.Models
 
     internal partial class IncidenceMetadata
     {
-        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
-        [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "Incidence ID")]
         public int IDIncidence { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
@@ -120,27 +119,24 @@ namespace Infrastructure.Models
 
     internal partial class NewsMetadata
     {
-        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
-        [Required(ErrorMessage = "{0} is a required data")]
-        [Display(Name = "ID News")]
+        //[RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
+        //[Required(ErrorMessage = "{0} is a required data")]
+        [Display(Name = "News ID")]
         public int IDNews { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "ID Category")]
         public int IDCategory { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
-        [StringLength(80, ErrorMessage = "Descriptions with more than 80 letters are not accepted")]
+        [StringLength(500, ErrorMessage = "Descriptions with more than 500 letters are not accepted")]
         public string Description { get; set; }
         
         public byte[] Archive { get; set; }
     }
 
     internal partial class NewsCategoryMetadata {
-        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
-        [Required(ErrorMessage = "{0} is a required data")]
         [Display(Name = "ID Category")]
         public int IDCategory { get; set; }
-        [Required(ErrorMessage = "{0} is a required data")]
-        [StringLength(80, ErrorMessage = "Descriptions with more than 80 letters are not accepted")]
+        [StringLength(50, ErrorMessage = "Descriptions with more than 50 letters are not accepted")]
         public string Description { get; set; }
     }
 }

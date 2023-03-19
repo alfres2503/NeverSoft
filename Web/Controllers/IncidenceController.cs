@@ -78,12 +78,12 @@ namespace Web.Controllers
             IServiceUser _ServiceUser = new ServiceUser();
             IEnumerable<User> lista = _ServiceUser.GetUsers()
                 .Where(u => u.Active == true && u.IDRole == 2);
-            
+
 
             return new SelectList(lista, "IDUser", "FullName", idUser);
         }
 
-       
+
 
         private MultiSelectList listUserByID(long id, ICollection<User> users = null)
         {

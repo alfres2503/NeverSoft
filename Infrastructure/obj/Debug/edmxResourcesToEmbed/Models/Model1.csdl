@@ -25,7 +25,7 @@
     <Key>
       <PropertyRef Name="IDNews" />
     </Key>
-    <Property Name="IDNews" Type="Int32" Nullable="false" />
+    <Property Name="IDNews" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDCategory" Type="Int32" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Archive" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -43,7 +43,7 @@
     <Key>
       <PropertyRef Name="IDItem" />
     </Key>
-    <Property Name="IDItem" Type="Int32" Nullable="false" />
+    <Property Name="IDItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <NavigationProperty Name="PaymentPlan" Relationship="Self.PlanItem" FromRole="PaymentItem" ToRole="PaymentPlan" />
@@ -52,7 +52,7 @@
     <Key>
       <PropertyRef Name="IDPlan" />
     </Key>
-    <Property Name="IDPlan" Type="Int32" Nullable="false" />
+    <Property Name="IDPlan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="280" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Total" Type="Decimal" Precision="19" Scale="4" Nullable="false" />

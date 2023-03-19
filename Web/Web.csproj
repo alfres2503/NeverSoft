@@ -222,7 +222,6 @@
     <Content Include="Views\StatementAccount\Index.cshtml" />
     <Content Include="Views\StatementAccount\Details.cshtml" />
     <Content Include="Views\PaymentItem\Index.cshtml" />
-    <Content Include="Views\PaymentItem\Create.cshtml" />
     <Content Include="Views\PaymentItem\Edit.cshtml" />
     <Content Include="Views\PaymentPlan\Maintenance.cshtml" />
     <Content Include="Views\PaymentPlan\Edit.cshtml" />
@@ -235,6 +234,7 @@
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Maintenance.cshtml" />
     <Content Include="Views\News\_PartialViewNews.cshtml" />
+    <Content Include="Views\PaymentItem\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
