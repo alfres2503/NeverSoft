@@ -1,6 +1,8 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -61,5 +63,94 @@ namespace Infrastructure.Repository
             }
         }
 
+        public User Save(User user)
+        {
+            int retorno = 0;
+            User oUser = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oUser = GetUserByIDForLogin(Convert.ToInt32(user.IDUser));
+                    if (oUser == null)
+                    {
+                        ctx.User.Add(user);
+                    }
+                    else
+                    {
+                        ctx.Entry(user).State = EntityState.Modified;
+                    }
+                    retorno = ctx.SaveChanges();
+                }
+                if (retorno >= 0) oUser = GetUserByIDForLogin(Convert.ToInt32(user.IDUser));
+                return oUser;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public User GetUsersForLogin(string email, string password)
+        {
+            User oUser = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oUser = ctx.User.
+                     Where(p => p.Email.Equals(email) && p.Password == password).
+                    FirstOrDefault<User>();
+                }
+                if (oUser != null)
+                    oUser = GetUserByIDForLogin(Convert.ToInt32(oUser.IDUser));
+                return oUser;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
+        public User GetUserByIDForLogin(int id)
+        {
+            User user = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    user = ctx.User.
+                     Include("UserRol").
+                    Where(p => p.IDUser == id).
+                    FirstOrDefault<User>();
+                }
+                return user;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
     }
 }

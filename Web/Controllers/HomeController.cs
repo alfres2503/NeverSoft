@@ -10,6 +10,11 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
+            //Esto tiene que ver con lo del login
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.NotificationMessage = TempData["mensaje"];
+            }
             return View();
         }
 

@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - NeverSoft</title>
+
+    @Styles.Render("~/Content/css")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">NeverSoft</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    @* Información usuario *@
+                    @{
+                        string nombre = "";
+                        string email = "Perfil";
+                        //Validar si existe la Session
+                        if (Session["user"] != null)
+                        {
+                            Infrastructure.Models.User oUser = (Infrastructure.Models.User)Session["User"];
+
+                            if (oUser != null)
+                            {
+                                nombre = oUser.FullName;
+                                email = oUser.Email;
+                            }
+                        }
+                    }
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                           href="#" role="button" aria-haspopup="true"
+                           aria-expanded="false"><i class="fa-solid fa-user"></i> @email</a>
+                        <div class="dropdown-menu">
+                            <span class="dropdown-item">@nombre</span>
+                            @if (Session["User"] == null)
+                            {
+                                <a class="dropdown-item"
+                                   @*Accion, Controlador*@
+                                   href="@Url.Action("Index","Login")">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    Login
+                                </a>
+                            }
+                            else
+                            {
+                                <a class="dropdown-item"
+                                   href="@Url.Action("Logout","Login")">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    Logout
+                                </a>
+                            }
+
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        @RenderSection("footer", false)
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    <link href="~/Content/bootstrap-Lux.min.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/sweetalert")
+
+    @RenderSection("scripts", required: false)
+    @if (ViewBag.NotificationMessage != null)
+    {
+        <script>
+                    @Html.Raw(ViewBag.NotificationMessage);
+        </script>
+    }
+</body>
+</html>
