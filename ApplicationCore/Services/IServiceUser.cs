@@ -11,7 +11,7 @@ namespace ApplicationCore.Services
     {
         IEnumerable<User> GetUsers();
         User GetUserByID(int id);
-        User GetUserByIDForLogin(int id);
+        User GetUserByIDForLogin(long id);
         User GetUsersForLogin(string email, string password);
         User Save(User user);
     }

@@ -43,7 +43,7 @@ namespace Infrastructure.Models
         [Required(ErrorMessage = "{0} is a required data")]
         public string Email { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
-        public byte[] Password { get; set; }
+        public string Password { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         public bool Active { get; set; }
         

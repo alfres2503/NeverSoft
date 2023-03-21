@@ -39,12 +39,12 @@ C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\Infrastruct
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\Infrastructure.pdb
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\EntityFramework.dll
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\log4net.dll
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\EntityFramework.xml
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\log4net.xml
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.pdb
-C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\log4net.dll
-C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\bin\Debug\log4net.xml

@@ -18,11 +18,11 @@ namespace ApplicationCore.Services
             return _repositoryUser.GetUserByID(id);
         }
 
-        public User GetUserByIDForLogin(int id)
+        public User GetUserByIDForLogin(long id)
         {
             User oUser = _repositoryUser.GetUserByIDForLogin(id);
             // Desencriptar el password para presentarlo
-            oUser.Password = Cryptography.DecrypthAES(oUser.Password);
+            //oUser.Password = Cryptography.DecrypthAES(oUser.Password);
             return oUser;
         }
 
@@ -33,13 +33,15 @@ namespace ApplicationCore.Services
 
         public User GetUsersForLogin(string email, string password)
         {
-            return _repositoryUser.GetUsersForLogin(email,password);
+            // Encriptar el password para poder compararlo
+            //string cryptPassword = Cryptography.EncrypthAES(password);
+            return _repositoryUser.GetUsersForLogin(email, password);
         }
 
         public User Save(User user)
         {
             //Encriptar el password para guardarlo
-            user.Password = Cryptography.EncrypthAES(user.Password);
+            //user.Password = Cryptography.EncrypthAES(user.Password);
             return _repositoryUser.Save(user);
         }
     }

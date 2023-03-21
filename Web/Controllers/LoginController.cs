@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Web.Utils;
-//using Web.Utils;
+
 
 namespace Web.Controllers
 {
@@ -32,6 +32,7 @@ namespace Web.Controllers
                 ModelState.Remove("FirstName");
                 ModelState.Remove("LastName");
                 ModelState.Remove("IDRole");
+                ModelState.Remove("IDUser");
 
                 if (ModelState.IsValid)
                 {

@@ -72,7 +72,7 @@ namespace Infrastructure.Repository
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
-                    oUser = GetUserByIDForLogin(Convert.ToInt32(user.IDUser));
+                    oUser = GetUserByIDForLogin(user.IDUser);
                     if (oUser == null)
                     {
                         ctx.User.Add(user);
@@ -83,7 +83,7 @@ namespace Infrastructure.Repository
                     }
                     retorno = ctx.SaveChanges();
                 }
-                if (retorno >= 0) oUser = GetUserByIDForLogin(Convert.ToInt32(user.IDUser));
+                if (retorno >= 0) oUser = GetUserByIDForLogin(user.IDUser);
                 return oUser;
 
             }
@@ -107,7 +107,7 @@ namespace Infrastructure.Repository
                     FirstOrDefault<User>();
                 }
                 if (oUser != null)
-                    oUser = GetUserByIDForLogin(Convert.ToInt32(oUser.IDUser));
+                    oUser = GetUserByIDForLogin(oUser.IDUser);
                 return oUser;
             }
             catch (DbUpdateException dbEx)
@@ -124,7 +124,7 @@ namespace Infrastructure.Repository
             }
         }
 
-        public User GetUserByIDForLogin(int id)
+        public User GetUserByIDForLogin(long id)
         {
             User user = null;
             try
@@ -133,7 +133,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     user = ctx.User.
-                     Include("UserRol").
+                     Include("UserRole").
                     Where(p => p.IDUser == id).
                     FirstOrDefault<User>();
                 }
