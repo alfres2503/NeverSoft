@@ -28,7 +28,7 @@ namespace Infrastructure.Models
     internal partial class UserMetadata
     {
         [Required(ErrorMessage = "{0} is a required data")]
-        [Display(Name = "Owner ID")]
+        [Display(Name = "User ID")]
         [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         public long IDUser { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
@@ -47,7 +47,10 @@ namespace Infrastructure.Models
         public string Password { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         public bool Active { get; set; }
-        
+        [Display(Name = "Name")]
+        public string FullName { get; set; }
+
+
     }
 
     internal class PaymentPlanMetadata

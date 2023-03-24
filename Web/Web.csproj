@@ -150,6 +150,7 @@
     <Compile Include="Controllers\PaymentPlanController.cs" />
     <Compile Include="Controllers\ResidenceController.cs" />
     <Compile Include="Controllers\StatementAccountController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Enum\Enum.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,10 +258,12 @@
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\UnAuthorized.cshtml" />
+    <Content Include="Views\User\Maintenance.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

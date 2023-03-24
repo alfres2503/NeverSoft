@@ -31,7 +31,7 @@ namespace Web.Controllers
                 {
                     ViewBag.NotificationMessage = TempData["mensaje"];
                 }
-               
+
 
                 return View(lista);
             }
@@ -112,7 +112,7 @@ namespace Web.Controllers
             IServiceNewsCategory _ServiceNewsCategory = new ServiceNewsCategory();
             IEnumerable<NewsCategory> lista = _ServiceNewsCategory.GetNewsCategory();
             //Seleccionar categorias
-            int[] listNewsCategorySelect=null;
+            int[] listNewsCategorySelect = null;
             if (newsCategory != null)
             {
 
@@ -121,7 +121,7 @@ namespace Web.Controllers
 
             return new MultiSelectList(lista, "IDCategory", "Description", listNewsCategorySelect);
 
-            
+
         }
 
         // GET: News/Edit/5
@@ -175,15 +175,15 @@ namespace Web.Controllers
                 //Insertar el archivo
                 //if (news.Archive == null)
                 //{
-                    if (File != null)
+                if (File != null)
                 {
                     //File.InputStream.CopyTo(target);
                     //news.Archive = target.ToArray();
                     //ModelState.Remove("Archive");
                     var archivoP = new byte[File.ContentLength];
-                        File.InputStream.Read(archivoP, 0, File.ContentLength);
-                        news.Archive = archivoP;
-                    }
+                    File.InputStream.Read(archivoP, 0, File.ContentLength);
+                    news.Archive = archivoP;
+                }
                 //}
                 if (ModelState.IsValid)
                 {

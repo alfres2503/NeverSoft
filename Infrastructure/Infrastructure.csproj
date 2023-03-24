@@ -117,6 +117,7 @@
     <Compile Include="Repository\IRepositoryPlanAssignment.cs" />
     <Compile Include="Repository\IRepositoryResidence.cs" />
     <Compile Include="Repository\IRepositoryUser.cs" />
+    <Compile Include="Repository\IRepositoryUserRole.cs" />
     <Compile Include="Repository\RepositoryIncidence.cs" />
     <Compile Include="Repository\RepositoryNews.cs" />
     <Compile Include="Repository\RepositoryNewsCategory.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Repository\RepositoryPlanAssignment.cs" />
     <Compile Include="Repository\RepositoryResidence.cs" />
     <Compile Include="Repository\RepositoryUser.cs" />
+    <Compile Include="Repository\RepositoryUserRole.cs" />
     <Compile Include="Utils\Log.cs" />
   </ItemGroup>
   <ItemGroup />

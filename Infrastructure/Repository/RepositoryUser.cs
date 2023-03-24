@@ -21,7 +21,7 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.User.ToList();
+                    lista = ctx.User.Include("UserRole").ToList();
 
                 }
                 return lista;
@@ -37,7 +37,7 @@ namespace Infrastructure.Repository
             }
         }
 
-        public User GetUserByID(int id)
+        public User GetUserByID(long id)
         {
             User oUser = null;
             try
@@ -48,6 +48,7 @@ namespace Infrastructure.Repository
 
                     oUser = ctx.User.
                         Where(l => l.IDUser == id)
+                        .Include("UserRole")
                         .FirstOrDefault();
 
                 }

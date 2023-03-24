@@ -50,6 +50,7 @@
     <Compile Include="Services\IServicePlanAssignment.cs" />
     <Compile Include="Services\IServiceResidence.cs" />
     <Compile Include="Services\IServiceUser.cs" />
+    <Compile Include="Services\IServiceUserRole.cs" />
     <Compile Include="Services\ServiceIncidence.cs" />
     <Compile Include="Services\ServiceNews.cs" />
     <Compile Include="Services\ServiceNewsCategory.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Services\ServicePlanAssignment.cs" />
     <Compile Include="Services\ServiceResidence.cs" />
     <Compile Include="Services\ServiceUser.cs" />
+    <Compile Include="Services\ServiceUserRole.cs" />
     <Compile Include="Utils\Cryptography.cs" />
   </ItemGroup>
   <ItemGroup>

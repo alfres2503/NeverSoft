@@ -48,3 +48,5 @@ C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastruct
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.pdb
+C:\Users\Alfredo\Desktop\NeverSoft\Infrastructure\bin\Debug\log4net.dll
+C:\Users\Alfredo\Desktop\NeverSoft\Infrastructure\bin\Debug\log4net.xml

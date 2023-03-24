@@ -13,7 +13,7 @@ namespace ApplicationCore.Services
     {
         private readonly IRepositoryUser _repositoryUser = new RepositoryUser();
 
-        public User GetUserByID(int id)
+        public User GetUserByID(long id)
         {
             return _repositoryUser.GetUserByID(id);
         }
@@ -43,7 +43,7 @@ namespace ApplicationCore.Services
         public User Save(User user)
         {
             //Encriptar el password para guardarlo
-            //user.Password = Cryptography.EncrypthAES(user.Password);
+            user.Password = Cryptography.EncrypthAES(user.Password);
             return _repositoryUser.Save(user);
         }
     }

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Infrastructure.Models.User>
+
+@{
+    ViewBag.Title = "User Maintenance";
+}
+
+<h2>User Maintenance</h2>
+
+<a href="@Url.Action("Create", "User")" class="btn btn-primary">Create <i class="fa-solid fa-plus"></i></a>
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.IDUser)
+        </td>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "User", new { id = item.IDUser })" class="btn btn-primary">Edit <i class="fa-solid fa-pen"></i></a>
+        </td>
+    </tr>
+}
+
+</table>

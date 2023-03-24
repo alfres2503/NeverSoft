@@ -10,7 +10,7 @@ namespace ApplicationCore.Services
     public interface IServiceUser
     {
         IEnumerable<User> GetUsers();
-        User GetUserByID(int id);
+        User GetUserByID(long id);
         User GetUserByIDForLogin(long id);
         User GetUsersForLogin(string email, string password);
         User Save(User user);
