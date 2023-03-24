@@ -27,6 +27,11 @@ namespace Web.Controllers
                 TempData["Message"] = "Error at procesing data: " + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
+
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.NotificationMessage = TempData["mensaje"];
+            }
             return View(list);
         }
 
@@ -81,18 +86,27 @@ namespace Web.Controllers
             IServiceUser _ServiceUser = new ServiceUser();
             try
             {
-                if (_ServiceUser.GetUserByID(user.IDUser) != null)
-                {
-                    ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Create", "User already exists", Util.SweetAlertMessageType.warning);
-                    return View("Create", user);
-                } else if (!user.Active) {
-                    user.Active = true;
-                } else if (!ModelState.IsValid)
-                {
-                    return View("Create", user);
-                } else
+                //if (_ServiceUser.GetUserByID(user.IDUser) != null)
+                //{
+                //    //ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Create", "User already exists", Util.SweetAlertMessageType.warning);
+
+                //    return View("Create", user);
+                //} else if (!user.Active) {
+                //    user.Active = true;
+                //} else if (!ModelState.IsValid)
+                //{
+                //    return View("Create", user);
+                //} else
+                //{
+                //    User oUser = _ServiceUser.Save(user);
+                //}
+                if (ModelState.IsValid)
                 {
                     User oUser = _ServiceUser.Save(user);
+                }
+                else
+                {
+                    return View("Create", user);
                 }
 
 
@@ -115,10 +129,10 @@ namespace Web.Controllers
             IServiceUser _ServiceUser = new ServiceUser();
             try
             {
-                
+
                 if (ModelState.IsValid)
                 {
-                    User oUser = _ServiceUser.Save(user);   
+                    User oUser = _ServiceUser.Save(user);
                 }
                 else
                 {
