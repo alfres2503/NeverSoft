@@ -23,6 +23,8 @@ namespace ApplicationCore.Services
             User oUser = _repositoryUser.GetUserByIDForLogin(id);
             // Desencriptar el password para presentarlo
             //oUser.Password = Cryptography.DecrypthAES(oUser.Password);
+
+
             return oUser;
         }
 

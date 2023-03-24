@@ -41,6 +41,7 @@ namespace Infrastructure.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
+        [RegularExpression(@"[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]+)$", ErrorMessage = "Invalid email, enter a correct email")]
         public string Email { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         public string Password { get; set; }

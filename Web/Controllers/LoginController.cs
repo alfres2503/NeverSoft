@@ -42,7 +42,7 @@ namespace Web.Controllers
                         Session["User"] = oUser;
                         Log.Info($"Access {oUser.Email}");
                         TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Login", "Authenticated user", Util.SweetAlertMessageType.success);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "News");
                     }
                     else
                     {

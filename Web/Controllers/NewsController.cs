@@ -26,6 +26,13 @@ namespace Web.Controllers
                 IServiceNewsCategory _ServiceNewsCategory = new ServiceNewsCategory();
                 ViewBag.listNewsCategory = _ServiceNewsCategory.GetNewsCategory();
 
+                //Esto tiene que ver con lo del login
+                if (TempData.ContainsKey("mensaje"))
+                {
+                    ViewBag.NotificationMessage = TempData["mensaje"];
+                }
+               
+
                 return View(lista);
             }
             catch (Exception ex)
