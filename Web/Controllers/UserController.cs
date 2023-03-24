@@ -109,6 +109,36 @@ namespace Web.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult SaveEdit(User user)
+        {
+            IServiceUser _ServiceUser = new ServiceUser();
+            try
+            {
+                
+                if (ModelState.IsValid)
+                {
+                    User oUser = _ServiceUser.Save(user);   
+                }
+                else
+                {
+                    return View("Create", user);
+                }
+
+
+                return RedirectToAction("Maintenance");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Maintenance";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
 
         private SelectList listRoles(int idRole = 0)
         {

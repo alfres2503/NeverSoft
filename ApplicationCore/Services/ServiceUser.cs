@@ -15,7 +15,9 @@ namespace ApplicationCore.Services
 
         public User GetUserByID(long id)
         {
-            return _repositoryUser.GetUserByID(id);
+            User oUser = _repositoryUser.GetUserByID(id);
+            oUser.Password = Cryptography.DecrypthAES(oUser.Password);
+            return oUser;
         }
 
         public User GetUserByIDForLogin(long id)
