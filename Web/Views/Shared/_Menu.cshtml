@@ -1,35 +1,12 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">NeverSoft<img class="logo" src="~/Images/logo.png" alt="app logo" /></a>
-        
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
-
-
-                @*<li class="nav-item">
-            <a class="nav-link active" href="@Url.Action("Create","Incidence")"><i class="fa-solid fa-flag"></i> Report Incidence</a>
-            <a class="nav-link active" href="@Url.Action("Index","News")"><i class="fa-solid fa-newspaper"></i> News</a>
-        </li>*@
-
-                @*<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Drop</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="@Url.Action("Index","Login")">Login</a>
-                <a class="dropdown-item" href="@Url.Action("Logout","Login")"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
-            </div>
-        </li>*@
-
-                @*<li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Lists and details</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="@Url.Action("Index","Residence")"><i class="fa-solid fa-house"></i> Residences</a>
-                <a class="dropdown-item" href="@Url.Action("Index","PaymentPlan")"><i class="fa-sharp fa-solid fa-file-invoice-dollar"></i> Payment Plans</a>
-                <a class="dropdown-item" href="@Url.Action("Index","StatementAccount")"><i class="fa-solid fa-money-bill"></i> Statement Account</a>
-            </div>
-        </li>*@
 
                 @if (Web.Security.AutorizeView.IsUserInRole(new string[] { "Administrator" }))
                 {
@@ -40,6 +17,7 @@
                             <a class="dropdown-item" href="@Url.Action("Maintenance","PaymentPlan")"><i class="fa-sharp fa-solid fa-file-invoice-dollar"></i> Payment Plan</a>
                             <a class="dropdown-item" href="@Url.Action("Maintenance","Incidence")"><i class="fa-solid fa-triangle-exclamation"></i> Incidence</a>
                             <a class="dropdown-item" href="@Url.Action("Maintenance","News")"><i class="fa-solid fa-newspaper"></i> News</a>
+                            <a class="dropdown-item" href="@Url.Action("Maintenance","User")"><i class="fa-solid fa-user"></i> User</a>
                         </div>
                     </li>
 
@@ -67,14 +45,14 @@
 
 
                 @*<li class="nav-item dropdown">
-            <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Maintenance</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="@Url.Action("Index","PaymentItem")"><i class="fa-sharp fa-solid fa-money-check-dollar"></i> Payment Items</a>
-                <a class="dropdown-item" href="@Url.Action("Maintenance","PaymentPlan")"><i class="fa-sharp fa-solid fa-file-invoice-dollar"></i> Payment Plan</a>
-                <a class="dropdown-item" href="@Url.Action("Maintenance","Incidence")"><i class="fa-solid fa-triangle-exclamation"></i> Incidence</a>
-                <a class="dropdown-item" href="@Url.Action("Maintenance","News")"><i class="fa-solid fa-newspaper"></i> News</a>
-            </div>
-        </li>*@
+                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Maintenance</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="@Url.Action("Index","PaymentItem")"><i class="fa-sharp fa-solid fa-money-check-dollar"></i> Payment Items</a>
+                            <a class="dropdown-item" href="@Url.Action("Maintenance","PaymentPlan")"><i class="fa-sharp fa-solid fa-file-invoice-dollar"></i> Payment Plan</a>
+                            <a class="dropdown-item" href="@Url.Action("Maintenance","Incidence")"><i class="fa-solid fa-triangle-exclamation"></i> Incidence</a>
+                            <a class="dropdown-item" href="@Url.Action("Maintenance","News")"><i class="fa-solid fa-newspaper"></i> News</a>
+                        </div>
+                    </li>*@
 
                 @* Información usuario *@
                 @{
