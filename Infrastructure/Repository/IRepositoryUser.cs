@@ -14,5 +14,6 @@ namespace Infrastructure.Repository
         User GetUserByIDForLogin(long id);
         User Save(User user);
         User GetUsersForLogin(string email, string password);
+        User GetUserByEmail(string email);
     }
 }

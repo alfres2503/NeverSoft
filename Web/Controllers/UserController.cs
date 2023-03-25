@@ -86,26 +86,27 @@ namespace Web.Controllers
             IServiceUser _ServiceUser = new ServiceUser();
             try
             {
-                //if (_ServiceUser.GetUserByID(user.IDUser) != null)
-                //{
-                //    //ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Create", "User already exists", Util.SweetAlertMessageType.warning);
+                if (_ServiceUser.GetUserByID(user.IDUser) != null)
+                {
+                    ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", "ID Already exists", Util.SweetAlertMessageType.error);
+                    ViewBag.IDRole = listRoles(); // Esto evita que de el error del dropdown 
+                    return View("Create", user);
+                }
 
-                //    return View("Create", user);
-                //} else if (!user.Active) {
-                //    user.Active = true;
-                //} else if (!ModelState.IsValid)
-                //{
-                //    return View("Create", user);
-                //} else
-                //{
-                //    User oUser = _ServiceUser.Save(user);
-                //}
+                if (_ServiceUser.GetUserByEmail(user.Email) != null)
+                {
+                    ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", "Email already Registered", Util.SweetAlertMessageType.error);
+                    ViewBag.IDRole = listRoles(); // Esto evita que de el error del dropdown 
+                    return View("Create", user);
+                }
+
                 if (ModelState.IsValid)
                 {
                     User oUser = _ServiceUser.Save(user);
                 }
                 else
                 {
+                    ViewBag.IDRole = listRoles(); // Esto evita que de el error del dropdown 
                     return View("Create", user);
                 }
 

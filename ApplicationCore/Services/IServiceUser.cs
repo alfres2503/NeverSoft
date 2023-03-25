@@ -14,5 +14,6 @@ namespace ApplicationCore.Services
         User GetUserByIDForLogin(long id);
         User GetUsersForLogin(string email, string password);
         User Save(User user);
+        User GetUserByEmail(string email);
     }
 }

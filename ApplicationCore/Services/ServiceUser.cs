@@ -48,5 +48,10 @@ namespace ApplicationCore.Services
             user.Password = Cryptography.EncrypthAES(user.Password);
             return _repositoryUser.Save(user);
         }
+
+        public User GetUserByEmail(string email)
+        {
+            return _repositoryUser.GetUserByEmail(email);
+        }
     }
 }
