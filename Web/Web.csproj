@@ -198,6 +198,7 @@
     <Content Include="Images\Login.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\newscard.png" />
+    <Content Include="Images\NSLogoLogIn.svg" />
     <Content Include="Images\reminderscard.png" />
     <Content Include="Images\ResidenceDetail.jpg" />
     <Content Include="Images\rulescard.png" />

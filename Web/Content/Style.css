@@ -13,6 +13,12 @@
     background-color: #489FB5 !important;
 }
 
+.bg {
+    background-image: url(../images/Login.png);
+    background-position: center;
+    background-size: cover;
+}
+
 .logo {
     width: 125px;
     height: 130px;
