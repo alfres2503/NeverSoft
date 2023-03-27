@@ -1,12 +1,38 @@
-﻿<nav class="navbar navbar-expand-lg navbar-custom">
+﻿@* Información usuario *@
+@{
+    string nombre = "";
+    string email = "Profile";
+    //Validar si existe la Session
+    if (Session["user"] != null)
+    {
+        Infrastructure.Models.User oUser = (Infrastructure.Models.User)Session["User"];
+
+        if (oUser != null)
+        {
+            nombre = oUser.FullName;
+            email = oUser.Email;
+        }
+    }
+}
+
+
+<nav class="navbar navbar-expand-lg mb-5 shadow">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">NeverSoft<img class="logo" src="~/Images/logo.png" alt="app logo" /></a>
+        <a class="navbar-brand d-lg-none" href="#">NeverSoft</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
+
+        <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarColor01">
+            <div>
+
+            </div>
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="@Url.Action("Index","News")"><i class="fa-solid fa-house"></i> Home</a>
+                </li>
 
                 @if (Web.Security.AutorizeView.IsUserInRole(new string[] { "Administrator" }))
                 {
@@ -21,11 +47,6 @@
                         </div>
                     </li>
 
-                    <li class="nav-item">
-
-                        <a class="nav-link active" href="@Url.Action("Index","News")"><i class="fa-solid fa-newspaper"></i> News</a>
-                    </li>
-
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Lists and details</a>
                         <div class="dropdown-menu">
@@ -37,67 +58,54 @@
                 }
                 else
                 {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="@Url.Action("Create","Incidence")"><i class="fa-solid fa-flag"></i> Report Incidence</a>
+                        </div>
+                    </li>
+
                     <li class="nav-item">
-                        <a class="nav-link active" href="@Url.Action("Create","Incidence")"><i class="fa-solid fa-flag"></i> Report Incidence</a>
-                        <a class="nav-link active" href="@Url.Action("Index","News")"><i class="fa-solid fa-newspaper"></i> News</a>
+                        <a class="nav-link active" href="@Url.Action("Details/1","StatementAccount")"><i class="fa-solid fa-money-bill"></i> Statement Account</a>
                     </li>
                 }
 
 
-                @*<li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Maintenance</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="@Url.Action("Index","PaymentItem")"><i class="fa-sharp fa-solid fa-money-check-dollar"></i> Payment Items</a>
-                            <a class="dropdown-item" href="@Url.Action("Maintenance","PaymentPlan")"><i class="fa-sharp fa-solid fa-file-invoice-dollar"></i> Payment Plan</a>
-                            <a class="dropdown-item" href="@Url.Action("Maintenance","Incidence")"><i class="fa-solid fa-triangle-exclamation"></i> Incidence</a>
-                            <a class="dropdown-item" href="@Url.Action("Maintenance","News")"><i class="fa-solid fa-newspaper"></i> News</a>
-                        </div>
-                    </li>*@
 
-                @* Información usuario *@
-                @{
-                    string nombre = "";
-                    string email = "Profile";
-                    //Validar si existe la Session
-                    if (Session["user"] != null)
-                    {
-                        Infrastructure.Models.User oUser = (Infrastructure.Models.User)Session["User"];
-
-                        if (oUser != null)
-                        {
-                            nombre = oUser.FullName;
-                            email = oUser.Email;
-                        }
-                    }
-                }
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-                       href="#" role="button" aria-haspopup="true"
-                       aria-expanded="false"><i class="fa-solid fa-user"></i> @email</a>
-                    <div class="dropdown-menu">
-                        <span class="dropdown-item">@nombre</span>
-                        @if (Session["User"] == null)
-                        {
-                            <a class="dropdown-item"
-                               @*Accion, Controlador*@
-                               href="@Url.Action("Index","Login")">
-                                <i class="fa-solid fa-user-plus"></i>
-                                Login
-                            </a>
-                        }
-                        else
-                        {
-                            <a class="dropdown-item"
-                               href="@Url.Action("Logout","Login")">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                Logout
-                            </a>
-                        }
-
-
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link active" href="@Url.Action("Index","News")"><i class="fa-solid fa-circle-info"></i> About</a>
                 </li>
+
             </ul>
+
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                   href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false"><i class="fa-solid fa-user"></i></a>
+                <div class="dropdown-menu">
+                    <span class="dropdown-item">@nombre</span>
+                    @if (Session["User"] == null)
+                    {
+                        <a class="dropdown-item"
+                           @*Accion, Controlador*@
+                           href="@Url.Action("Index","Login")">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Login
+                        </a>
+                    }
+                    else
+                    {
+                        <a class="dropdown-item"
+                           href="@Url.Action("Logout","Login")">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Logout
+                        </a>
+                    }
+
+
+                </div>
+            </div>
+
 
         </div>
     </div>
