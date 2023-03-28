@@ -135,7 +135,7 @@ namespace Infrastructure.Repository
                     ctx.Configuration.LazyLoadingEnabled = false;
                     user = ctx.User.
                      Include("UserRole").
-                    Where(p => p.IDUser == id).
+                    Where(p => p.IDUser == id && p.Active).
                     FirstOrDefault<User>();
                 }
                 return user;
