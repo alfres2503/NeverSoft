@@ -20,5 +20,10 @@ namespace ApplicationCore.Services
         {
             return repository.GetPlanAssignments();
         }
+
+        public PlanAssignment Save(PlanAssignment planAssignment)
+        {
+            return repository.Save(planAssignment);
+        }
     }
 }

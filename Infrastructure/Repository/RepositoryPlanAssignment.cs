@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -30,11 +31,15 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -58,13 +63,49 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
+        public PlanAssignment Save(PlanAssignment planAssignment)
+        {
+            int retorno = 0;
+            PlanAssignment oPlanAssignment = null;
+
+            using (MyContext ctx = new MyContext())
+            {
+                ctx.Configuration.LazyLoadingEnabled = false;
+                oPlanAssignment = GetPlanAssignmentByID((int)planAssignment.IDAssignment);
+                
+
+                if (oPlanAssignment == null)
+                {
+
+                    ctx.PlanAssignment.Add(planAssignment);
+                    retorno = ctx.SaveChanges();
+                    
+                }
+                else
+                {
+                  
+                    ctx.PlanAssignment.Add(planAssignment);
+                    ctx.Entry(planAssignment).State = EntityState.Modified;
+                    retorno = ctx.SaveChanges();
+                }
+            }
+
+            if (retorno >= 0)
+                oPlanAssignment = GetPlanAssignmentByID((int)planAssignment.IDAssignment);
+
+            return oPlanAssignment;
+        }
     }
 }

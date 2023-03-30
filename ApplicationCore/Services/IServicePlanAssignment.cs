@@ -11,5 +11,6 @@ namespace ApplicationCore.Services
     {
         IEnumerable<PlanAssignment> GetPlanAssignments();
         PlanAssignment GetPlanAssignmentByID(int id);
+        PlanAssignment Save(PlanAssignment planAssignment);
     }
 }

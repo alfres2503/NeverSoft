@@ -2,6 +2,7 @@
 using Infrastructure.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -60,6 +61,37 @@ namespace Web.Controllers
                 TempData["Redirect"] = "Residence";
                 //Acción
                 TempData["Redirect-Action"] = "Index";
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Save(PlanAssignment planAssignment)
+        {
+            IServicePlanAssignment _ServicePlanAssignment = new ServicePlanAssignment();
+            try
+            {
+                
+                if (ModelState.IsValid)
+                {
+                    PlanAssignment oPlanAssigmentI = _ServicePlanAssignment.Save(planAssignment);
+                }
+                else
+                {
+                   //Hay que colocar la vista correcta
+                    return View("Create", planAssignment);
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
+                TempData["Redirect"] = "StatementAccount";
+                TempData["Redirect-Action"] = "Index";
+                // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
             }
         }
