@@ -10,7 +10,7 @@
 @using (Html.BeginForm("Save", "PlanAssignment", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -51,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-12">
-                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "totalPrice", @Value = ViewBag.DefaultPrice } })
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "totalPrice" } })
                 @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,17 +59,35 @@
         <div class="form-group mt-3">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary ms-3" })
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var listItems = $('#listItems');
+            var total = $('#totalPrice');
+
+            function calculateTotalPrice() {
+                var selectedOptions = listItems.find('option:selected');
+                var auxTotal = 0;
+                selectedOptions.each(function () {
+                    var texto = $(this).text();
+                    var price = parseFloat(texto.split('$')[1]);
+                    auxTotal += price;
+                });
+                total.val(auxTotal.toFixed(2));
+            }
+
+            calculateTotalPrice(); // call the function once when the document loads
+
+        });
+    </script>
     <script>
         $(document).ready(function () {
 
@@ -89,7 +107,7 @@
 
                 total.val(auxTotal.toFixed(2));
             });
-
         });
     </script>
+
 }

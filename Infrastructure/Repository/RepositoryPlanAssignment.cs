@@ -107,5 +107,37 @@ namespace Infrastructure.Repository
 
             return oPlanAssignment;
         }
+
+        public PlanAssignment GetPlanAssignmentByMonthAndYear(int month, int year, int IdResidence)
+        {
+            PlanAssignment oPlanAssignment = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oPlanAssignment = ctx.PlanAssignment
+                       .Where(r => r.AssignmentDate.Month == month && r.AssignmentDate.Year == year && r.IDResidence == IdResidence)
+                       .Include("PaymentPlan")
+                       .Include("PaymentPlan.PaymentItem")
+                       .Include("Residence")
+                       .Include("Residence.User")
+                       .FirstOrDefault();
+                }
+                return oPlanAssignment;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
     }
 }

@@ -27,6 +27,10 @@ namespace Web.Controllers
                 TempData["Message"] = "Error at procesing data: " + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.NotificationMessage = TempData["mensaje"];
+            }
             return View(list);
         }
 
@@ -89,7 +93,6 @@ namespace Web.Controllers
                 ViewBag.IDPlan = listPlans(PA.IDPlan);
                 ViewBag.IDResidence = listResidences(PA.IDResidence);
                 ViewBag.DefaultAssignmentDate = DateTime.Now;
-                ViewBag.DefaultPrice = PA.PaymentPlan.Total;
                 return View();
             }
             catch (Exception ex)
@@ -131,6 +134,16 @@ namespace Web.Controllers
             IServicePlanAssignment _ServicePlanAssignment = new ServicePlanAssignment();
             try
             {
+                //if that checks if theres another plan assignment with the same month and year
+                if (_ServicePlanAssignment.GetPlanAssignmentByMonthAndYear(planAssignment.AssignmentDate.Month, planAssignment.AssignmentDate.Year, planAssignment.IDResidence) != null)
+                {
+                    ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", "Month already charged!", Util.SweetAlertMessageType.error);
+                    ViewBag.IDPlan = listPlans(planAssignment.IDPlan);
+                    ViewBag.IDResidence = listResidences(planAssignment.IDResidence);
+                    ViewBag.DefaultAssignmentDate = DateTime.Now;
+                    return View("AddMonthlyAssignment", planAssignment);
+                }
+
                 if (ModelState.IsValid)
                 {
                     PlanAssignment oPlanAssigmentI = _ServicePlanAssignment.Save(planAssignment);

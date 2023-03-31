@@ -25,5 +25,9 @@ namespace ApplicationCore.Services
         {
             return repository.Save(planAssignment);
         }
+        public PlanAssignment GetPlanAssignmentByMonthAndYear(int month, int year, int IdResidence)
+        {
+            return repository.GetPlanAssignmentByMonthAndYear(month, year, IdResidence);
+        }
     }
 }

@@ -102,6 +102,7 @@ namespace Infrastructure.Models
         [Display(Name = "Payed Status")]
         public bool PayedStatus { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}")]
+        [Required(ErrorMessage = "{0} is a required data, please select a Plan")]
         public decimal Amount { get; set; }
     }
 

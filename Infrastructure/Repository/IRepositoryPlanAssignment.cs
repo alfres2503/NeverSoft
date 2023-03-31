@@ -12,5 +12,6 @@ namespace Infrastructure.Repository
         IEnumerable<PlanAssignment> GetPlanAssignments();
         PlanAssignment GetPlanAssignmentByID(int id);
         PlanAssignment Save(PlanAssignment planAssignment);
+        PlanAssignment GetPlanAssignmentByMonthAndYear(int month, int year, int IdResidence);
     }
 }
