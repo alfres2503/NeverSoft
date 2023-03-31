@@ -1,0 +1,119 @@
+﻿@model Infrastructure.Models.Residence
+
+@{
+    ViewBag.Title = "Plan Assignment Details";
+}
+
+<div>
+    <h4>General Information</h4>
+    <hr />
+
+    <div class="d-flex bd-highlight">
+        <div class="p-2 flex-fill bd-highlight">
+            <dl class="dl-horizontal">
+                <dt>User Info</dt>
+
+                <dd>
+                    @Html.DisplayNameFor(model => model.User.IDUser): @Html.DisplayFor(model => model.User.IDUser)
+                </dd>
+
+                <dd>
+                    Name: @Html.DisplayFor(model => model.User.FirstName) @Html.DisplayFor(model => model.User.LastName)
+                </dd>
+
+                <dd>
+                    @Html.DisplayNameFor(model => model.User.Email): @Html.DisplayFor(model => model.User.Email)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="p-2 flex-fill bd-highlight">
+            <dl class="dl-horizontal">
+                <dt>Residence Info</dt>
+
+                <dd>
+                    @Html.DisplayNameFor(model => model.IDResidence): @Html.DisplayFor(model => model.IDResidence)
+                </dd>
+
+                <dd>
+                    @Html.DisplayNameFor(model => model.StartYear): @Html.DisplayFor(model => model.StartYear)
+                </dd>
+
+                <dd>
+                    Actual Plan: @Html.DisplayFor(model => model.PlanAssignment.Last().PaymentPlan.Name)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+
+    <hr />
+    <div class="d-flex justify-content-between my-4" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"><h4>Monthly Plan Assignment</h4><i class="fa-solid fa-chevron-down"></i></div>
+    <hr />
+
+    <div class="collapse" id="collapseExample">
+        <table id="myTable" class="table">
+            <thead>
+                <tr>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().AssignmentDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().PayedStatus)
+                    </th>
+                    <th>
+
+                        @Html.DisplayNameFor(model => model.PlanAssignment.Last().Amount)
+
+                    </th>
+                    <th>Plan</th>
+                    <th>Items</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.PlanAssignment)
+                {
+
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AssignmentDate)
+                        </td>
+                        <td>
+                            @if (item.PayedStatus == true)
+                            {
+                                <p style="color:green;">Payed</p>
+                            }
+                            else
+                            {
+                                <p style="color:red;">Not Payed</p>
+                            }
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaymentPlan.Name)
+                        </td>
+                        <td>
+                            @foreach (var pItem in item.PaymentPlan.PaymentItem)
+                            {
+                                <span>@Html.DisplayFor(model => pItem.Description) |</span>
+                            }
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+   
+
+</div>
+
+@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Infrastructure.Models.Residence>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IDResidence)
+        </th>
+        <th>
+            Owner Name
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDResidence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.IDResidence }, new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+}
+
+</table>

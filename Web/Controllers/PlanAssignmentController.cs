@@ -1,19 +1,18 @@
 ﻿using ApplicationCore.Services;
 using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
-using Web.Utils;
 
 namespace Web.Controllers
 {
-    public class StatementAccountController : Controller
+    public class PlanAssignmentController : Controller
     {
-        // GET: StatementAccount
+        // GET: PlanAssignment
         public ActionResult Index()
         {
             IEnumerable<Residence> list = null;
@@ -31,6 +30,7 @@ namespace Web.Controllers
             return View(list);
         }
 
+        // GET: PlanAssignment/Details/5
         public ActionResult Details(int? id)
         {
             IServiceResidence _ServiceResidence = new ServiceResidence();
@@ -65,6 +65,66 @@ namespace Web.Controllers
             }
         }
 
-      
+        // GET: PlanAssignment/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: PlanAssignment/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: PlanAssignment/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: PlanAssignment/Edit/5
+        [HttpPost]
+        public ActionResult Save(PlanAssignment planAssignment)
+        {
+            IServicePlanAssignment _ServicePlanAssignment = new ServicePlanAssignment();
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    PlanAssignment oPlanAssigmentI = _ServicePlanAssignment.Save(planAssignment);
+                }
+                else
+                {
+                    //Hay que colocar la vista correcta
+                    return View("Create", planAssignment);
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
+                TempData["Redirect"] = "StatementAccount";
+                TempData["Redirect-Action"] = "Index";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
+
     }
 }

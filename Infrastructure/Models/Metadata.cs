@@ -97,6 +97,7 @@ namespace Infrastructure.Models
         public int IDResidence { get; set; }
 
         [Display(Name = "Payment Date")]
+        [UIHint("AssignmentDay")]
         public System.DateTime AssignmentDate { get; set; }
         [Display(Name = "Payed Status")]
         public bool PayedStatus { get; set; }
