@@ -102,7 +102,6 @@ namespace Infrastructure.Models
         [Display(Name = "Payed Status")]
         public bool PayedStatus { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}")]
-        [RegularExpression(@"^[0-9]+(\.,[0-9]{1,2})?$", ErrorMessage = "solo acepta números, con dos decimales")]
         public decimal Amount { get; set; }
     }
 

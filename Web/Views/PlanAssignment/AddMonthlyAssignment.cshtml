@@ -1,0 +1,95 @@
+﻿@model Infrastructure.Models.PlanAssignment
+
+@{
+    ViewBag.Title = "Add Monthly Assignment";
+}
+
+<h2>Add Monthly Assignment</h2>
+
+
+@using (Html.BeginForm("Save", "PlanAssignment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDPlan, "IDPlan", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.DropDownList("IDPlan", null, htmlAttributes: new { @class = "form-control", @id = "listItems" })
+                @Html.ValidationMessageFor(model => model.IDPlan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDResidence, "IDResidence", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.DropDownList("IDResidence", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDResidence, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AssignmentDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.AssignmentDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.DefaultAssignmentDate } })
+                @Html.ValidationMessageFor(model => model.AssignmentDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PayedStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.PayedStatus)
+                    @Html.ValidationMessageFor(model => model.PayedStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @id = "totalPrice", @Value = ViewBag.DefaultPrice } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+
+            var listItems = $('#listItems');
+            var total = $('#totalPrice');
+
+
+            listItems.change(function () {
+                var selectedOptions = listItems.find('option:selected');
+                var auxTotal = 0;
+                selectedOptions.each(function () {
+                    var texto = $(this).text();
+                    var price = parseFloat(texto.split('$')[1]);
+                    auxTotal += price;
+                });
+
+
+                total.val(auxTotal.toFixed(2));
+            });
+
+        });
+    </script>
+}

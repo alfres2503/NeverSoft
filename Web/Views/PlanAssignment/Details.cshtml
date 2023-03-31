@@ -115,5 +115,7 @@
    
 
 </div>
-
-@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+<div class="d-flex mt-3">
+    @Html.ActionLink("Add Monthly Assignment", "AddMonthlyAssignment", new { idPlanAssignment = Model.PlanAssignment.Last().IDAssignment }, new { @class = "btn btn-primary me-3" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+</div>

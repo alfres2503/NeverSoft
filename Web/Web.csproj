@@ -267,6 +267,7 @@
     <Content Include="Views\PlanAssignment\Index.cshtml" />
     <Content Include="Views\PlanAssignment\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\AssignmentDay.cshtml" />
+    <Content Include="Views\PlanAssignment\AddMonthlyAssignment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

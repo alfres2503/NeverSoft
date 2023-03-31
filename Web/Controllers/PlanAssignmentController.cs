@@ -65,32 +65,63 @@ namespace Web.Controllers
             }
         }
 
-        // GET: PlanAssignment/Create
-        public ActionResult Create()
+        public ActionResult AddMonthlyAssignment(int? idPlanAssignment)
         {
-            return View();
-        }
+            IServicePlanAssignment _ServicePA = new ServicePlanAssignment();
+            PlanAssignment PA = null;
 
-        // POST: PlanAssignment/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
             try
             {
-                // TODO: Add insert logic here
+                // Si va null
+                if (idPlanAssignment == null)
+                {
+                    return RedirectToAction("Index");
+                }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+                PA = _ServicePA.GetPlanAssignmentByID(Convert.ToInt32(idPlanAssignment));
+                if (PA == null)
+                {
+                    TempData["Message"] = "The requested Plan Assignment does not exist";
+                    TempData["Redirect"] = "PlanAssignment";
+                    // Redireccion a la captura del Error
+                    return RedirectToAction("Default", "Error");
+                }
+                ViewBag.IDPlan = listPlans(PA.IDPlan);
+                ViewBag.IDResidence = listResidences(PA.IDResidence);
+                ViewBag.DefaultAssignmentDate = DateTime.Now;
+                ViewBag.DefaultPrice = PA.PaymentPlan.Total;
                 return View();
             }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
+                TempData["Redirect"] = "News";
+                TempData["Redirect-Action"] = "Maintenance";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+
         }
 
-        // GET: PlanAssignment/Edit/5
-        public ActionResult Edit(int id)
+        private SelectList listPlans(int idPlan)
         {
-            return View();
+            IServicePaymentPlan _ServicePlans = new ServicePaymentPlan();
+            IEnumerable<PaymentPlan> lista = _ServicePlans.GetPaymentPlans();
+
+
+            return new SelectList(lista, "IDPlan", "NameAndPrice", idPlan);
+        }
+
+        private SelectList listResidences(int idResidence)
+        {
+            IServiceResidence _ServiceResidence = new ServiceResidence();
+            IEnumerable<Residence> lista = _ServiceResidence.GetResidences()
+                .Where(r => r.IDResidence == idResidence);
+
+
+            return new SelectList(lista, "IDResidence", "IDResidence", idResidence);
         }
 
         // POST: PlanAssignment/Edit/5
@@ -100,7 +131,6 @@ namespace Web.Controllers
             IServicePlanAssignment _ServicePlanAssignment = new ServicePlanAssignment();
             try
             {
-
                 if (ModelState.IsValid)
                 {
                     PlanAssignment oPlanAssigmentI = _ServicePlanAssignment.Save(planAssignment);
