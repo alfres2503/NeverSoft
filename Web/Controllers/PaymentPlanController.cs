@@ -139,7 +139,7 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            //Que recursos necesito para crear un Libro
+          
             
             
             ViewBag.IDItem = listPaymentItems();

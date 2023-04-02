@@ -1,0 +1,14 @@
+﻿@model bool
+
+<div class="form-check  form-switch">
+    <label class="form-check-label">
+        @Html.CheckBox("", Model, new { @class = "form-check-input form-check-input-custom" })
+    </label>
+</div>
+
+<style>
+    .form-check-input-custom:checked {
+        background-color: green !important;
+        border-color: seagreen !important;
+    }
+</style>

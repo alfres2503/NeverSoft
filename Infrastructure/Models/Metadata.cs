@@ -70,6 +70,8 @@ namespace Infrastructure.Models
         [Required(ErrorMessage = "{0} is a required data")]
         [RegularExpression("^[0-9]+(\\.[0-9]{1,2})?$", ErrorMessage = "Only accepts numbers, with two decimal places")]
         public decimal Total { get; set; }
+        [UIHint("Amount")]
+        public string NameAndPrice { get; set; }
     }
 
     internal partial class PaymentItemMetadata
@@ -94,6 +96,7 @@ namespace Infrastructure.Models
 
         public int IDAssignment { get; set; }
         public int IDPlan { get; set; }
+       
         public int IDResidence { get; set; }
 
         [Display(Name = "Payment Date")]
@@ -103,6 +106,7 @@ namespace Infrastructure.Models
         public bool PayedStatus { get; set; }
         [DisplayFormat(DataFormatString = "{0:C}")]
         [Required(ErrorMessage = "{0} is a required data, please select a Plan")]
+        
         public decimal Amount { get; set; }
     }
 
@@ -117,6 +121,7 @@ namespace Infrastructure.Models
         [Required(ErrorMessage = "{0} is a required data")]
         public string Description { get; set; }
         [Display(Name = "Attended")]
+        [UIHint("Attended")]
         public bool Finished { get; set; }
 
         public virtual User User { get; set; }
