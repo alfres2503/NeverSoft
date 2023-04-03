@@ -11,7 +11,9 @@ namespace Infrastructure.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ReservationMetadata))]
     public partial class Reservation
     {
         public int IDReservation { get; set; }
@@ -19,7 +21,7 @@ namespace Infrastructure.Models
         public int IDArea { get; set; }
         public System.DateTime Start { get; set; }
         public System.DateTime Finish { get; set; }
-        public bool Approved { get; set; }
+        public Nullable<bool> Approved { get; set; }
     
         public virtual Area Area { get; set; }
         public virtual User User { get; set; }

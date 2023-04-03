@@ -149,6 +149,7 @@
     <Compile Include="Controllers\PaymentItemController.cs" />
     <Compile Include="Controllers\PaymentPlanController.cs" />
     <Compile Include="Controllers\PlanAssignmentController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\ResidenceController.cs" />
     <Compile Include="Controllers\StatementAccountController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -269,6 +270,9 @@
     <Content Include="Views\Shared\DisplayTemplates\AssignmentDay.cshtml" />
     <Content Include="Views\PlanAssignment\AddMonthlyAssignment.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Attended.cshtml" />
+    <Content Include="Views\Reservation\Index.cshtml" />
+    <Content Include="Views\Reservation\Details.cshtml" />
+    <Content Include="Views\Reservation\UserReservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

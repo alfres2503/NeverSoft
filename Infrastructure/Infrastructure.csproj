@@ -115,6 +115,7 @@
     <Compile Include="Repository\IRepositoryPaymentItem.cs" />
     <Compile Include="Repository\IRepositoryPaymentPlan.cs" />
     <Compile Include="Repository\IRepositoryPlanAssignment.cs" />
+    <Compile Include="Repository\IRepositoryReservation.cs" />
     <Compile Include="Repository\IRepositoryResidence.cs" />
     <Compile Include="Repository\IRepositoryUser.cs" />
     <Compile Include="Repository\IRepositoryUserRole.cs" />
@@ -124,12 +125,24 @@
     <Compile Include="Repository\RepositoryPaymentItem.cs" />
     <Compile Include="Repository\RepositoryPaymentPlan.cs" />
     <Compile Include="Repository\RepositoryPlanAssignment.cs" />
+    <Compile Include="Repository\RepositoryReservation.cs" />
     <Compile Include="Repository\RepositoryResidence.cs" />
     <Compile Include="Repository\RepositoryUser.cs" />
     <Compile Include="Repository\RepositoryUserRole.cs" />
     <Compile Include="Utils\Log.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <EntityDeploy Include="Models\Model1.edmx">
@@ -143,18 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

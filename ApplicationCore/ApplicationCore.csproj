@@ -48,6 +48,7 @@
     <Compile Include="Services\IServicePaymentItem.cs" />
     <Compile Include="Services\IServicePaymentPlan.cs" />
     <Compile Include="Services\IServicePlanAssignment.cs" />
+    <Compile Include="Services\IServiceReservation.cs" />
     <Compile Include="Services\IServiceResidence.cs" />
     <Compile Include="Services\IServiceUser.cs" />
     <Compile Include="Services\IServiceUserRole.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Services\ServicePaymentItem.cs" />
     <Compile Include="Services\ServicePaymentPlan.cs" />
     <Compile Include="Services\ServicePlanAssignment.cs" />
+    <Compile Include="Services\ServiceReservation.cs" />
     <Compile Include="Services\ServiceResidence.cs" />
     <Compile Include="Services\ServiceUser.cs" />
     <Compile Include="Services\ServiceUserRole.cs" />

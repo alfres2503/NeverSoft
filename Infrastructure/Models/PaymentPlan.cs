@@ -23,7 +23,7 @@ namespace Infrastructure.Models
             this.PlanAssignment = new HashSet<PlanAssignment>();
             this.PaymentItem = new HashSet<PaymentItem>();
         }
-    
+
         public int IDPlan { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

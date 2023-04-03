@@ -1,0 +1,64 @@
+﻿@model Infrastructure.Models.Reservation
+
+@{
+    ViewBag.Title = "Reservation Details";
+}
+
+<h2>Reservation Details</h2>
+
+<div class="col-12">
+    <h4>Reservation</h4>
+    <hr />
+
+    <div class="d-flex bd-highlight">
+        <div class="p-2 flex-fill bd-highlight">
+            <dl class="dl-horizontal">
+                <dt>User Info</dt>
+
+                <dd>
+                    @Html.DisplayNameFor(model => model.User.IDUser): @Html.DisplayFor(model => model.User.IDUser)
+                </dd>
+
+                <dd>
+                    Name: @Html.DisplayFor(model => model.User.FullName)
+                </dd>
+
+                <dd>
+                    @Html.DisplayNameFor(model => model.User.Email): @Html.DisplayFor(model => model.User.Email)
+                </dd>
+            </dl>
+        </div>
+
+        <div class="p-2 flex-fill bd-highlight">
+            <dl class="dl-horizontal">
+                <dt>Reservation Info</dt>
+
+                <dd>
+                    @Html.DisplayNameFor(model => model.Area.Name): @Html.DisplayFor(model => model.Area.Name)
+                </dd>
+
+                <dd>
+                    DATE: @Model.Start.ToShortDateString();
+                </dd>
+
+                <dd>
+                    Time: @Model.Start.ToShortTimeString() - @Model.Finish.ToShortTimeString();
+                </dd>
+
+                <dd>
+                    @Html.DisplayNameFor(model => model.Approved): @Html.DisplayFor(model => model.Approved)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+</div>
+
+@if (Model.Approved == null)
+{
+    @Html.ActionLink("Approve", "Approve", new { id = Model.IDReservation }, new { @class = "btn btn-success mx-1" })
+    @Html.ActionLink("Deny", "Deny", new { id = Model.IDReservation }, new { @class = "btn btn-danger mx-1" })
+}
+@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary mx-1" })
+
+

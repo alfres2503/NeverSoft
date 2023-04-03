@@ -149,4 +149,31 @@ namespace Infrastructure.Models
         [StringLength(50, ErrorMessage = "Descriptions with more than 50 letters are not accepted")]
         public string Description { get; set; }
     }
+
+    internal partial class ReservationMetadata
+    {
+        [Display(Name = "Reservation ID")]
+        public int IDReservation { get; set; }
+        public long IDUser { get; set; }
+        public int IDArea { get; set; }
+        public System.DateTime Start { get; set; }
+        public System.DateTime Finish { get; set; }
+        [Display(Name = "State")]
+        public Nullable<bool> Approved { get; set; }
+
+        public virtual Area Area { get; set; }
+        public virtual User User { get; set; }
+    }
+
+    internal partial class AreaMetadata
+    {
+        [Display(Name = "Area ID")]
+        public int IDArea { get; set; }
+        [Display(Name = "Area")]
+        public string Name { get; set; }
+        [Display(Name = "Opening Time")]
+        public int StartSchedule { get; set; }
+        [Display(Name = "Closing Time")]
+        public int FinishSchedule { get; set; }
+    }
 }

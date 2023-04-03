@@ -85,7 +85,7 @@
           <Property Name="IDArea" Type="int" Nullable="false" />
           <Property Name="Start" Type="datetime" Nullable="false" />
           <Property Name="Finish" Type="datetime" Nullable="false" />
-          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="Approved" Type="bit" />
         </EntityType>
         <EntityType Name="Residence">
           <Key>
@@ -376,7 +376,7 @@
           <Property Name="IDArea" Type="Int32" Nullable="false" />
           <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Finish" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="Approved" Type="Boolean" />
           <NavigationProperty Name="Area" Relationship="Self.FK_Reservation_Area" FromRole="Reservation" ToRole="Area" />
           <NavigationProperty Name="User" Relationship="Self.FK_Reservation_User" FromRole="Reservation" ToRole="User" />
         </EntityType>
