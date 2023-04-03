@@ -1,57 +1,66 @@
 ﻿@model IEnumerable<Infrastructure.Models.Reservation>
 
 @{
-    ViewBag.Title = "UserReservations";
+    ViewBag.Title = "User Reservations";
 }
 
-<h2>UserReservations</h2>
+<h2 class="my-3">User Reservations</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Start)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Finish)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Approved)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Area.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.FirstName)
-        </th>
-        <th></th>
-    </tr>
+<a href="@Url.Action("Create", "Reservation")" class="btn btn-primary my-3"><i class="fa-solid fa-plus"> Make a reservation</i></a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Start)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Finish)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Approved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Area.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDReservation }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDReservation }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDReservation })
-        </td>
-    </tr>
-}
+<div class="table-responsive">
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    AREA
+                </th>
+                <th>
+                    DATE
+                </th>
+                <th>
+                    TIME
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Approved)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Area.Name)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Start)*@
+                        @item.Start.Date.ToShortDateString()
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Finish)*@
+                        @item.Start.ToShortTimeString() - @item.Finish.ToShortTimeString()
+                    </td>
+                    <td>
+                        @if (item.Approved == true)
+                        {
+                            <p style="color:green;">Approved</p>
+                        }
+                        else if (item.Approved == false)
+                        {
+                            <p style="color:red;">Denied</p>
+                        }
+                        else if (item.Approved == null)
+                        {
+                            <p>Pending</p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
 
-</table>
+
+
+    </table>
+</div>
+

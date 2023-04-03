@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IServiceArea.cs" />
     <Compile Include="Services\IServiceIncidence.cs" />
     <Compile Include="Services\IServiceNews.cs" />
     <Compile Include="Services\IServiceNewsCategory.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Services\IServiceResidence.cs" />
     <Compile Include="Services\IServiceUser.cs" />
     <Compile Include="Services\IServiceUserRole.cs" />
+    <Compile Include="Services\ServiceArea.cs" />
     <Compile Include="Services\ServiceIncidence.cs" />
     <Compile Include="Services\ServiceNews.cs" />
     <Compile Include="Services\ServiceNewsCategory.cs" />

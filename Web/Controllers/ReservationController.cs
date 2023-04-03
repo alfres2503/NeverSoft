@@ -30,17 +30,17 @@ namespace Web.Controllers
             return View(list);
         }
 
-        public ActionResult UserReservations(long? idUser)
+        public ActionResult UserReservations()
         {
             IServiceReservation _ServiceReservation = new ServiceReservation();
             IEnumerable<Reservation> list = null;
             try
             {
-                if (idUser == null)
+                if (GetSessionUser() == null)
                 {
                     return RedirectToAction("Index");
                 }
-                list = _ServiceReservation.GetReservationsByUser((long)Convert.ToDouble(idUser));
+                list = _ServiceReservation.GetReservationsByUser((long)Convert.ToDouble(GetSessionUser().IDUser));
                 if (list == null)
                 {
                     TempData["Message"] = "The requested reservations does not exist";
@@ -64,12 +64,52 @@ namespace Web.Controllers
             }
         }
 
-
         [HttpGet]
         public ActionResult Create()
         {
+            if(GetSessionUser() == null)
+            {
+                TempData["Message"] = "No session User";
+                //Controlador
+                TempData["Redirect"] = "Reservation";
+                //Acción
+                TempData["Redirect-Action"] = "Index";
+                return RedirectToAction("Index", "Reservation");
+            }
+            ViewBag.IDUser = listUser(GetSessionUser().IDUser);
+            ViewBag.IDArea = listAreas();
             return View();
         }
+
+        private User GetSessionUser()
+        {
+            User oUser = null;
+            //Validar si existe la Session
+            if (Session["user"] != null)
+            {
+                oUser = (User)Session["User"];
+            }
+            return oUser;
+        }
+
+        private SelectList listUser(long idUser)
+        {
+            IServiceUser _ServiceUser = new ServiceUser();
+            IEnumerable<User> lista = _ServiceUser.GetUsers()
+                .Where(u => u.IDUser == idUser);
+
+            return new SelectList(lista, "IDUser", "FullName", idUser);
+        }
+
+        private SelectList listAreas(int idArea = 0)
+        {
+            IServiceArea _ServiceArea = new ServiceArea();
+            IEnumerable<Area> lista = _ServiceArea.GetAreas();
+            //.Where(u => u.IDUser == idUser);
+
+            return new SelectList(lista, "IDArea", "Name", idArea);
+        }
+
 
         public ActionResult Details(int? id)
         {
