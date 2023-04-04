@@ -174,5 +174,33 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
+
+        public ActionResult Save(Reservation reservation)
+        {
+            IServiceReservation _ServiceReservation = new ServiceReservation();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Reservation oReservation = _ServiceReservation.Save(reservation);
+                }
+                else
+                {
+                    return View("Create", reservation);
+                }
+
+
+                return RedirectToAction("UserReservations");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Redirect"] = "Maintenance";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
     }
 }

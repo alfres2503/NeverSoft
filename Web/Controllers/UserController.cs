@@ -65,7 +65,7 @@ namespace Web.Controllers
                     // Redireccion a la captura del Error
                     return RedirectToAction("Default", "Error");
                 }
-                ViewBag.IDRole = listRoles();
+                ViewBag.IDRole = listRoles(user.IDRole);
                 return View(user);
             }
             catch (Exception ex)
