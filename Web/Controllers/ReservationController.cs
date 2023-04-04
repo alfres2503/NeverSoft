@@ -67,16 +67,12 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if(GetSessionUser() == null)
-            {
-                TempData["Message"] = "No session User";
-                //Controlador
-                TempData["Redirect"] = "Reservation";
-                //Acción
-                TempData["Redirect-Action"] = "Index";
-                return RedirectToAction("Index", "Reservation");
-            }
-            ViewBag.IDUser = listUser(GetSessionUser().IDUser);
+            //if(GetSessionUser() == null)
+            //    return RedirectToAction("Index", "Reservation"); Comentarios solo para no tener que estar logeando, hay que activarlos
+
+            ViewBag.IDUser = listUser(
+                //GetSessionUser().IDUser
+                );
             ViewBag.IDArea = listAreas();
             return View();
         }
@@ -92,11 +88,11 @@ namespace Web.Controllers
             return oUser;
         }
 
-        private SelectList listUser(long idUser)
+        private SelectList listUser(long idUser = 0)
         {
             IServiceUser _ServiceUser = new ServiceUser();
-            IEnumerable<User> lista = _ServiceUser.GetUsers()
-                .Where(u => u.IDUser == idUser);
+            IEnumerable<User> lista = _ServiceUser.GetUsers();
+                //.Where(u => u.IDUser == idUser); Comentado solo para no tener que estar logeando, hay que activarlo
 
             return new SelectList(lista, "IDUser", "FullName", idUser);
         }

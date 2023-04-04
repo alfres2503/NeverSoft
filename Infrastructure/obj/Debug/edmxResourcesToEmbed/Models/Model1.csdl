@@ -6,8 +6,8 @@
     </Key>
     <Property Name="IDArea" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="StartSchedule" Type="Int32" Nullable="false" />
-    <Property Name="FinishSchedule" Type="Int32" Nullable="false" />
+    <Property Name="OpeningHour" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="ClosureHour" Type="Time" Nullable="false" Precision="7" />
     <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Area" FromRole="Area" ToRole="Reservation" />
   </EntityType>
   <EntityType Name="Incidence">

@@ -12,7 +12,6 @@ namespace Infrastructure.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Diagnostics;
 
     [MetadataType(typeof(PaymentPlanMetadata))]
     public partial class PaymentPlan
@@ -23,12 +22,11 @@ namespace Infrastructure.Models
             this.PlanAssignment = new HashSet<PlanAssignment>();
             this.PaymentItem = new HashSet<PaymentItem>();
         }
-
+    
         public int IDPlan { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Total { get; set; }
-        //public string NameAndPrice { get; set; }
         public string NameAndPrice => $"{Name} - ${Total.ToString("0.00")}";
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

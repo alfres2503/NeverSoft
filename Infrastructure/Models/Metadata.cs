@@ -171,9 +171,5 @@ namespace Infrastructure.Models
         public int IDArea { get; set; }
         [Display(Name = "Area")]
         public string Name { get; set; }
-        [Display(Name = "Opening Time")]
-        public int StartSchedule { get; set; }
-        [Display(Name = "Closing Time")]
-        public int FinishSchedule { get; set; }
     }
 }

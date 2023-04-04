@@ -11,8 +11,8 @@
           </Key>
           <Property Name="IDArea" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="StartSchedule" Type="int" Nullable="false" />
-          <Property Name="FinishSchedule" Type="int" Nullable="false" />
+          <Property Name="OpeningHour" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ClosureHour" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Incidence">
           <Key>
@@ -301,8 +301,8 @@
           </Key>
           <Property Name="IDArea" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StartSchedule" Type="Int32" Nullable="false" />
-          <Property Name="FinishSchedule" Type="Int32" Nullable="false" />
+          <Property Name="OpeningHour" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ClosureHour" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="Reservation" Relationship="Self.FK_Reservation_Area" FromRole="Area" ToRole="Reservation" />
         </EntityType>
         <EntityType Name="Incidence">
@@ -576,8 +576,8 @@
               <MappingFragment StoreEntitySet="Area">
                 <ScalarProperty Name="IDArea" ColumnName="IDArea" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="StartSchedule" ColumnName="StartSchedule" />
-                <ScalarProperty Name="FinishSchedule" ColumnName="FinishSchedule" />
+                <ScalarProperty Name="OpeningHour" ColumnName="OpeningHour" />
+                <ScalarProperty Name="ClosureHour" ColumnName="ClosureHour" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

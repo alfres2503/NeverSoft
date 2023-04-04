@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5c19cdb486d5427db210dff6db70c44f" Name="Diagram1">
+      <Diagram DiagramId="997125df67df4566bca4073b2b9bcf5b" Name="Diagram1">
         <EntityTypeShape EntityType="NeverlandDBModel.Area" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.Incidence" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NeverlandDBModel.News" Width="1.5" PointX="11" PointY="2" IsExpanded="true" />

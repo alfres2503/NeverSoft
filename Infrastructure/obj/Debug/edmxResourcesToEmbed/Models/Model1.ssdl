@@ -6,8 +6,8 @@
     </Key>
     <Property Name="IDArea" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="StartSchedule" Type="int" Nullable="false" />
-    <Property Name="FinishSchedule" Type="int" Nullable="false" />
+    <Property Name="OpeningHour" Type="time" Precision="7" Nullable="false" />
+    <Property Name="ClosureHour" Type="time" Precision="7" Nullable="false" />
   </EntityType>
   <EntityType Name="Incidence">
     <Key>

@@ -22,8 +22,8 @@ namespace Infrastructure.Models
     
         public int IDArea { get; set; }
         public string Name { get; set; }
-        public int StartSchedule { get; set; }
-        public int FinishSchedule { get; set; }
+        public System.TimeSpan OpeningHour { get; set; }
+        public System.TimeSpan ClosureHour { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservation { get; set; }

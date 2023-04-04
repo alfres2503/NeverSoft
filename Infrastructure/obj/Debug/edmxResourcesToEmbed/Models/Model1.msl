@@ -6,8 +6,8 @@
         <MappingFragment StoreEntitySet="Area">
           <ScalarProperty Name="IDArea" ColumnName="IDArea" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="StartSchedule" ColumnName="StartSchedule" />
-          <ScalarProperty Name="FinishSchedule" ColumnName="FinishSchedule" />
+          <ScalarProperty Name="OpeningHour" ColumnName="OpeningHour" />
+          <ScalarProperty Name="ClosureHour" ColumnName="ClosureHour" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
