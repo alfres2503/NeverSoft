@@ -210,7 +210,7 @@ namespace Web.Controllers
             }
         }
 
-        private String validateReservation(Reservation reservation)
+        private string validateReservation(Reservation reservation)
         {
             Area oArea = new ServiceArea().GetAreaByID(reservation.IDArea);
             if (reservation.Start.Date != reservation.Finish.Date)
