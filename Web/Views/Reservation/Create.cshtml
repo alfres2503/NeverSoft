@@ -75,7 +75,30 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $('#datetimepickerS').datetimepicker();
-        $('#datetimepickerF').datetimepicker();
+        //on load
+
+        $(document).ready(function () {
+            $('#datetimepickerS').datetimepicker({
+                format: 'm/d/Y H:i',
+                value: new Date(),
+                minDate: new Date(),
+                onChangeDateTime: function (dp, $input) {
+                    $('#datetimepickerF').datetimepicker({
+                        value: $input.val() + 59,
+                        // split the date and time
+                        minTime: $input.val().split(' ')[1] + 1,
+                    });
+                }
+            });
+
+            $('#datetimepickerF').datetimepicker({
+                format: 'm/d/Y H:i',
+                // value: current date + 60 minutes
+                value: new Date(new Date().getTime() + 60 * 60000),
+                //value: new Date(),
+                minDate: new Date(),
+                datepicker: false
+            });
+        });
     </script>
 }

@@ -156,7 +156,9 @@ namespace Infrastructure.Models
         public int IDReservation { get; set; }
         public long IDUser { get; set; }
         public int IDArea { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         public System.DateTime Start { get; set; }
+        [Required(ErrorMessage = "{0} is a required data")]
         public System.DateTime Finish { get; set; }
         [Display(Name = "State")]
         public Nullable<bool> Approved { get; set; }

@@ -27,6 +27,10 @@ namespace Web.Controllers
                 TempData["Message"] = "Error at procesing data: " + ex.Message;
                 return RedirectToAction("Default", "Error");
             }
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.NotificationMessage = TempData["mensaje"];
+            }
             return View(list);
         }
 
@@ -174,18 +178,95 @@ namespace Web.Controllers
                 return RedirectToAction("Default", "Error");
             }
         }
-
+        [HttpPost]
         public ActionResult Save(Reservation reservation)
         {
             IServiceReservation _ServiceReservation = new ServiceReservation();
+            IServiceArea _serviceArea = new ServiceArea();
+            Area oArea = _serviceArea.GetAreaByID(reservation.IDArea);
             try
             {
+                if (reservation.Start.Date != reservation.Finish.Date)
+                {
+                    ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", "Reservations must be on the same day", Util.SweetAlertMessageType.error);
+                    ViewBag.IDUser = listUser(
+                    //GetSessionUser().IDUser
+                    );
+                    ViewBag.IDArea = listAreas();
+                    return View("Create", reservation);
+                }
+
+                if (reservation.Start.TimeOfDay < oArea.OpeningHour || reservation.Start.TimeOfDay > oArea.ClosureHour)
+                {
+                    ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"Area opens at {oArea.OpeningHour.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                    ViewBag.IDUser = listUser(
+                    //GetSessionUser().IDUser
+                    );
+                    ViewBag.IDArea = listAreas();
+                    return View("Create", reservation);
+                }
+
+                if (reservation.Finish.TimeOfDay > oArea.ClosureHour || reservation.Finish.TimeOfDay < oArea.OpeningHour)
+                {
+                    ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"Area closes at {oArea.ClosureHour.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                    ViewBag.IDUser = listUser(
+                    //GetSessionUser().IDUser
+                    );
+                    ViewBag.IDArea = listAreas();
+                    return View("Create", reservation);
+                }
+
+                foreach(Reservation item in _ServiceReservation.GetReservationsByDate(reservation.Start))
+                {
+                    if(item.Approved == true || item.Approved == null)
+                    {
+                        if (reservation.Start.TimeOfDay == item.Start.TimeOfDay)
+                        {
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                            ViewBag.IDUser = listUser(
+                            //GetSessionUser().IDUser
+                            );
+                            ViewBag.IDArea = listAreas();
+                            return View("Create", reservation);
+                        } else if (reservation.Finish.TimeOfDay == item.Finish.TimeOfDay)
+                        {
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                            ViewBag.IDUser = listUser(
+                            //GetSessionUser().IDUser
+                            );
+                            ViewBag.IDArea = listAreas();
+                            return View("Create", reservation);
+                        } else if(reservation.Start.TimeOfDay < item.Start.TimeOfDay && reservation.Finish.TimeOfDay > item.Start.TimeOfDay)
+                        {
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                            ViewBag.IDUser = listUser(
+                            //GetSessionUser().IDUser
+                            );
+                            ViewBag.IDArea = listAreas();
+                            return View("Create", reservation);
+                        } else if(reservation.Start.TimeOfDay > item.Start.TimeOfDay && reservation.Start.TimeOfDay > item.Finish.TimeOfDay)
+                        {
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                            ViewBag.IDUser = listUser(
+                            //GetSessionUser().IDUser
+                            );
+                            ViewBag.IDArea = listAreas();
+                            return View("Create", reservation);
+                        }
+                    } 
+                }
+
                 if (ModelState.IsValid)
                 {
-                    Reservation oReservation = _ServiceReservation.Save(reservation);
+                    //Reservation oReservation = _ServiceReservation.Save(reservation);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
+                    ViewBag.IDUser = listUser(
+                    //GetSessionUser().IDUser
+                    );
+                    ViewBag.IDArea = listAreas();
                     return View("Create", reservation);
                 }
 
