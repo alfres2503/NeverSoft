@@ -41,8 +41,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-toolbox"></i> Process</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="@Url.Action("Index","PlanAssignment")">Plan Assignment</a>
-                            <a class="dropdown-item" href="@Url.Action("Index","Reservation")">Reservations</a>
+                            <a class="dropdown-item" href="@Url.Action("Index","PlanAssignment")"><i class="fa-solid fa-file-invoice"></i> Plan Assignment</a>
+                            <a class="dropdown-item" href="@Url.Action("Index","Reservation")"><i class="fa-solid fa-calendar-plus"></i> Reservations</a>
                         </div>
                     </li>
 
@@ -62,7 +62,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="@Url.Action("Index","Residence")"><i class="fa-solid fa-house"></i> Residences</a>
                             <a class="dropdown-item" href="@Url.Action("Index","PaymentPlan")"><i class="fa-sharp fa-solid fa-file-invoice-dollar"></i> Payment Plans</a>
-                            <a class="dropdown-item" href="@Url.Action("Index","StatementAccount")"><i class="fa-solid fa-money-bill"></i> Statement Account</a>
+                            <a class="dropdown-item" href="@Url.Action("Index","StatementAccount")"><i class="fa-solid fa-money-bill"></i> Account Statements</a>
                         </div>
                     </li>
 
@@ -81,7 +81,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="@Url.Action("Create","Incidence")"><i class="fa-solid fa-flag"></i> Report Incidence</a>
                             <a class="dropdown-item" href="@Url.Action("UserReservations","Reservation")">Reservations</a>
-                            @*<a class="dropdown-item" href="@Url.Action("UserReservations","Reservation", new { idUser = UserID })">My Reservations</a>*@
+                           
                         </div>
                     </li>
 
