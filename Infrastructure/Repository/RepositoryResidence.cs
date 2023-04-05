@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,7 +20,7 @@ namespace Infrastructure.Repository
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
-                    //list = ctx.Residence.Include("User").ToList<Residence>();
+                   
                     list = ctx.Residence
                         .Include("User")
                         .Include("PlanAssignment.PaymentPlan.PaymentItem")
@@ -29,12 +30,15 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -56,11 +60,15 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
     }

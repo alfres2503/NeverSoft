@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,11 +29,15 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -44,19 +49,21 @@ namespace Infrastructure.Repository
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
-                    //list = ctx.Residence.Include("User").ToList<Residence>();
                     list = ctx.PaymentPlan.Include("PaymentItem").ToList<PaymentPlan>();
                 }
                 return list;
             }
             catch (DbUpdateException dbEx)
             {
-
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -64,67 +71,77 @@ namespace Infrastructure.Repository
         {
             int retorno = 0;
             PaymentPlan oPaymentPlan = null;
-
-            using (MyContext ctx = new MyContext())
+            try
             {
-                ctx.Configuration.LazyLoadingEnabled = false;
-                oPaymentPlan = GetPaymentPlanByID((int)paymentPlan.IDPlan);
-                IRepositoryPaymentItem _RepositoryPaymentItem = new RepositoryPaymentItem();
-
-                if (oPaymentPlan == null)
+                using (MyContext ctx = new MyContext())
                 {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oPaymentPlan = GetPaymentPlanByID((int)paymentPlan.IDPlan);
+                    IRepositoryPaymentItem _RepositoryPaymentItem = new RepositoryPaymentItem();
 
-                    //Insertar
-                    //Logica para agregar las categorias al libro
-                    if (selectedPaymentItems != null)
+                    if (oPaymentPlan == null)
                     {
 
-                        paymentPlan.PaymentItem = new List<PaymentItem>();
-                        foreach (var paymentI in selectedPaymentItems)
+
+                        if (selectedPaymentItems != null)
                         {
-                            var paymentItemToAdd = _RepositoryPaymentItem.GetPaymentItemByID(int.Parse(paymentI));
-                            ctx.PaymentItem.Attach(paymentItemToAdd); //sin esto, EF intentará crear una categoría
-                            paymentPlan.PaymentItem.Add(paymentItemToAdd);// asociar a la categoría existente con el libro
+
+                            paymentPlan.PaymentItem = new List<PaymentItem>();
+                            foreach (var paymentI in selectedPaymentItems)
+                            {
+                                var paymentItemToAdd = _RepositoryPaymentItem.GetPaymentItemByID(int.Parse(paymentI));
+                                ctx.PaymentItem.Attach(paymentItemToAdd);
+                                paymentPlan.PaymentItem.Add(paymentItemToAdd);
 
 
+                            }
                         }
+
+                        ctx.PaymentPlan.Add(paymentPlan);
+
+                        retorno = ctx.SaveChanges();
+
                     }
-                    //Insertar Libro
-                    ctx.PaymentPlan.Add(paymentPlan);
-                    //SaveChanges
-                    //guarda todos los cambios realizados en el contexto de la base de datos.
-                    retorno = ctx.SaveChanges();
-                    //retorna número de filas afectadas
-                }
-                else
-                {
-                    //Registradas: 1,2,3
-                    //Actualizar: 1,3,4
-
-                    //Actualizar Libro
-                    ctx.PaymentPlan.Add(paymentPlan);
-                    ctx.Entry(paymentPlan).State = EntityState.Modified;
-                    retorno = ctx.SaveChanges();
-
-                    //Logica para actualizar Categorias
-                    var selectedPaymentItemID = new HashSet<string>(selectedPaymentItems);
-                    if (selectedPaymentItems != null)
+                    else
                     {
-                        ctx.Entry(paymentPlan).Collection(p => p.PaymentItem).Load();
-                        var newPaymenItemForPaymentPlan = ctx.PaymentItem
-                         .Where(x => selectedPaymentItemID.Contains(x.IDItem.ToString())).ToList();
-                        paymentPlan.PaymentItem = newPaymenItemForPaymentPlan;
 
+                        ctx.PaymentPlan.Add(paymentPlan);
                         ctx.Entry(paymentPlan).State = EntityState.Modified;
                         retorno = ctx.SaveChanges();
+
+
+                        var selectedPaymentItemID = new HashSet<string>(selectedPaymentItems);
+                        if (selectedPaymentItems != null)
+                        {
+                            ctx.Entry(paymentPlan).Collection(p => p.PaymentItem).Load();
+                            var newPaymenItemForPaymentPlan = ctx.PaymentItem
+                             .Where(x => selectedPaymentItemID.Contains(x.IDItem.ToString())).ToList();
+                            paymentPlan.PaymentItem = newPaymenItemForPaymentPlan;
+
+                            ctx.Entry(paymentPlan).State = EntityState.Modified;
+                            retorno = ctx.SaveChanges();
+                        }
                     }
                 }
+
+                if (retorno >= 0)
+                    oPaymentPlan = GetPaymentPlanByID((int)paymentPlan.IDPlan);
+
+                return oPaymentPlan;
             }
-
-            if (retorno >= 0)
-                oPaymentPlan = GetPaymentPlanByID((int)paymentPlan.IDPlan);
-
-            return oPaymentPlan;
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+           
         }
 
 

@@ -147,33 +147,47 @@ namespace Infrastructure.Repository
         {
             int retorno = 0;
             Reservation oReservation = null;
-
-            using (MyContext ctx = new MyContext())
+            try
             {
-                ctx.Configuration.LazyLoadingEnabled = false;
-                oReservation = GetReservationByID((int)reservation.IDReservation);
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oReservation = GetReservationByID((int)reservation.IDReservation);
 
-                if (oReservation == null)
-                {
-                    ctx.Reservation.Add(reservation);
-                    //SaveChanges
-                    //guarda todos los cambios realizados en el contexto de la base de datos.
-                    retorno = ctx.SaveChanges();
-                    //retorna número de filas afectadas
+                    if (oReservation == null)
+                    {
+                        ctx.Reservation.Add(reservation);
+                        
+                        retorno = ctx.SaveChanges();
+                        
+                    }
+                    else
+                    {
+                        
+                        ctx.Reservation.Add(reservation);
+                        ctx.Entry(reservation).State = EntityState.Modified;
+                        retorno = ctx.SaveChanges();
+                    }
                 }
-                else
-                {
-                    //Actualizar 
-                    ctx.Reservation.Add(reservation);
-                    ctx.Entry(reservation).State = EntityState.Modified;
-                    retorno = ctx.SaveChanges();
-                }
+
+                if (retorno >= 0)
+                    oReservation = GetReservationByID((int)reservation.IDReservation);
+
+                return reservation;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
 
-            if (retorno >= 0)
-                oReservation = GetReservationByID((int)reservation.IDReservation);
-
-            return reservation;
         }
 
         public void Approve(int id)

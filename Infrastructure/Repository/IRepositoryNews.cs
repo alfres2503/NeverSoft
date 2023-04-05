@@ -11,7 +11,6 @@ namespace Infrastructure.Repository
     {
         IEnumerable<News> GetNews();
         News GetNewsByID(int id);
-        void DeleteNews(int id);
         News Save(News news);
         IEnumerable<News> GetNewsByCategory(int idCategory);
     }

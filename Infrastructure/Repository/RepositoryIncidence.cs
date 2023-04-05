@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -29,11 +30,15 @@ namespace Infrastructure.Repository
 
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -56,11 +61,15 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -78,7 +87,7 @@ namespace Infrastructure.Repository
                     if (oIncidence == null)
                     {
                         ctx.Incidence.Add(incidence);
-                        //ctx.Entry(incidence).State = System.Data.Entity.EntityState.Modified;
+                        
                         retorno = ctx.SaveChanges();
                     }
                     else
@@ -86,7 +95,7 @@ namespace Infrastructure.Repository
                         ctx.Incidence.Add(incidence);
                         ctx.Entry(incidence).State = EntityState.Modified;
                         retorno = ctx.SaveChanges();
-                        //ctx.Entry(incidence).State = System.Data.Entity.EntityState.Added;
+                        
                     }
                     if(retorno >= 0)
                         oIncidence = GetIncidenceByID((int)incidence.IDIncidence);
@@ -95,11 +104,15 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
     }

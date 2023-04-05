@@ -79,33 +79,47 @@ namespace Infrastructure.Repository
         {
             int retorno = 0;
             PlanAssignment oPlanAssignment = null;
-
-            using (MyContext ctx = new MyContext())
+            try
             {
-                ctx.Configuration.LazyLoadingEnabled = false;
-                oPlanAssignment = GetPlanAssignmentByID((int)planAssignment.IDAssignment);
-                
-
-                if (oPlanAssignment == null)
+                using (MyContext ctx = new MyContext())
                 {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oPlanAssignment = GetPlanAssignmentByID((int)planAssignment.IDAssignment);
 
-                    ctx.PlanAssignment.Add(planAssignment);
-                    retorno = ctx.SaveChanges();
-                    
+
+                    if (oPlanAssignment == null)
+                    {
+
+                        ctx.PlanAssignment.Add(planAssignment);
+                        retorno = ctx.SaveChanges();
+
+                    }
+                    else
+                    {
+
+                        ctx.PlanAssignment.Add(planAssignment);
+                        ctx.Entry(planAssignment).State = EntityState.Modified;
+                        retorno = ctx.SaveChanges();
+                    }
                 }
-                else
-                {
-                  
-                    ctx.PlanAssignment.Add(planAssignment);
-                    ctx.Entry(planAssignment).State = EntityState.Modified;
-                    retorno = ctx.SaveChanges();
-                }
+
+                if (retorno >= 0)
+                    oPlanAssignment = GetPlanAssignmentByID((int)planAssignment.IDAssignment);
+
+                return oPlanAssignment;
             }
-
-            if (retorno >= 0)
-                oPlanAssignment = GetPlanAssignmentByID((int)planAssignment.IDAssignment);
-
-            return oPlanAssignment;
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
         }
 
         public PlanAssignment GetPlanAssignmentByMonthAndYear(int month, int year, int IdResidence)

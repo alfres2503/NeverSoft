@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -32,11 +33,15 @@ namespace Infrastructure.Repository
 
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -58,11 +63,15 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -70,40 +79,56 @@ namespace Infrastructure.Repository
         {
             int retorno = 0;
             PaymentItem oPaymentItem = null;
-
-            using (MyContext ctx = new MyContext())
+            try
             {
-                ctx.Configuration.LazyLoadingEnabled = false;
-                oPaymentItem = GetPaymentItemByID((int)paymentItem.IDItem);
-               
-
-                if (oPaymentItem == null)
+                using (MyContext ctx = new MyContext())
                 {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oPaymentItem = GetPaymentItemByID((int)paymentItem.IDItem);
 
-                   
-                    //Insertar 
-                    ctx.PaymentItem.Add(paymentItem);
-                    //SaveChanges
-                    //guarda todos los cambios realizados en el contexto de la base de datos.
-                    retorno = ctx.SaveChanges();
-                    //retorna número de filas afectadas
-                }
-                else
-                {
-                   
-                    //Actualizar Libro
-                    ctx.PaymentItem.Add(paymentItem);
-                    ctx.Entry(paymentItem).State = EntityState.Modified;
-                    retorno = ctx.SaveChanges();
 
-                    
+                    if (oPaymentItem == null)
+                    {
+
+
+
+                        ctx.PaymentItem.Add(paymentItem);
+
+                        retorno = ctx.SaveChanges();
+
+                    }
+                    else
+                    {
+
+
+                        ctx.PaymentItem.Add(paymentItem);
+                        ctx.Entry(paymentItem).State = EntityState.Modified;
+                        retorno = ctx.SaveChanges();
+
+
+                    }
                 }
+
+                if (retorno >= 0)
+                    oPaymentItem = GetPaymentItemByID((int)paymentItem.IDItem);
+
+                return oPaymentItem;
             }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+           
 
-            if (retorno >= 0)
-                oPaymentItem = GetPaymentItemByID((int)paymentItem.IDItem);
-
-            return oPaymentItem;
+            
         }
     }
 }

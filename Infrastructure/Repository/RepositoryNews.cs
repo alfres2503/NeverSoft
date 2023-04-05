@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Models;
+using Infrastructure.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,10 +12,7 @@ namespace Infrastructure.Repository
 {
     public class RepositoryNews : IRepositoryNews
     {
-        public void DeleteNews(int id)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public IEnumerable<News> GetNews()
         {
@@ -35,11 +33,15 @@ namespace Infrastructure.Repository
 
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -61,11 +63,15 @@ namespace Infrastructure.Repository
             }
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -88,11 +94,15 @@ namespace Infrastructure.Repository
 
             catch (DbUpdateException dbEx)
             {
-                throw dbEx;
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
             catch (Exception ex)
             {
-                throw ex;
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
             }
         }
 
@@ -100,33 +110,47 @@ namespace Infrastructure.Repository
         {
             int retorno = 0;
             News oNews = null;
-
-            using (MyContext ctx = new MyContext())
+            try
             {
-                ctx.Configuration.LazyLoadingEnabled = false;
-                oNews = GetNewsByID((int)news.IDNews);
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oNews = GetNewsByID((int)news.IDNews);
 
-                if (oNews == null)
-                {
-                    ctx.News.Add(news);
-                    //SaveChanges
-                    //guarda todos los cambios realizados en el contexto de la base de datos.
-                    retorno = ctx.SaveChanges();
-                    //retorna número de filas afectadas
+                    if (oNews == null)
+                    {
+                        ctx.News.Add(news);
+
+                        retorno = ctx.SaveChanges();
+
+                    }
+                    else
+                    {
+
+                        ctx.News.Add(news);
+                        ctx.Entry(news).State = EntityState.Modified;
+                        retorno = ctx.SaveChanges();
+                    }
                 }
-                else
-                {
-                    //Actualizar 
-                    ctx.News.Add(news);
-                    ctx.Entry(news).State = EntityState.Modified;
-                    retorno = ctx.SaveChanges();
-                }
+
+                if (retorno >= 0)
+                    oNews = GetNewsByID((int)news.IDNews);
+
+                return oNews;
             }
-
-            if (retorno >= 0)
-                oNews = GetNewsByID((int)news.IDNews);
-
-            return oNews;
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+           
         }
     }
 }
