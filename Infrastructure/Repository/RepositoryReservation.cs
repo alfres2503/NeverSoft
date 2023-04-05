@@ -106,21 +106,27 @@ namespace Infrastructure.Repository
             }
         }
 
-        public IEnumerable<Reservation> GetReservationsByDate(DateTime date)
+        public List<Reservation> GetReservationsByDate(int date)
         {
-            IEnumerable<Reservation> list = null;
+            List<Reservation> list = null;
+            List<Reservation> auxList = new List<Reservation>();
             try
             {
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
-                    list = ctx.Reservation.
-                        Where(r => r.Start == date)
-                        .Include("Area")
-                        .Include("User")
-                        .ToList();
+                    list = ctx.Reservation.ToList();
+                    //.Where(r => r.DayOfYear == date)
+
+                    foreach (Reservation r in list)
+                    {
+                        if (r.Start.DayOfYear == date)
+                        {
+                            auxList.Add(r);
+                        }
+                    }
                 }
-                return list;
+                return auxList;
             }
             catch (DbUpdateException dbEx)
             {

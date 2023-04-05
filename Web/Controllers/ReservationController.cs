@@ -96,7 +96,7 @@ namespace Web.Controllers
         {
             IServiceUser _ServiceUser = new ServiceUser();
             IEnumerable<User> lista = _ServiceUser.GetUsers();
-                //.Where(u => u.IDUser == idUser); Comentado solo para no tener que estar logeando, hay que activarlo
+            //.Where(u => u.IDUser == idUser); Comentado solo para no tener que estar logeando, hay que activarlo
 
             return new SelectList(lista, "IDUser", "FullName", idUser);
         }
@@ -215,10 +215,11 @@ namespace Web.Controllers
                     ViewBag.IDArea = listAreas();
                     return View("Create", reservation);
                 }
+                List<Reservation> list = _ServiceReservation.GetReservationsByDate(reservation.Start.DayOfYear);
 
-                foreach(Reservation item in _ServiceReservation.GetReservationsByDate(reservation.Start))
+                foreach (Reservation item in list)
                 {
-                    if(item.Approved == true || item.Approved == null)
+                    if (item.Approved == true || item.Approved == null)
                     {
                         if (reservation.Start.TimeOfDay == item.Start.TimeOfDay)
                         {
@@ -228,23 +229,8 @@ namespace Web.Controllers
                             );
                             ViewBag.IDArea = listAreas();
                             return View("Create", reservation);
-                        } else if (reservation.Finish.TimeOfDay == item.Finish.TimeOfDay)
-                        {
-                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
-                            ViewBag.IDUser = listUser(
-                            //GetSessionUser().IDUser
-                            );
-                            ViewBag.IDArea = listAreas();
-                            return View("Create", reservation);
-                        } else if(reservation.Start.TimeOfDay < item.Start.TimeOfDay && reservation.Finish.TimeOfDay > item.Start.TimeOfDay)
-                        {
-                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
-                            ViewBag.IDUser = listUser(
-                            //GetSessionUser().IDUser
-                            );
-                            ViewBag.IDArea = listAreas();
-                            return View("Create", reservation);
-                        } else if(reservation.Start.TimeOfDay > item.Start.TimeOfDay && reservation.Start.TimeOfDay > item.Finish.TimeOfDay)
+                        }
+                        if (reservation.Finish.TimeOfDay == item.Finish.TimeOfDay)
                         {
                             ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
                             ViewBag.IDUser = listUser(
@@ -253,7 +239,43 @@ namespace Web.Controllers
                             ViewBag.IDArea = listAreas();
                             return View("Create", reservation);
                         }
-                    } 
+                        if (reservation.Start.TimeOfDay < item.Start.TimeOfDay && reservation.Finish.TimeOfDay >= item.Start.TimeOfDay)
+                        {
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                            ViewBag.IDUser = listUser(
+                            //GetSessionUser().IDUser
+                            );
+                            ViewBag.IDArea = listAreas();
+                            return View("Create", reservation);
+                        }
+                        if (reservation.Start.TimeOfDay > item.Start.TimeOfDay && reservation.Start.TimeOfDay < item.Finish.TimeOfDay)
+                        {
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                            ViewBag.IDUser = listUser(
+                            //GetSessionUser().IDUser
+                            );
+                            ViewBag.IDArea = listAreas();
+                            return View("Create", reservation);
+                        }
+                        if (reservation.Start.TimeOfDay < item.Start.TimeOfDay && reservation.Finish.TimeOfDay > item.Start.TimeOfDay)
+                        {
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                            ViewBag.IDUser = listUser(
+                            //GetSessionUser().IDUser
+                            );
+                            ViewBag.IDArea = listAreas();
+                            return View("Create", reservation);
+                        }
+                        if (reservation.Start.TimeOfDay > item.Start.TimeOfDay && reservation.Finish.TimeOfDay < item.Finish.TimeOfDay)
+                        {
+                            ViewBag.NotificationMessage = Util.SweetAlertHelper.Mensaje("Error", $"There is a reservation already from {item.Start.TimeOfDay.ToString(@"hh\:mm")} to {item.Finish.TimeOfDay.ToString(@"hh\:mm")}", Util.SweetAlertMessageType.error);
+                            ViewBag.IDUser = listUser(
+                            //GetSessionUser().IDUser
+                            );
+                            ViewBag.IDArea = listAreas();
+                            return View("Create", reservation);
+                        }
+                    }
                 }
 
                 if (ModelState.IsValid)
@@ -269,9 +291,6 @@ namespace Web.Controllers
                     ViewBag.IDArea = listAreas();
                     return View("Create", reservation);
                 }
-
-
-                return RedirectToAction("UserReservations");
             }
             catch (Exception ex)
             {

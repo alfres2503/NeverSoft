@@ -12,7 +12,7 @@ namespace ApplicationCore.Services
         IEnumerable<Reservation> GetReservations();
         Reservation GetReservationByID(int id);
         IEnumerable<Reservation> GetReservationsByUser(long idUser);
-        IEnumerable<Reservation> GetReservationsByDate(DateTime date);
+        List<Reservation> GetReservationsByDate(int date);
         Reservation Save(Reservation reservation);
         void Approve(int id);
         void Deny(int id);
