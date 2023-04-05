@@ -15,6 +15,7 @@ namespace Web.Controllers
         // GET: Incidence
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -37,6 +38,10 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.NotificationMessage = TempData["mensaje"];
+            }
             ViewBag.IDUser = listUsers();
             return View();
         }
@@ -111,6 +116,7 @@ namespace Web.Controllers
                 if (ModelState.IsValid)
                 {
                     Incidence oIncidence = _ServiceIncidence.Save(incidence);
+                    TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Incidence", "Reported Incidence", Util.SweetAlertMessageType.success);
                 }
                 else
                 {
@@ -118,10 +124,10 @@ namespace Web.Controllers
                     //Lógica para cargar vista correspondiente
                     return View("Create", incidence);
                 }
+                
+                return RedirectToAction("Create");
 
-                return RedirectToAction("Maintenance");
-
-                //return RedirectToAction("Maintenance");
+                
             }
             catch (Exception ex)
             {
