@@ -106,7 +106,7 @@ namespace Infrastructure.Repository
             }
         }
 
-        public List<Reservation> GetReservationsByDate(int date)
+        public List<Reservation> GetReservationsByDate(int dayOfYear, int idArea)
         {
             List<Reservation> list = null;
             List<Reservation> auxList = new List<Reservation>();
@@ -115,12 +115,13 @@ namespace Infrastructure.Repository
                 using (MyContext ctx = new MyContext())
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
-                    list = ctx.Reservation.ToList();
-                    //.Where(r => r.DayOfYear == date)
+                    list = ctx.Reservation
+                    .Where(r => r.Approved != false && r.IDArea == idArea)
+                    .ToList();
 
                     foreach (Reservation r in list)
                     {
-                        if (r.Start.DayOfYear == date)
+                        if (r.Start.DayOfYear == dayOfYear)
                         {
                             auxList.Add(r);
                         }

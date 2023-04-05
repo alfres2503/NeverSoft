@@ -12,7 +12,7 @@ namespace Infrastructure.Repository
         IEnumerable<Reservation> GetReservations();
         Reservation GetReservationByID(int id);
         IEnumerable<Reservation> GetReservationsByUser(long idUser);
-        List<Reservation> GetReservationsByDate(int date);
+        List<Reservation> GetReservationsByDate(int dayOfYear, int idArea);
         Reservation Save(Reservation reservation);
         void Approve(int id);
         void Deny(int id);

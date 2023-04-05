@@ -24,9 +24,9 @@ namespace ApplicationCore.Services
         {
             return _repositoryReservation.GetReservationByID(id);
         }
-        public List<Reservation> GetReservationsByDate(int date)
+        public List<Reservation> GetReservationsByDate(int dayOfYear, int idArea)
         {
-            return _repositoryReservation.GetReservationsByDate(date);
+            return _repositoryReservation.GetReservationsByDate(dayOfYear, idArea);
         }
         public IEnumerable<Reservation> GetReservations()
         {
