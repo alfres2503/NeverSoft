@@ -125,15 +125,7 @@ namespace Web.Controllers
 
 
 
-
-
-
-
-
-
-
-
-        //Estos no se para que los puso
+       
 
         // GET: PaymentPlan/Create
         [HttpGet]
@@ -160,27 +152,7 @@ namespace Web.Controllers
 
             return new MultiSelectList(lista, "IDItem", "DescriptionAndPrice", listPaymentItemSelect);
         }
-        // POST: PaymentPlan/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        // GET: PaymentPlan/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        
 
         // POST: PaymentPlan/Edit/5
         [HttpPost]
@@ -188,7 +160,7 @@ namespace Web.Controllers
         {
             //Gestión de archivos
             MemoryStream target = new MemoryStream();
-            //Servicio Libro
+            
             IServicePaymentPlan _ServicePaymentPlan = new ServicePaymentPlan();
             try
             {
@@ -199,7 +171,7 @@ namespace Web.Controllers
                 }
                 else
                 {
-                    //Cargar la vista crear o actualizar
+                    
 
                    
                     ViewBag.IDItem = listPaymentItems(paymentPlan.PaymentItem);
@@ -221,26 +193,8 @@ namespace Web.Controllers
             }
         }
 
-        // GET: PaymentPlan/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PaymentPlan/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
+        
+       
     }
 }

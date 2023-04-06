@@ -54,7 +54,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
 
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");
@@ -84,7 +84,7 @@ namespace Web.Controllers
             catch (Exception ex)
             {
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
 
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");

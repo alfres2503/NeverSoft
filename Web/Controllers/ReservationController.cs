@@ -207,7 +207,7 @@ namespace Web.Controllers
             {
                 // Salvar el error en un archivo 
                 Log.Error(ex, MethodBase.GetCurrentMethod());
-                TempData["Message"] = "Error al procesar los datos! " + ex.Message;
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
                 TempData["Redirect"] = "Maintenance";
                 // Redireccion a la captura del Error
                 return RedirectToAction("Default", "Error");

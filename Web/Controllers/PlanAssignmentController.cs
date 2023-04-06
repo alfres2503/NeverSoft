@@ -150,7 +150,7 @@ namespace Web.Controllers
                 }
                 else
                 {
-                    //Hay que colocar la vista correcta
+                    
                     return View("Create", planAssignment);
                 }
 

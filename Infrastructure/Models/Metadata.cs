@@ -35,9 +35,13 @@ namespace Infrastructure.Models
         [Display(Name = "Role ID")]
         public int IDRole { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(20, ErrorMessage = "Names with more than 20 letters are not accepted")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are accepted")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(20, ErrorMessage = "Last Names with more than 20 letters are not accepted")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are accepted")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
@@ -93,10 +97,11 @@ namespace Infrastructure.Models
 
     internal partial class PlanAssignmentMetadata
     {
-
+        [Display(Name = "Assignment ID")]
         public int IDAssignment { get; set; }
+        [Display(Name = "Plan")]
         public int IDPlan { get; set; }
-       
+        [Display(Name = "Residence")]
         public int IDResidence { get; set; }
 
         [Display(Name = "Payment Date")]
@@ -117,8 +122,10 @@ namespace Infrastructure.Models
         [Required(ErrorMessage = "{0} is a required data")]
         public long IDUser { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(40, ErrorMessage = "Titles with more than 40 letters are not accepted")]
         public string Title { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
+        [StringLength(150, ErrorMessage = "Description with more than 150 letters are not accepted")]
         public string Description { get; set; }
         [Display(Name = "Attended")]
         [UIHint("Attended")]
@@ -134,7 +141,7 @@ namespace Infrastructure.Models
         [Display(Name = "News ID")]
         public int IDNews { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
-        [Display(Name = "ID Category")]
+        [Display(Name = "Category")]
         public int IDCategory { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         [StringLength(500, ErrorMessage = "Descriptions with more than 500 letters are not accepted")]
@@ -144,7 +151,7 @@ namespace Infrastructure.Models
     }
 
     internal partial class NewsCategoryMetadata {
-        [Display(Name = "ID Category")]
+        [Display(Name = "Category")]
         public int IDCategory { get; set; }
         [StringLength(50, ErrorMessage = "Descriptions with more than 50 letters are not accepted")]
         public string Description { get; set; }
@@ -154,7 +161,9 @@ namespace Infrastructure.Models
     {
         [Display(Name = "Reservation ID")]
         public int IDReservation { get; set; }
+        [Display(Name = "User")]
         public long IDUser { get; set; }
+        [Display(Name = "Area")]
         public int IDArea { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         public System.DateTime Start { get; set; }

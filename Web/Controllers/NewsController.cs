@@ -99,13 +99,7 @@ namespace Web.Controllers
             return View();
         }
 
-        // POST: News/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //        return View();
-
-        //}
+        
 
         private MultiSelectList listCategories(ICollection<NewsCategory> newsCategory = null)
         {
@@ -173,18 +167,15 @@ namespace Web.Controllers
             try
             {
                 //Insertar el archivo
-                //if (news.Archive == null)
-                //{
+                
                 if (File != null)
                 {
-                    //File.InputStream.CopyTo(target);
-                    //news.Archive = target.ToArray();
-                    //ModelState.Remove("Archive");
+                   
                     var archivoP = new byte[File.ContentLength];
                     File.InputStream.Read(archivoP, 0, File.ContentLength);
                     news.Archive = archivoP;
                 }
-                //}
+               
                 if (ModelState.IsValid)
                 {
                     News oNewsF = _ServiceNews.Save(news);
@@ -212,27 +203,7 @@ namespace Web.Controllers
             }
         }
 
-        // GET: News/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: News/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
 
         public ActionResult DownloadPDF(int? id)
         {
@@ -241,12 +212,5 @@ namespace Web.Controllers
             return File(oNews.Archive, "application/pdf", "NeverLand-Information.pdf");
         }
 
-        //public ActionResult RemovePDF(int? id)
-        //{
-        //    IServiceNews _Service = new ServiceNews();
-        //    News oNews = _Service.GetNewsByID(Convert.ToInt32(id));
-        //    oNews.Archive = null;
-        //    return File(oNews.Archive,);
-        //}
     }
 }
