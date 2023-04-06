@@ -39,11 +39,13 @@ body {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 50px -12px !important;
 }
 
-.card {
-    background-color: #489FB5;
-    color: #000000;
-    margin-top: 20px;
-}
+    
+
+    .card {
+        background-color: #489FB5;
+        color: #000000;
+        margin-top: 20px;
+    }
 
 .ResidenceDetailImg{
     width: auto;
@@ -117,7 +119,7 @@ body {
         margin-top: 10px;
     }
 
-        button:hover {
-            background-color: white !important;
+  button:hover {
+            background-color: black !important;
             color: slategrey;
-        }
+  }
