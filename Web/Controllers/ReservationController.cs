@@ -71,11 +71,14 @@ namespace Web.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            //if(GetSessionUser() == null)
-            //    return RedirectToAction("Index", "Reservation"); Comentarios solo para no tener que estar logeando, hay que activarlos
-
+            if(GetSessionUser() == null)
+                return RedirectToAction("Index", "Reservation"); //Comentarios solo para no tener que estar logeando, hay que activarlos
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.NotificationMessage = TempData["mensaje"];
+            }
             ViewBag.IDUser = listUser(
-                //GetSessionUser().IDUser
+                GetSessionUser().IDUser
                 );
             ViewBag.IDArea = listAreas();
             return View();
@@ -95,8 +98,8 @@ namespace Web.Controllers
         private SelectList listUser(long idUser = 0)
         {
             IServiceUser _ServiceUser = new ServiceUser();
-            IEnumerable<User> lista = _ServiceUser.GetUsers();
-            //.Where(u => u.IDUser == idUser); Comentado solo para no tener que estar logeando, hay que activarlo
+            IEnumerable<User> lista = _ServiceUser.GetUsers()
+            .Where(u => u.IDUser == idUser); /*Comentado solo para no tener que estar logeando, hay que activarlo*/
 
             return new SelectList(lista, "IDUser", "FullName", idUser);
         }
@@ -189,14 +192,15 @@ namespace Web.Controllers
                 { 
                     ModelState.AddModelError("", errorMessage);
                     ViewBag.IDUser = listUser(
-                     //GetSessionUser().IDUser
+                     GetSessionUser().IDUser
                      );
                     ViewBag.IDArea = listAreas();
                     return View("Create", reservation);
                 }
 
                 Reservation oReservation = _ServiceReservation.Save(reservation);
-                return RedirectToAction("Index");
+                TempData["mensaje"] = Util.SweetAlertHelper.Mensaje("Reservation", "Reservation made successfully", Util.SweetAlertMessageType.success);
+                return RedirectToAction("Create");
 
             }
             catch (Exception ex)

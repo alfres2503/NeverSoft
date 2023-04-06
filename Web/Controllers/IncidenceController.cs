@@ -95,7 +95,7 @@ namespace Web.Controllers
             IServiceUser _ServiceUser = new ServiceUser();
             IEnumerable<User> lista = _ServiceUser.GetUsers()
             .Where(u => u.IDUser == id);
-            //Seleccionar categorias
+           
             long[] listUserSelect = null;
             if (users != null)
             {
