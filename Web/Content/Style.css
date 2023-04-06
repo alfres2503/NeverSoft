@@ -37,6 +37,7 @@ body {
     background-color: #FFA62B;
     color: #000000;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 50px -12px !important;
+    
 }
 
     
@@ -120,8 +121,8 @@ body {
     }
 
   button:hover {
-            background-color: black !important;
-            color: slategrey;
+            background-color: white !important;
+            color: slategray;
   }
 
 .trCustom {
