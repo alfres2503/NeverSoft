@@ -8,36 +8,40 @@
 
 <a href="@Url.Action("Create", "PaymentItem")" class="btn btn-primary">Create <i class="fa-solid fa-plus"></i></a>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IDItem)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IDItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td class="align-items-center text-center align-content-center justify-content-center">
-                <a href="@Url.Action("Edit", "PaymentItem", new { id = item.IDItem })" class="btn btn-primary"><i class="fa-solid fa-pen"></i> Edit</a>
-            </td>
+<div class="table-responsive">
+    <table class="table table-striped trCustom">
+        <tr class=" table-dark">
+            <th>
+                @Html.DisplayNameFor(model => model.IDItem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDItem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="align-items-center text-center align-content-center justify-content-center">
+                    <a href="@Url.Action("Edit", "PaymentItem", new { id = item.IDItem })" class="btn btn-primary"><i class="fa-solid fa-pen"></i> Edit</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+   

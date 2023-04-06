@@ -123,3 +123,10 @@ body {
             background-color: black !important;
             color: slategrey;
   }
+
+.trCustom {
+    /*background-color: rgba(0, 0, 0, 0.43);*/
+    /*border-radius: 1160px;
+    color: black*/
+    margin-top: 20px;
+}
