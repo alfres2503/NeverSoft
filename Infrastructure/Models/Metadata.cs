@@ -36,12 +36,12 @@ namespace Infrastructure.Models
         public int IDRole { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         [StringLength(20, ErrorMessage = "Names with more than 20 letters are not accepted")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are accepted")]
+        [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$", ErrorMessage = "Only letters are accepted")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
         [StringLength(20, ErrorMessage = "Last Names with more than 20 letters are not accepted")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only letters are accepted")]
+        [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]+$", ErrorMessage = "Only letters are accepted")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "{0} is a required data")]
