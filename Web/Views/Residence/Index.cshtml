@@ -9,48 +9,54 @@
 @*<button class="btn btn-default">
         @Html.ActionLink("Create New", "Create")
     </button>*@
-<table class="table">
-    <tr>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.IDResidence)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.IDUser)
-            
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.StartYear)
-           
-        </th>
-        
-        <th>Actions</th>
-    </tr>
+<div class="table-responsive ">
+    <table class="table table-striped trCustom shadow-lg" id="myTable">
+        <thead>
+            <tr class="table-dark">
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IDResidence)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.IDUser)
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td><i class="fa-solid fa-house"></i></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IDResidence)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.IDUser)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.StartYear)
-            </td>
-            
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id = item.IDResidence }) |*@
-                
-                    @Html.ActionLink("Details", "Details", new { id = item.IDResidence }, new { @class = "btn btn-primary" })
-                
-                @*@Html.ActionLink("Delete", "Delete", new { id = item.IDResidence })*@
-            </td>
-        </tr>
-    }
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.StartYear)
+
+                </th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><i class="fa-solid fa-house"></i></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDResidence)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.IDUser)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartYear)
+                    </td>
+
+                    <td>
+
+
+                        @Html.ActionLink("Details", "Details", new { id = item.IDResidence }, new { @class = "btn btn-primary" })
+
+
+                    </td>
+                </tr>
+            }
+        </tbody>
 
 </table>
+</div>
+    

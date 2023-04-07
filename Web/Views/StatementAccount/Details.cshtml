@@ -86,7 +86,7 @@
                                 <p style="color:green;">Payed</p>
                             </td>
                             <td>
-                                 @Html.DisplayFor(modelItem => item.Amount)
+                                @Html.DisplayFor(modelItem => item.Amount)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.PaymentPlan.Name)
@@ -149,11 +149,11 @@
                                 @Html.DisplayFor(modelItem => item.PaymentPlan.Name)
                             </td>
                             <td>
-                                    @foreach (var pItem in item.PaymentPlan.PaymentItem)
-                                    {
-                                        <span>@Html.DisplayFor(model => pItem.Description) |</span>
-                                    }
-                                </td>
+                                @foreach (var pItem in item.PaymentPlan.PaymentItem)
+                                {
+                                    <span>@Html.DisplayFor(model => pItem.Description) |</span>
+                                }
+                            </td>
 
                         </tr>
                     }
@@ -167,4 +167,21 @@
 
 </div>
 
-@*@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })*@
+@{
+    int role = 0;
+
+    //Validar si existe la Session
+    if (Session["user"] != null)
+    {
+        Infrastructure.Models.User oUser = (Infrastructure.Models.User)Session["User"];
+
+        if (oUser != null)
+        {
+            role = oUser.IDRole;
+            if (role == 1)
+            {
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+            }
+        }
+    }
+}

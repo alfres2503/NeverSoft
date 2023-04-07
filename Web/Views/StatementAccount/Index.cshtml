@@ -6,29 +6,37 @@
 
 <h2>Account Statements</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IDResidence)
-        </th>
-        <th>
-            Owner Name
-        </th>
-        <th>Actions</th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDResidence)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.IDResidence }, new { @class = "btn btn-primary" }) 
-        </td>
-    </tr>
-}
+<div class="table-responsive ">
+    <table class="table table-striped trCustom shadow-lg" id="myTable">
+        <thead>
+            <tr class="table-dark">
+                <th>
+                    @Html.DisplayNameFor(model => model.IDResidence)
+                </th>
+                <th>
+                    Owner Name
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDResidence)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FirstName) @Html.DisplayFor(modelItem => item.User.LastName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.IDResidence }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
 
 </table>
+
+</div>
+    
