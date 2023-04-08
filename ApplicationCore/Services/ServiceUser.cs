@@ -16,15 +16,17 @@ namespace ApplicationCore.Services
         public User GetUserByID(long id)
         {
             User oUser = _repositoryUser.GetUserByID(id);
-            oUser.Password = Cryptography.DecrypthAES(oUser.Password);
+            if(oUser != null)
+                oUser.Password = Cryptography.DecrypthAES(oUser.Password);
+
             return oUser;
         }
 
         public User GetUserByIDForLogin(long id)
         {
             User oUser = _repositoryUser.GetUserByIDForLogin(id);
-            // Desencriptar el password para presentarlo
-            oUser.Password = Cryptography.DecrypthAES(oUser.Password);
+            if (oUser != null)
+                oUser.Password = Cryptography.DecrypthAES(oUser.Password);
 
 
             return oUser;
