@@ -42,7 +42,7 @@ namespace Web.Controllers
             {
                 ViewBag.NotificationMessage = TempData["mensaje"];
             }
-            ViewBag.IDUser = listUsers();
+            ViewBag.IDUser = listUsers(GetSessionUser().IDUser);
             return View();
         }
 
@@ -78,11 +78,23 @@ namespace Web.Controllers
             }
         }
 
+        private User GetSessionUser()
+        {
+            User oUser = null;
+            //Validar si existe la Session
+            if (Session["user"] != null)
+            {
+                oUser = (User)Session["User"];
+            }
+            return oUser;
+        }
+
         private SelectList listUsers(long idUser = 0)
         {
             IServiceUser _ServiceUser = new ServiceUser();
             IEnumerable<User> lista = _ServiceUser.GetUsers()
-                .Where(u => u.Active == true && u.IDRole == 2);
+                //.Where(u => u.Active == true && u.IDRole == 2);
+                .Where(u => u.IDUser == idUser);
 
 
             return new SelectList(lista, "IDUser", "FullName", idUser);

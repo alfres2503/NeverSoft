@@ -34,6 +34,8 @@ C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csp
 C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
 C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.dll
 C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.pdb
+C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\bin\Debug\log4net.dll
+C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\bin\Debug\log4net.xml
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\ApplicationCore.dll
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\ApplicationCore.pdb
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\bin\Debug\Infrastructure.dll
@@ -48,5 +50,3 @@ C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\Applicatio
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.csproj.CopyComplete
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.dll
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\ApplicationCore\obj\Debug\ApplicationCore.pdb
-C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\bin\Debug\log4net.dll
-C:\Users\Alfredo\Desktop\NeverSoft\ApplicationCore\bin\Debug\log4net.xml

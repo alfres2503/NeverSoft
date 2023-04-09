@@ -21,7 +21,9 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
 
-                    lista = ctx.User.Include("UserRole").ToList();
+                    lista = ctx.User.Include("UserRole").
+                        //Include("Residence").
+                        ToList<User>();
 
                 }
                 return lista;
@@ -53,6 +55,7 @@ namespace Infrastructure.Repository
                     oUser = ctx.User.
                         Where(l => l.IDUser == id)
                         .Include("UserRole")
+                        //.Include("Residence")
                         .FirstOrDefault();
 
                 }

@@ -3,25 +3,37 @@
     string nombre = "";
     string email = "Profile";
     long UserID = 0;
+    long UserResidence=3;
     //Validar si existe la Session
     if (Session["user"] != null)
     {
         Infrastructure.Models.User oUser = (Infrastructure.Models.User)Session["User"];
+
 
         if (oUser != null)
         {
             nombre = oUser.FullName;
             email = oUser.Email;
             UserID = oUser.IDUser;
+
+            //var Residence = oUser.Residence.FirstOrDefault();
+
+            //if (Residence != null)
+            //{
+            //UserResidence = Residence.IDResidence;
+
+            //    // y así sucesivamente...
         }
+
     }
+}
 }
 
 
 <nav class="navbar navbar-expand-lg mb-5 shadow sticky-top navbar-custom p-0">
     <div class="container-fluid">
         <a class="navbar-brand " href="#">
-            <img src="~/images/NSLogoLogIn.svg" alt="" width="50" >
+            <img src="~/images/NSLogoLogIn.svg" alt="" width="50">
             <span class="d-lg-none">NEVERSOFT </span>
         </a>
 
@@ -81,12 +93,13 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="@Url.Action("Create","Incidence")"><i class="fa-solid fa-flag"></i> Report Incidence</a>
                             <a class="dropdown-item" href="@Url.Action("UserReservations","Reservation")"><i class="fa-solid fa-calendar-plus"></i> Reservations</a>
-                           
+
                         </div>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="@Url.Action("Details/1","StatementAccount")"><i class="fa-solid fa-money-bill"></i> Statement Account</a>
+                        <a class="nav-link active" href="@Url.Action("Details" ,"StatementAccount",new { id = UserResidence } )"><i class="fa-solid fa-money-bill"></i> Statement Account</a>
+                        @*<a class="nav-link active" href="@Url.Action("Details","StatementAccount")"><i class="fa-solid fa-money-bill"></i> Statement Account</a>*@
                     </li>
                 }
 
@@ -127,7 +140,7 @@
                     </div>
                 </li>
             </ul>
-            
+
 
 
         </div>
