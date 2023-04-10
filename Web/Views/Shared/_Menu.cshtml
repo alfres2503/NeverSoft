@@ -3,7 +3,7 @@
     string nombre = "";
     string email = "Profile";
     long UserID = 0;
-    long UserResidence=3;
+    long UserResidence=0;
     //Validar si existe la Session
     if (Session["user"] != null)
     {
@@ -16,18 +16,18 @@
             email = oUser.Email;
             UserID = oUser.IDUser;
 
-            //var Residence = oUser.Residence.FirstOrDefault();
+            Infrastructure.Models.Residence residence = new ApplicationCore.Services.ServiceResidence().GetResidenceByUser(UserID);
 
-            //if (Residence != null)
-            //{
-            //UserResidence = Residence.IDResidence;
+            if (residence != null)
+            {
+                UserResidence = residence.IDResidence;
+            }
 
-            //    // y así sucesivamente...
         }
 
     }
 }
-}
+
 
 
 <nav class="navbar navbar-expand-lg mb-5 shadow sticky-top navbar-custom p-0">
@@ -116,7 +116,7 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                        href="" role="button" aria-haspopup="true"
                        aria-expanded="false"><i class="fa-solid fa-user"></i><span class="d-lg-none"> User</span></a>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu ">
                         <span class="dropdown-item">@nombre</span>
                         @if (Session["User"] == null)
                         {

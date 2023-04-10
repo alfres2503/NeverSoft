@@ -71,5 +71,35 @@ namespace Infrastructure.Repository
                 throw;
             }
         }
+
+        public Residence GetResidenceByUser(long idUser)
+        {
+            Residence oResidence = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oResidence = ctx.Residence
+                        .Where(r => r.IDUser == idUser)
+                        .Include("User")
+                        .Include("PlanAssignment.PaymentPlan.PaymentItem")
+                        .FirstOrDefault();
+                }
+                return oResidence;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
     }
 }

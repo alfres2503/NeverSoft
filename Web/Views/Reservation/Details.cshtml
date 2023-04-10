@@ -63,5 +63,39 @@
     @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary mx-1" })
 </div>
 
+@*@section Scripts {
+    <script>
+        function notifyUser() {
+            fetch("https://formsubmit.co/ajax/lusuarezag@est.utn.ac.cr", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    Nombre: nombre,
+                    Email: correo,
+                    Nacimiento: fechaNacimiento,
+                    Edad: edad,
+                    Calificacion: rango,
+                    Genero: genero,
+                    // bachillerato: bachillerato,
+                    // licenciatura: licenciatura,
+                    // diplomado: diplomado,
+                    Asunto: asunto,
+                    Mensaje: mensaje
+                })
+            })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                // .then(window.location.href = "../index.html")
+                .catch(error => console.log(error));
 
+        }
+
+        $(document).ready(function () {
+
+        });
+    </script>
+}*@
 
