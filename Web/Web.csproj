@@ -203,6 +203,7 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\newscard.png" />
     <Content Include="Images\NSLogoLogIn.svg" />
+    <Content Include="Images\pngwing.com.png" />
     <Content Include="Images\reminderscard.png" />
     <Content Include="Images\ResidenceDetail.jpg" />
     <Content Include="Images\rulescard.png" />
@@ -280,6 +281,7 @@
     <Content Include="Views\Reservation\Details.cshtml" />
     <Content Include="Views\Reservation\UserReservations.cshtml" />
     <Content Include="Views\Reservation\Create.cshtml" />
+    <Content Include="Views\StatementAccount\PayDebts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

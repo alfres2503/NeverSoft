@@ -29,5 +29,15 @@ namespace ApplicationCore.Services
         {
             return repository.GetPlanAssignmentByMonthAndYear(month, year, IdResidence);
         }
+
+        public IEnumerable<PlanAssignment> GetDebtsByResidence(int IdResidence)
+        {
+            return repository.GetDebtsByResidence(IdResidence);
+        }
+
+        public void SetDebtsAsPaid(string[] selectedDebts)
+        {
+            repository.SetDebtsAsPaid(selectedDebts);
+        }
     }
 }

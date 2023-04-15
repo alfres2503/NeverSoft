@@ -1,0 +1,103 @@
+﻿@model Infrastructure.Models.Residence
+@{
+    ViewBag.Title = "Pay Debts";
+}
+
+<h2>Pay Debts</h2>
+
+
+@using (Html.BeginForm("SetDebtsAsPaid", "StatementAccount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <hr />
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group my-3">
+            <label class="control-label">Pending Debts</label>
+            <div class="col-md-12">
+                @Html.DropDownList("selectedDebts",
+               (MultiSelectList)ViewBag.PendingDebts,
+               htmlAttributes: new { @class = "form-control", multiple = "multiple", @id = "listItems" })
+            </div>
+            <label class="control-label mt-1">Total</label>
+            <input type="text" class="form-control" id="InputTotal" readonly="readonly">
+        </div>
+
+        <div class="form-group my-3">
+            <label class="control-label col-md-2">Payment Method</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    <img src="~/images/pngwing.com.png" alt="Credit Card" width="100">
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group my-2">
+            <label for="InputName" class="form-label">Cardholder's Name</label>
+            <input type="text" class="form-control" id="InputName" aria-describedby="InputName">
+        </div>
+
+        <div class="form-group my-2">
+            <label for="InputCardN" class="form-label">Card Number</label>
+            <input type="text" class="form-control" id="InputCardN" aria-describedby="InputCardN" placeholder="**** **** **** ****">
+        </div>
+
+        <div class="form-group my-2 d-flex gap-3">
+            <div class="w-50">
+                <label for="InputExpire" class="form-label">Expire</label>
+                <input type="text" class="form-control" id="InputExpire" aria-describedby="InputExpire" placeholder="MM/YY">
+            </div>
+            <div class="w-50">
+                <label for="InputCode" class="form-label">Security Code</label>
+                <input type="text" class="form-control" id="InputCode" aria-describedby="InputCode" placeholder="CVC">
+            </div>
+        </div>
+
+
+
+        <div class="form-group mt-3">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Pay" class="btn btn-primary " />
+            </div>
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        var card = document.getElementById('InputCardN');
+        var cname = document.getElementById('InputName');
+        var expire = document.getElementById('InputExpire');
+        var code = document.getElementById('InputCode');
+
+
+        $(document).ready(function () {
+
+            var listItems = $('#listItems');
+            var total = $('#InputTotal');
+
+
+            listItems.change(function () {
+                var selectedOptions = listItems.find('option:selected');
+                var auxTotal = 0;
+
+                selectedOptions.each(function () {
+                    var texto = $(this).text();
+                    var price = parseFloat(texto.split('$')[1]);
+                    auxTotal += price;
+                });
+
+
+                total.val(auxTotal.toFixed(2));
+            });
+
+        });
+    </script>
+}
+
+

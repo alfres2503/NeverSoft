@@ -22,7 +22,8 @@ namespace Infrastructure.Models
         public System.DateTime AssignmentDate { get; set; }
         public bool PayedStatus { get; set; }
         public decimal Amount { get; set; }
-    
+        public string Description => $"{AssignmentDate.ToString("MMMM")} {AssignmentDate.Year} - ${Amount.ToString("0.00")}";
+
         public virtual PaymentPlan PaymentPlan { get; set; }
         public virtual Residence Residence { get; set; }
     }

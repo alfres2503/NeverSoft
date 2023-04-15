@@ -13,5 +13,7 @@ namespace Infrastructure.Repository
         PlanAssignment GetPlanAssignmentByID(int id);
         PlanAssignment Save(PlanAssignment planAssignment);
         PlanAssignment GetPlanAssignmentByMonthAndYear(int month, int year, int IdResidence);
+        IEnumerable<PlanAssignment> GetDebtsByResidence(int idResidence);
+        void SetDebtsAsPaid(string[] selectedDebts);
     }
 }

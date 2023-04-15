@@ -153,5 +153,67 @@ namespace Infrastructure.Repository
                 throw;
             }
         }
+
+        public IEnumerable<PlanAssignment> GetDebtsByResidence(int idResidence)
+        {
+            try
+            {
+                IEnumerable<PlanAssignment> list = null;
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    list = ctx.PlanAssignment
+                       .Where(r => r.IDResidence == idResidence && r.PayedStatus == false)
+                       .Include("PaymentPlan")
+                       .Include("PaymentPlan.PaymentItem")
+                       .Include("Residence")
+                       .Include("Residence.User")
+                       .ToList<PlanAssignment>();
+                }
+                return list;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
+
+        public void SetDebtsAsPaid(string[] selectedDebts)
+        {
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    foreach (string id in selectedDebts)
+                    {
+                        PlanAssignment oPlanAssignment = GetPlanAssignmentByID(int.Parse(id));
+                        oPlanAssignment.PayedStatus = true;
+                        ctx.Entry(oPlanAssignment).State = EntityState.Modified;
+                        ctx.SaveChanges();
+                    }
+                }
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+        }
     }
 }

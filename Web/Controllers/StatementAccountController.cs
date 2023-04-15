@@ -65,6 +65,80 @@ namespace Web.Controllers
             }
         }
 
-      
+        public ActionResult PayDebts()
+        {
+            IServiceResidence _ServiceResidence = new ServiceResidence();
+            
+            Residence oResidence;
+            try
+            {
+                oResidence = _ServiceResidence.GetResidenceByUser(GetSessionUser().IDUser);
+                if (oResidence == null)
+                {
+                    TempData["Message"] = "The requested data had a problem";
+                    //Controlador
+                    TempData["Redirect"] = "Index";
+                    //Acción
+                    TempData["Redirect-Action"] = "Index";
+                    return RedirectToAction("Default", "Error");
+                }
+                ViewBag.PendingDebts = listDebts(oResidence.IDResidence); 
+                return View(oResidence);
+            }
+            catch (Exception ex)
+            {
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
+                //Controlador
+                TempData["Redirect"] = "Residence";
+                //Acción
+                TempData["Redirect-Action"] = "Index";
+                return RedirectToAction("Default", "Error");
+            }
+        }
+
+        public ActionResult SetDebtsAsPaid(string[] selectedDebts) 
+        {
+            IServicePlanAssignment _ServicePlanAssignment = new ServicePlanAssignment();
+            IServiceResidence _ServiceResidence = new ServiceResidence();
+            try
+            {
+
+                _ServicePlanAssignment.SetDebtsAsPaid(selectedDebts);
+                
+
+                ViewBag.PendingDebts = listDebts(_ServiceResidence.GetResidenceByUser(GetSessionUser().IDUser).IDResidence);
+                return RedirectToAction("PayDebts");
+            }
+            catch (Exception ex)
+            {
+                // Salvar el error en un archivo 
+                Log.Error(ex, MethodBase.GetCurrentMethod());
+                TempData["Message"] = "Error at procesing data: " + ex.Message;
+                TempData["Redirect"] = "PaymentPlan";
+                TempData["Redirect-Action"] = "Maintenance";
+                // Redireccion a la captura del Error
+                return RedirectToAction("Default", "Error");
+            }
+        }
+    
+
+        private User GetSessionUser()
+        {
+            User oUser = null;
+            //Validar si existe la Session
+            if (Session["user"] != null)
+            {
+                oUser = (User)Session["User"];
+            }
+            return oUser;
+        }
+
+        private MultiSelectList listDebts(int idResidence)
+        {
+            IServicePlanAssignment _ServicePlanAssignment = new ServicePlanAssignment();
+            IEnumerable<PlanAssignment> list = _ServicePlanAssignment.GetDebtsByResidence(idResidence);
+
+            return new MultiSelectList(list, "IDAssignment", "Description");
+        }
     }
 }

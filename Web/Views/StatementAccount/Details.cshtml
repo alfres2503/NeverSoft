@@ -46,7 +46,7 @@
                     }
                     else
                     {
-                        <p>Actual Plan: @Html.DisplayFor(model => model.PlanAssignment.Last().PaymentPlan.Name)</p> 
+                        <p>Actual Plan: @Html.DisplayFor(model => model.PlanAssignment.Last().PaymentPlan.Name)</p>
                     }
 
                 </dd>
@@ -189,6 +189,11 @@
             if (role == 1)
             {
                 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+            }
+            else if (role == 2)
+            {
+                @Html.ActionLink("Pay Debts",
+               "PayDebts", null, new { @class = "btn btn-primary" })
             }
         }
     }
