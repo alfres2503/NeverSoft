@@ -6,10 +6,10 @@
 
 <h2 class="my-3">User Reservations</h2>
 
-<a href="@Url.Action("Create", "Reservation")" class="btn btn-primary my-3"><i class="fa-solid fa-plus"> Make a reservation</i></a>
+@Html.ActionLink("Make a new reservation", "Create", null, new { @class = "btn btn-primary mt-2" })
 
 <div class="table-responsive">
-    <table class="table table-striped trCustom shadow-lg" id="myTable">
+    <table class="table table-striped trCustom shadow-lg animate__animated animate__fadeIn " id="myTable">
         <thead>
             <tr class="table-dark">
                 <th>

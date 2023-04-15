@@ -207,6 +207,7 @@
     <Content Include="Images\reminderscard.png" />
     <Content Include="Images\ResidenceDetail.jpg" />
     <Content Include="Images\rulescard.png" />
+    <Content Include="Images\webBackground.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
