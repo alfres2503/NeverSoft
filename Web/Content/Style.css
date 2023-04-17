@@ -39,7 +39,14 @@ body {
     flex-direction: column;
 }
 
+.field-validation-error {
+    color: red;
+    font-size: 12px;
+}
 
+.error-message {
+    color: red;
+}
 
 .btn-default, .btn-primary {
     background-color: #FFA62B;
