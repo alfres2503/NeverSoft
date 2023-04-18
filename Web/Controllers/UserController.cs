@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -13,6 +14,7 @@ namespace Web.Controllers
     public class UserController : Controller
     {
         // GET: User
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Maintenance()
         {
             IEnumerable<User> list = null;
@@ -36,13 +38,14 @@ namespace Web.Controllers
         }
 
         [HttpGet]
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Create()
         {
             ViewBag.IDRole = listRoles();
             return View();
         }
 
-
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Edit(long? id)
         {
             IServiceUser _ServiceUser = new ServiceUser();

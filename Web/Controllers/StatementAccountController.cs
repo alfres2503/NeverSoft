@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -14,6 +15,7 @@ namespace Web.Controllers
     public class StatementAccountController : Controller
     {
         // GET: StatementAccount
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Index()
         {
             IEnumerable<Residence> list = null;
@@ -30,6 +32,7 @@ namespace Web.Controllers
             }
             return View(list);
         }
+        
 
         public ActionResult Details(int? id)
         {

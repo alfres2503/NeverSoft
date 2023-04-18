@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -45,6 +46,7 @@ namespace Web.Controllers
             }
         }
 
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Maintenance()
         {
             IEnumerable<News> lista = null;
@@ -92,6 +94,7 @@ namespace Web.Controllers
 
         // GET: News/Create
         [HttpGet]
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Create()
         {
             ViewBag.IDCategory = listCategories();
@@ -119,6 +122,7 @@ namespace Web.Controllers
         }
 
         // GET: News/Edit/5
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Edit(int? id)
         {
             ServiceNews _ServiceNews = new ServiceNews();

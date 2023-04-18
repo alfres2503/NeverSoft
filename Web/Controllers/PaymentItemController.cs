@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -15,6 +16,7 @@ namespace Web.Controllers
     public class PaymentItemController : Controller
     {
         // GET: PaymentItem
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Index()
         {
             IEnumerable<PaymentItem> lista = null;
@@ -43,6 +45,7 @@ namespace Web.Controllers
         }
 
         // GET: PaymentItem/Create
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Create()
         {
             return View();
@@ -50,6 +53,7 @@ namespace Web.Controllers
 
         // POST: PaymentItem/Create
         [HttpGet]
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Create(FormCollection collection)
         {
             
@@ -58,6 +62,7 @@ namespace Web.Controllers
         }
 
         // GET: PaymentItem/Edit/5
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Edit(int? id)
         {
             ServicePaymentItem _ServicePaymentItem = new ServicePaymentItem();

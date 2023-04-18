@@ -7,12 +7,14 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Web.Security;
 
 namespace Web.Controllers
 {
     public class PlanAssignmentController : Controller
     {
         // GET: PlanAssignment
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Index()
         {
             IEnumerable<Residence> list = null;
@@ -35,6 +37,7 @@ namespace Web.Controllers
         }
 
         // GET: PlanAssignment/Details/5
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Details(int? id)
         {
             IServiceResidence _ServiceResidence = new ServiceResidence();
@@ -69,6 +72,7 @@ namespace Web.Controllers
             }
         }
 
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult AddMonthlyAssignment(int? idPlanAssignment)
         {
             IServicePlanAssignment _ServicePA = new ServicePlanAssignment();

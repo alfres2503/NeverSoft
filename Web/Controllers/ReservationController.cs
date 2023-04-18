@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -16,6 +17,7 @@ namespace Web.Controllers
     public class ReservationController : Controller
     {
         // GET: Reservation
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Index()
         {
             IEnumerable<Reservation> list = null;
@@ -116,7 +118,7 @@ namespace Web.Controllers
             return new SelectList(lista, "IDArea", "Name", idArea);
         }
 
-
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Details(int? id)
         {
             IServiceReservation _ServiceReservation = new ServiceReservation();

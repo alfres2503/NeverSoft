@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -15,6 +16,7 @@ namespace Web.Controllers
     public class PaymentPlanController : Controller
     {
         // GET: PaymentPlan
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Index()
         {
             IEnumerable<PaymentPlan> list = null;
@@ -33,6 +35,7 @@ namespace Web.Controllers
         }
 
         // GET: PaymentPlan/Details/5
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Details(int? id)
         {
             IServicePaymentPlan _ServicePaymentPlan = new ServicePaymentPlan();
@@ -68,6 +71,7 @@ namespace Web.Controllers
         }
 
         //Mantenimiento
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Maintenance()
         {
             IEnumerable<PaymentPlan> list = null;
@@ -84,7 +88,7 @@ namespace Web.Controllers
             }
             return View(list);
         }
-
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Edit(int? id)
         {
             ServicePaymentPlan _ServicePaymentPlan = new ServicePaymentPlan();
@@ -129,6 +133,7 @@ namespace Web.Controllers
 
         // GET: PaymentPlan/Create
         [HttpGet]
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Create()
         {
           

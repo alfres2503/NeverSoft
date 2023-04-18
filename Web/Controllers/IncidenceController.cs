@@ -6,6 +6,8 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Web.Security;
 using Web.Utils;
 
 namespace Web.Controllers
@@ -18,7 +20,7 @@ namespace Web.Controllers
             
             return View();
         }
-
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Maintenance()
         {
             IEnumerable<Incidence> list = null;
@@ -46,6 +48,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [CustomAuthorize((int)UserRoles.Administrator)]
         public ActionResult Edit(int? id)
         {
             IServiceIncidence _ServiceIncidence = new ServiceIncidence();
