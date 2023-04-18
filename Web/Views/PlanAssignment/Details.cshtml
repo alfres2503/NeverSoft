@@ -40,8 +40,20 @@
                 </dd>
 
                 <dd>
-                    Actual Plan: @Html.DisplayFor(model => model.PlanAssignment.Last().PaymentPlan.Name)
+                    @if (Model.PlanAssignment.Count == 0)
+                    {
+                        <p>Actual Plan: Not assigned yet</p>
+                    }
+                    else
+                    {
+                        <p>Actual Plan:  @Html.DisplayFor(model => model.PlanAssignment.Last().PaymentPlan.Name)</p>
+                    }
+
                 </dd>
+
+                @*<dd>
+                    Actual Plan: @Html.DisplayFor(model => model.PlanAssignment.Last().PaymentPlan.Name)
+                </dd>*@
             </dl>
         </div>
     </div>
