@@ -178,12 +178,15 @@ namespace Web.Controllers
 
             IServicePlanAssignment _ServicePlanAssignment = new ServicePlanAssignment();
             ViewModelGrafico grafico = new ViewModelGrafico();
+
             _ServicePlanAssignment.GetMonthlyIncomesOfTheCurrentYear(out string etiquetas, out string valores);
+
+
             grafico.Etiquetas = etiquetas;
-            grafico.Valores = valores;
+            grafico.Valores =  valores;
             int cantidadValores = valores.Split(',').Length;
             grafico.Colores = string.Join(",", grafico.GenerateColors(cantidadValores));
-            grafico.titulo = "Total";
+            grafico.titulo = "Total $";
             grafico.tituloEtiquetas = "Monthly Incomes of the Current Year";
             //Tipos de gráficos: bar, bubble, doughnut, pie, line, polarArea
             grafico.tipo = "bar";

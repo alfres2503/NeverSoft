@@ -3,7 +3,9 @@
 }
 
 <h2>Incomes Graphic</h2>
+<h5 id="sumatoria" class="mt-3 text-success"></h5>
 <div>
+    
     <canvas id="grafico"></canvas>
 </div>
 
@@ -20,6 +22,15 @@
 
         var valores = @Html.Raw(Json.Encode(ViewBag.grafico.Valores));
         valores = valores.split(",");
+
+        var sumaValores = 0;
+        for (var i = 0; i < valores.length; i++) {
+            if (!isNaN(parseFloat(valores[i])) && isFinite(valores[i])) {
+                sumaValores += parseFloat(valores[i]);
+            }
+        }
+
+        document.getElementById("sumatoria").innerHTML = "Total Amount of Income: $" + sumaValores;
 
         var titulo =@Html.Raw(Json.Encode(ViewBag.grafico.titulo));
 

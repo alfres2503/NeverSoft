@@ -2,9 +2,20 @@
 
 @{
     ViewBag.Title = "Debts";
+    decimal totalAmount = 0;
 }
 @using System.Globalization
 <h2>Debts</h2>
+
+
+@foreach (var item in Model)
+{
+    totalAmount += item.Amount;
+
+
+}
+
+
 
 
 @using (Html.BeginForm("CreatePdfDebts", "Report", FormMethod.Post))
@@ -15,13 +26,18 @@
     </div>
     <div>
         <label for="month">Month:</label>
-        
+
         @Html.DropDownList("month", (IEnumerable<SelectListItem>)ViewBag.month, new { @class = "form-control" })
     </div>
     <div>
         <button type="submit" class="btn btn-primary mt-3">Generate PDF</button>
     </div>
 }
+
+
+<h5 class="mt-3 text-danger">
+    Total Amount of Debts: $@Html.DisplayFor(modelItem => totalAmount)
+</h5>
 
 <div class="table-responsive">
     <table class="table table-striped trCustom shadow-lg animate__animated animate__fadeIn " id="myTable">
