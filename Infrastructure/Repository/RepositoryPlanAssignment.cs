@@ -195,12 +195,8 @@ namespace Infrastructure.Repository
                 {
                     ctx.Configuration.LazyLoadingEnabled = false;
                     foreach (string id in selectedDebts)
-                    {
-                        PlanAssignment oPlanAssignment = GetPlanAssignmentByID(int.Parse(id));
-                        oPlanAssignment.PayedStatus = true;
-                        ctx.Entry(oPlanAssignment).State = EntityState.Modified;
-                        ctx.SaveChanges();
-                    }
+                        ctx.Database.ExecuteSqlCommand("UPDATE PlanAssignment SET PayedStatus = 1 WHERE IDAssignment = " + id);
+                    
                 }
             }
             catch (DbUpdateException dbEx)
@@ -230,11 +226,11 @@ namespace Infrastructure.Repository
 
                     int year = DateTime.Now.Year;
                     var resultado = ctx.PlanAssignment
-    .Where(x => x.AssignmentDate.Year == year && x.PayedStatus == true)
-    .GroupBy(x => x.AssignmentDate.Month)
-    .Select(o => new { Total = o.Sum(x => x.Amount), Month = o.Key })
-    .ToList() // traer los datos a la memoria
-    .Select(o => new { Total = o.Total, Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(o.Month) });
+                    .Where(x => x.AssignmentDate.Year == year && x.PayedStatus == true)
+                    .GroupBy(x => x.AssignmentDate.Month)
+                    .Select(o => new { Total = o.Sum(x => x.Amount), Month = o.Key })
+                    .ToList() // traer los datos a la memoria
+                    .Select(o => new { Total = o.Total, Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(o.Month) });
 
                     //Crear etiquetas y valores
                     foreach (var item in resultado)
