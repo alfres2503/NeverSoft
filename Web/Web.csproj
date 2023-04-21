@@ -364,6 +364,9 @@
     <Content Include="Views\StatementAccount\PayDebts.cshtml" />
     <Content Include="Views\Report\Debts.cshtml" />
     <Content Include="Views\PlanAssignment\Incomesgraphic.cshtml" />
+    <Content Include="Views\Residence\Maintenance.cshtml" />
+    <Content Include="Views\Residence\Edit.cshtml" />
+    <Content Include="Views\Residence\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

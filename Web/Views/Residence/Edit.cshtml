@@ -1,0 +1,62 @@
+﻿@model Infrastructure.Models.Residence
+
+@{
+    ViewBag.Title = "Edit Residence";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("SaveEdit", "Residence", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Residence @Model.IDResidence</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDResidence)
+
+        <div class="form-group my-3">
+            @Html.LabelFor(model => model.IDUser, "Owner", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.DropDownList("IDUser", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.IDUser, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group my-3">
+            @Html.LabelFor(model => model.Habitants, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Habitants, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Habitants, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group my-3">
+            @Html.LabelFor(model => model.StartYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.StartYear, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.StartYear, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group my-3">
+            @Html.LabelFor(model => model.InConstruction, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="col-md-12">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.InConstruction)
+                    @Html.ValidationMessageFor(model => model.InConstruction, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+                @Html.ActionLink("Back to List", "Maintenance", null, new { @class = "btn btn-primary mx-1" })
+            </div>
+        </div>
+    </div>
+}
+
+

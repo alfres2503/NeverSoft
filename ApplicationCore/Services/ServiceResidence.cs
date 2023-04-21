@@ -27,5 +27,11 @@ namespace ApplicationCore.Services
             IRepositoryResidence repository = new RepositoryResidence();
             return repository.GetResidenceByUser(idUser);
         }
+
+        public Residence Save(Residence residence)
+        {
+            IRepositoryResidence repository = new RepositoryResidence();
+            return repository.Save(residence);
+        }
     }
 }

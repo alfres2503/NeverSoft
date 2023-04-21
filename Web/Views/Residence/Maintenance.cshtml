@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Infrastructure.Models.Residence>
+
+@{
+    ViewBag.Title = "Residences Maintenance";
+}
+
+<h2>Residences Maintenance</h2>
+@Html.ActionLink("New Residence", "Create", null, new { @class = "btn btn-primary mt-2" })
+
+<div class="table-responsive ">
+    <table class="table table-striped trCustom shadow-lg animate__animated animate__fadeIn" id="myTable">
+        <thead>
+            <tr class="table-dark">
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IDResidence)
+                </th>
+                <th>
+                    Owner
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.StartYear)
+
+                </th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><i class="fa-solid fa-house"></i></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDResidence)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.FullName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartYear)
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action("Edit", "Residence", new { id = item.IDResidence })" class="btn btn-primary">Edit <i class="fa-solid fa-pen"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

@@ -12,5 +12,6 @@ namespace Infrastructure.Repository
         IEnumerable<Residence> GetResidences();
         Residence GetResidenceByID(int id);
         Residence GetResidenceByUser(long idUser);
+        Residence Save(Residence residence);
     }
 }

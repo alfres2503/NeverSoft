@@ -18,8 +18,9 @@ namespace Infrastructure.Models
         [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Only integers numbers greater than 0 are accepted")]
         public int Habitants { get; set; }
         [Display(Name = "Start Year")]
+        [RegularExpression(@"^(20)\d{2}$", ErrorMessage = "Only years greater than 2000 are accepted")]
         public int StartYear { get; set; }
-        [Display(Name = "In Construction")]
+        [Display(Name = "Under Construction/Renovation")]
         public bool InConstruction { get; set; }
         //public virtual ICollection<PlanAssignment> PlanAssignment { get; set; }
         //public virtual User User { get; set; }

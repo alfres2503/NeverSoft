@@ -101,5 +101,44 @@ namespace Infrastructure.Repository
                 throw;
             }
         }
+
+        public Residence Save(Residence residence)
+        {
+            int retorno = 0;
+            Residence oResidence = null;
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    oResidence = GetResidenceByID(residence.IDResidence);
+                    if (oResidence == null)
+                    {
+                        ctx.Residence.Add(residence);
+                    }
+                    else
+                    {
+                        ctx.Entry(residence).State = EntityState.Modified;
+                    }
+                    retorno = ctx.SaveChanges();
+                }
+                if (retorno >= 0) oResidence = GetResidenceByID(residence.IDResidence);
+                return oResidence;
+
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw;
+            }
+
+        }
     }
 }
