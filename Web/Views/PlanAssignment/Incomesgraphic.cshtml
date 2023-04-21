@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Incomes Graphic";
+}
+
+<h2>Incomes Graphic</h2>
+<div>
+    <canvas id="grafico"></canvas>
+</div>
+
+@section Scripts {
+    <!--Librería para gráficos-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="~/Scripts/graficoChartJS.js"></script>
+    <script type="text/javascript">
+        var colores = @Html.Raw(Json.Encode(ViewBag.grafico.Colores));
+        colores = colores.split(",");
+
+        var etiquetas = @Html.Raw(Json.Encode(ViewBag.grafico.Etiquetas));
+        etiquetas = etiquetas.split(",");
+
+        var valores = @Html.Raw(Json.Encode(ViewBag.grafico.Valores));
+        valores = valores.split(",");
+
+        var titulo =@Html.Raw(Json.Encode(ViewBag.grafico.titulo));
+
+        var tituloEtiquetas =@Html.Raw(Json.Encode(ViewBag.grafico.tituloEtiquetas));
+
+        var tipo = @Html.Raw(Json.Encode(ViewBag.grafico.tipo));
+
+        grafico(titulo, tituloEtiquetas, tipo, colores, etiquetas, valores);
+    </script>
+}

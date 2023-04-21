@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -213,6 +214,54 @@ namespace Infrastructure.Repository
                 string mensaje = "";
                 Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
                 throw;
+            }
+        }
+
+        public void GetMonthlyIncomesOfTheCurrentYear(out string etiquetas, out string valores)
+        {
+            String varEtiquetas = "";
+            String varValores = "";
+            try
+            {
+                using (MyContext ctx = new MyContext())
+                {
+                    ctx.Configuration.LazyLoadingEnabled = false;
+                    //Obtener ingresos mensuales del año actual
+
+                    int year = DateTime.Now.Year;
+                    var resultado = ctx.PlanAssignment
+    .Where(x => x.AssignmentDate.Year == year && x.PayedStatus == true)
+    .GroupBy(x => x.AssignmentDate.Month)
+    .Select(o => new { Total = o.Sum(x => x.Amount), Month = o.Key })
+    .ToList() // traer los datos a la memoria
+    .Select(o => new { Total = o.Total, Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(o.Month) });
+
+                    //Crear etiquetas y valores
+                    foreach (var item in resultado)
+                    {
+                        varEtiquetas += item.Month + ",";
+                        varValores += item.Total.ToString() + ",";
+                    }
+
+                }
+                //Ultima coma
+                varEtiquetas = varEtiquetas.Substring(0, varEtiquetas.Length - 1); // ultima coma
+                varValores = varValores.Substring(0, varValores.Length - 1);
+                //Asignar valores de salida
+                etiquetas = varEtiquetas;
+                valores = varValores;
+            }
+            catch (DbUpdateException dbEx)
+            {
+                string mensaje = "";
+                Log.Error(dbEx, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
+            }
+            catch (Exception ex)
+            {
+                string mensaje = "";
+                Log.Error(ex, System.Reflection.MethodBase.GetCurrentMethod(), ref mensaje);
+                throw new Exception(mensaje);
             }
         }
     }

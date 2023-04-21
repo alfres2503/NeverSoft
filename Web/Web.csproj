@@ -241,6 +241,7 @@
     <Compile Include="Utils\Log.cs" />
     <Compile Include="Utils\SweetAlertHelper.cs" />
     <Compile Include="Utils\Util.cs" />
+    <Compile Include="ViewModel\ViewModelGraphic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -293,6 +294,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.6.3.intellisense.js" />
     <Content Include="Scripts\datatables.min.js" />
+    <Content Include="Scripts\graficoChartJS.js" />
     <Content Include="Scripts\jquery-3.6.3.js" />
     <Content Include="Scripts\jquery-3.6.3.min.js" />
     <Content Include="Scripts\jquery-3.6.3.slim.js" />
@@ -361,6 +363,7 @@
     <Content Include="Views\Reservation\Create.cshtml" />
     <Content Include="Views\StatementAccount\PayDebts.cshtml" />
     <Content Include="Views\Report\Debts.cshtml" />
+    <Content Include="Views\PlanAssignment\Incomesgraphic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -39,5 +39,12 @@ namespace ApplicationCore.Services
         {
             repository.SetDebtsAsPaid(selectedDebts);
         }
+
+        public void GetMonthlyIncomesOfTheCurrentYear(out string etiquetas1, out string valores1)
+        {
+            repository.GetMonthlyIncomesOfTheCurrentYear(out string etiquetas, out string valores);
+            etiquetas1 = etiquetas;
+            valores1 = valores;
+        }
     }
 }
