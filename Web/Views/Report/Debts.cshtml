@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Infrastructure.Models.PlanAssignment>
+
+@{
+    ViewBag.Title = "Debts";
+}
+@using System.Globalization
+<h2>Debts</h2>
+
+
+@using (Html.BeginForm("CreatePdfDebts", "Report", FormMethod.Post))
+{
+    <div>
+        <label for="residence">Residence:</label>
+        @Html.DropDownList("residence", (IEnumerable<SelectListItem>)ViewBag.residence, new { @class = "form-control" })
+    </div>
+    <div>
+        <label for="month">Month:</label>
+        
+        @Html.DropDownList("month", (IEnumerable<SelectListItem>)ViewBag.month, new { @class = "form-control" })
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary mt-3">Generate PDF</button>
+    </div>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped trCustom shadow-lg animate__animated animate__fadeIn " id="myTable">
+        <thead>
+            <tr class="table-dark">
+
+                <th>
+                    @Html.DisplayNameFor(model => model.AssignmentDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PayedStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentPlan.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Residence.IDResidence)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssignmentDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PayedStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentPlan.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Residence.IDResidence)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
