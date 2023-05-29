@@ -50,3 +50,17 @@ C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastruct
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.dll
 C:\Users\Yoryina\Documents\GitHub\NeverSoft\Infrastructure\obj\Debug\Infrastructure.pdb
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\Infrastructure.dll.config
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\Infrastructure.dll
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\Infrastructure.pdb
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\EntityFramework.dll
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\log4net.dll
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\EntityFramework.xml
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\bin\Debug\log4net.xml
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\obj\Debug\Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\obj\Debug\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\obj\Debug\Infrastructure.csproj.CopyComplete
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\obj\Debug\Infrastructure.dll
+C:\Users\Alfredo\source\repos\condominium-mvc-app\Infrastructure\obj\Debug\Infrastructure.pdb
