@@ -2,6 +2,10 @@
 
 The Neverland Condominium Application is a web-based application built using the ASP.NET MVC framework. It is designed to facilitate various tasks and operations related to the management of a fictional condominium called Neverland. This README.md file provides an overview of the application and its features, along with instructions for setting up and running the application.
 
+![image](https://raw.githubusercontent.com/alfres2503/condominium-mvc-app/main/Screenshots/loginpage.png)
+
+You can enter using credentials lusuarezag@est.utn.ac.cr and password: 123
+
 ## Features
 
 The Neverland Condominium Application offers the following features:
